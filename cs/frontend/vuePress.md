@@ -196,18 +196,20 @@ npm run docs:dev
    git push -f git@github.com:chengziqaq/Note.git master:gh-pages
    ```
 
-   推送失败  需要添加本机的公钥
+   上一个命令推送失败  因为没有访问权限, 需要添加本机的公钥
 
    需要先在本地生成 公钥 win10 系统
 
-   参考: https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/Github.html#ssh%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5github
+   参考: 
 
+   https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/Github.html#ssh%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5github
+   
    ```cmd
-   ssh-keygen
+ssh-keygen
    ```
 
    复制 用户目录下的公钥内容添加到 github 的公钥设置上.
-
+   
    再次 push , 等了几分钟, 推送成功. 这时候查看 git page 应该就会看到效果了.
    
    访问 https://chengziqaq.github.io/Note/ ok了
@@ -222,4 +224,8 @@ npm run docs:dev
    
       3. 测试推送第一次 看 build 日志 发现构建成功, 推送上 github 的时候提示 Token 无效, 
    
-         网上搜索了一下, 叫我重新生成一个 Token
+         网上搜索了一下, 叫我重新生成一个 Token. 照做了, 再次推送自动构建成功.
+
+4. 优化 左侧栏导航 和 顶部导航
+
+   待补充
