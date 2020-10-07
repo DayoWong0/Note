@@ -162,70 +162,76 @@ npm run docs:dev
    1. [CS-Notes](https://cyc2018.github.io/CS-Notes/#/README)
    2. [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-CN.md)
 
-5. 分享项目到 github
+## 4. 推送项目到 github
 
-   项目比较大, 分了多次上传, 否则 github 会拒绝接受.
+项目比较大, 分了多次上传, 否则 github 会拒绝接受.
 
-6. 生成 html 文件并推送到 仓库的 gh-pages 分支
+## 5. 生成静态文件并推送到  gh-pages 分支
 
-   生成 html 文件, 项目根目录下
+生成 html 文件并推送到 仓库的 gh-pages 分支
 
-   ```shell
-   npm run build
-   ```
+生成 html 文件, 项目根目录下
 
-   接着看官方教程
+```shell
+npm run build
+```
 
-   https://vuepress.vuejs.org/zh/guide/deploy.html#github-pages
+接着看官方教程
 
-   切换到 .vuepress/dist 目录下, 将此文件夹的内容推送到 gh-pages 分支
+https://vuepress.vuejs.org/zh/guide/deploy.html#github-pages
 
-   ```shell
-   git init
-   ```
+切换到 .vuepress/dist 目录下, 将此文件夹的内容推送到 gh-pages 分支
 
-    ```shell
-   git add -A
-    ```
+```shell
+git init
+```
 
-   ```shell
-   git commit -m 'deploy'
-   ```
+```shell
+git add -A
+```
 
-   ```shell
-   git push -f git@github.com:chengziqaq/Note.git master:gh-pages
-   ```
+```shell
+git commit -m 'deploy'
+```
 
-   上一个命令推送失败  因为没有访问权限, 需要添加本机的公钥
+```shell
+git push -f git@github.com:chengziqaq/Note.git master:gh-pages
+```
 
-   需要先在本地生成 公钥 win10 系统
+上一个命令推送失败  因为没有访问权限, 需要添加本机的公钥
 
-   参考: 
+需要先在本地生成 公钥 win10 系统
 
-   https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/Github.html#ssh%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5github
-   
-   ```cmd
+参考: 
+
+https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/Github.html#ssh%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5github
+
+```cmd
 ssh-keygen
-   ```
+```
 
-   复制 用户目录下的公钥内容添加到 github 的公钥设置上.
-   
-   再次 push , 等了几分钟, 推送成功. 这时候查看 git page 应该就会看到效果了.
-   
-   访问 https://chengziqaq.github.io/Note/ ok了
-   
-   7. 配置自动构建
-   
-      以后我只需要在本地编辑 md 文件, 推送之后, 就会自动构建. GitAction 和 Travis CI 都可以实现, 官方文档用的后者, 我也就跟着用这个.
-   
-      1. 用 Github 账号登录 Travis CL 
-   
-      2. 在 Travis CL 仓库设置中 填入 刚才在 Github 生成的 Token
-   
-      3. 测试推送第一次 看 build 日志 发现构建成功, 推送上 github 的时候提示 Token 无效, 
-   
-         网上搜索了一下, 叫我重新生成一个 Token. 照做了, 再次推送自动构建成功.
+复制 用户目录下的公钥内容添加到 github 的公钥设置上.
 
-4. 优化 左侧栏导航 和 顶部导航
+再次 push , 等了几分钟, 推送成功. 这时候查看 git page 应该就会看到效果了.
 
-   待补充
+访问 https://chengziqaq.github.io/Note/ ok了
+
+## 6. 配置自动构建
+
+以后我只需要在本地编辑 md 文件, 推送之后, 就会自动构建. GitAction 和 Travis CI 都可以实现, 官方文档用的后者, 我也就跟着用这个.
+
+1. 用 Github 账号登录 Travis CL 
+
+2. 在 Travis CL 仓库设置中 填入 刚才在 Github 生成的 Token
+
+3. 测试推送第一次 看 build 日志 发现构建成功, 推送上 github 的时候提示 Token 无效, 
+
+   网上搜索了一下, 叫我重新生成一个 Token. 照做了, 再次推送自动构建成功.
+
+## 7. 修改 左侧栏导航 和 顶部导航
+
+​		待补充
+
+## 8. 总结
+
+​	待补充
