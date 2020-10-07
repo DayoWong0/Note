@@ -161,3 +161,61 @@ npm run docs:dev
 
    1. [CS-Notes](https://cyc2018.github.io/CS-Notes/#/README)
    2. [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-CN.md)
+
+5. 分享项目到 github
+
+   项目比较大, 分了多次上传, 否则 github 会拒绝接受.
+
+6. 生成 html 文件并推送到 仓库的 gh-pages 分支
+
+   生成 html 文件, 项目根目录下
+
+   ```shell
+   npm run build
+   ```
+
+   接着看官方教程
+
+   https://vuepress.vuejs.org/zh/guide/deploy.html#github-pages
+
+   切换到 .vuepress/dist 目录下, 将此文件夹的内容推送到 gh-pages 分支
+
+   ```shell
+   git init
+   ```
+
+    ```shell
+   git add -A
+    ```
+
+   ```shell
+   git commit -m 'deploy'
+   ```
+
+   ```shell
+   git push -f git@github.com:chengziqaq/Note.git master:gh-pages
+   ```
+
+   推送失败  需要添加本机的公钥
+
+   需要先在本地生成 公钥 win10 系统
+
+   参考: https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/Github.html#ssh%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5github
+
+   ```cmd
+   ssh-keygen
+   ```
+
+   复制 用户目录下的公钥内容添加到 github 的公钥设置上.
+
+   再次 push , 等了几分钟, 推送成功. 这时候查看 git page 应该就会看到效果了.
+   
+   访问 https://chengziqaq.github.io/Note/ ok了
+   
+   7. 配置自动构建
+   
+      以后我只需要在本地编辑 md 文件, 推送之后, 就会自动构建. GitAction 和 Travis CI 都可以实现, 官方文档用的后者, 我也就跟着用这个.
+   
+      bd54d57668eeba5811bd614594cf71b056b233d5
+   
+      1. 用 Github 账号登录 Travis CL 
