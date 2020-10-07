@@ -216,6 +216,5 @@ npm run docs:dev
    
       以后我只需要在本地编辑 md 文件, 推送之后, 就会自动构建. GitAction 和 Travis CI 都可以实现, 官方文档用的后者, 我也就跟着用这个.
    
-      bd54d57668eeba5811bd614594cf71b056b233d5
-   
       1. 用 Github 账号登录 Travis CL 
+      2. 在 Travis CL 仓库设置中 填入 刚才在 Github 生成的 Token
