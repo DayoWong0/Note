@@ -41,7 +41,7 @@ module.exports = {
     },
 
     markdown: {
-        lineNumbers: true, //是否在每个代码块的左侧显示行号
+        // lineNumbers: true, //是否在每个代码块的左侧显示行号
         extendMarkdown: md => {
             md.use(require('markdown-it-multimd-table'), {
                 rowspan: true,
@@ -60,8 +60,8 @@ module.exports = {
         lastUpdated: true,
         repo: 'https://github.com/chengziqaq/Note',
         editLinks: true,
-        editLinkText: 'Help us improve this page!',
-        logo: 'homepage.png',
+        editLinkText: '在 Github 上编辑',
+        // logo: 'homepage.png',
         nav: [{
             text: 'Notes',
             ariaLabel: 'Language Menu',
@@ -95,9 +95,26 @@ module.exports = {
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
-                    "/cs/backend/Django/Django.md",
-                    "/cs/backend/JavaWeb/JavaWebNg/JavaWeb_ng.md",
-                    "/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md",
+
+                    {
+                        title: 'Django',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            "/cs/backend/Django/Django.md",
+                        ]
+                    },
+
+                    {
+                        title: 'JavaWeb',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            ["/cs/backend/JavaWeb/JavaWebNg/JavaWeb_ng.md", "JavaWeb-NG"],
+                            ["/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md", "JavaWeb-KS"],
+                        ]
+                    },
+
                     "/cs/backend/SpringBoot/SpringBoot.md",
                 ]
             },
@@ -136,12 +153,27 @@ module.exports = {
             {
                 title: '计算机基础课程',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
-                sidebarDepth: 1,    // 可选的, 默认值是 1
+                sidebarDepth: 2,    // 可选的, 默认值是 1
                 children: [
+                    {
+                        title: '数据结构',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
+                        ],
+                    },
+
+                    {
+                        title: '操作系统',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            ["/cs/csBasic/操作系统/操作系统王道考研.md", "操作系统王道考研"],
+                        ]
+                    },
                     // csBasic
-                    ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
                     ["/cs/csBasic/Network/图解HTTP.md", "图解HTTP"],
-                    ["/cs/csBasic/操作系统/操作系统王道考研.md", "操作系统王道考研"],
                 ]
             },
 
@@ -152,12 +184,22 @@ module.exports = {
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
                     // linux
-                    ["/cs/Linux/Git/git.md", "git"],
                     ["/cs/Linux/linux.md", "Linux"],
-                    ["/cs/Linux/networkProgram.md", "网络编程"],
                     ["/cs/Linux/shell.md", "shell编程"],
-                    ["/cs/Linux/Docker/DockerBasic.md", "Docker基础"],
-                    ["/cs/Linux/Docker/Dockerfile.md", "Dockerfile"],
+                    ["/cs/Linux/Git/git.md", "git"],
+                    ["/cs/Linux/networkProgram.md", "网络编程"],
+
+                    {
+                        title: 'Docker',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            ["/cs/Linux/Docker/DockerBasic.md", "Docker基础"],
+                            ["/cs/Linux/Docker/Dockerfile.md", "Dockerfile"],
+                        ],
+                    },
+
+
                 ]
             },
 
