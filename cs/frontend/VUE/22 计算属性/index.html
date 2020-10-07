@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>{{name}}</p>
+    <p>{{age + 1 }}</p>
+    <p>{{msg.split('').reverse().join('')}}</p>
+<!--    虽然在定义计算属性是通过一个函数的数据
+        但是在使用计算属性的时候不能加括号,
+        因为他是一个属性,不是函数
+        -->
+    <p>{{msg2}}</p>
+
+</div>
+<script>
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+            age: 18,
+            msg: "abcdef"
+        },
+
+        //专门用于定义计算属性的
+        computed:{
+            msg2: function () {
+                return "abcdef".split('').reverse().join('');
+            }
+        }
+    });
+</script>
+</body>
+</html>

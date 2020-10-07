@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="(value, index) in list">{{index+1}}--{{value}}</li>
+        <li v-for="(value, index) in 'abcdefg'">{{index+1}}--{{value}}</li>
+        <li v-for="(value, key) in obj">{{key}}--{{value}}</li>
+    </ul>
+</div>
+<script>
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            list: ["张三", "李四", "王5", "赵6"],
+            obj: {
+                name: "zx",
+                age: 21,
+                sex: "男"
+            }
+        }
+    });
+</script>
+</body>
+</html>

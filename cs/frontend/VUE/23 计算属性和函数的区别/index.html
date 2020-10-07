@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+<!--    <p>{{name}}</p>-->
+<!--    <p>{{age + 1 }}</p>-->
+<!--    <p>{{msg.split('').reverse().join('')}}</p>-->
+<!--    &lt;!&ndash;    虽然在定义计算属性是通过一个函数的数据-->
+<!--            但是在使用计算属性的时候不能加括号,-->
+<!--            因为他是一个属性,不是函数-->
+<!--            &ndash;&gt;-->
+<!--    <p>{{msg2}}</p>-->
+
+<!--    调用函数msg1-->
+    <p>{{msg1()}}</p>
+    <p>{{msg1()}}</p>
+    <p>{{msg1()}}</p>
+
+    <p>{{msg2()}}</p>
+    <p>{{msg2()}}</p>
+    <p>{{msg2()}}</p>
+
+
+
+</div>
+<script>
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+            age: 18,
+            msg: "abcdef"
+        },
+        methods:{
+            /*
+            函数特点: 每次调用都会执行
+             */
+            msg1: function () {
+                console.log("函数 msg1 被执行了")
+                return "abcdef".split('').reverse().join('');
+            }
+        },
+
+        //专门用于定义计算属性的
+        /*
+        计算属性的特点: 只要返回的结果没发生变化 只计算一次
+        应用场景:  数据没变的话 会缓存,用于返回的数据不经常变化 那么使用这个比函数性能高
+         */
+        computed:{
+            msg2: function () {
+                console.log("计算属性 msg2 被执行了")
+                return "abcdef".split('').reverse().join('');
+            }
+        }
+    });
+</script>
+</body>
+</html>

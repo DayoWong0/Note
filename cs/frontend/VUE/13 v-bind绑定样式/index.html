@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+<!--    <p style="color: red">我是段落</p>-->
+
+
+<!--    和绑定类名一样 默认v-bind去model查找 找不到 没效果-->
+<!--    <p :style="color: red">我是段落</p>-->
+
+<!--    red 要用单引号括起来-->
+<!--    <p :style="{color: red}">我是段落</p>-->
+
+
+<!--    只需要将样式代码 放在对象中 赋值给style即可 但是取值要用单引号括起来-->
+<!--    <p :style="{color: 'red'}">我是段落</p>-->
+
+
+<!--   如果样式名称 像font-size 等有连字符的也要用单引号括起来 -->
+<!--    <p :style="{color: 'red',font-size: '100px'}">我是段落</p>-->
+<!--    <p :style="{color: 'red','font-size': '100px'}">我是段落</p>-->
+
+<!--绑定一个JSON对象-->
+<!--    <p :style="obj">我是段落</p>-->
+
+<!--绑定两个JSON对象 用数组 多个对象放在数组中-->
+    <p :style="[obj1,obj2]">我是段落</p>
+
+
+</div>
+<script>
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+            obj:{
+                "color": "red",
+                "font-size": "100px",
+            },
+
+            obj1:{
+                "color": "blue",
+                "font-size": "100px",
+            },
+
+            obj2:{
+                "background-color": "red"
+            }
+        }
+    });
+</script>
+</body>
+</html>

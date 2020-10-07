@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>{{name}}</p>
+    <p v-text="name"></p>
+    <p v-html="name"></p>
+<!--    要给元素属性不定数据 用v-bind  v-model 只能对少数几个标签使用 表单标签-->
+<!--    <input type="text" value="111">-->
+<!--    <input type="text" v-model="name">-->
+
+    <input type="text" v-bind:value="name">
+<!--    简写方法-->
+    <input type="text" :value="name">
+
+    <input type="text" :value="age">
+<!--    赋值语句可以为合法的js表达式-->
+    <input type="text" :value="age * 5">
+
+</div>
+<script>
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+            age: 10
+        }
+    });
+</script>
+</body>
+</html>

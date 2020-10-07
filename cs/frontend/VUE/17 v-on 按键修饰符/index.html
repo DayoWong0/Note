@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <input type="text" @keyup.enter="myFn">
+</div>
+<script>
+    // 你还可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+    // 可以使用 `v-on:keyup.f1`
+    Vue.config.keyCodes.f1 = 112
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+        },
+        methods:{
+            myFn(){
+                alert("Zx")
+            }
+        }
+    });
+</script>
+</body>
+</html>

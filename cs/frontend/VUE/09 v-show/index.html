@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+<!--    <p 09 v-show="show">我是true</p>-->
+<!--    <p 09 v-show="hidden">我是false</p>-->
+
+<!--    <p 09 v-show="true">我是true</p>-->
+<!--    <p 09 v-show="false">我是false</p>-->
+
+    <p v-show="age >=18">我是true</p>
+    <p v-show="age <18">我是false</p>
+
+</div>
+<script>
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+            show: true,
+            hidden: false,
+            age: 15
+        }
+    });
+</script>
+</body>
+</html>

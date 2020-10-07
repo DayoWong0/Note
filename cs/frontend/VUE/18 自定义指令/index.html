@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+<!--    <p v-color>i am a p tag</p>-->
+
+    <input type="text" v-focus>
+</div>
+<script>
+    /*
+    directive接收两个参数
+    1. 指令的名称
+    2.对象
+    注意点: 在自定义指令时,指定名称不需要加v-
+    注意点: 指令可以在不同的生命周期阶段执行
+    bind: 指令被绑定到元素上的时候执行
+    inserted: 绑定指令的元素被添加(渲染)到父元素上的时候调用
+     */
+    Vue.directive("color", {
+        // 这里的el就是被绑定指令的那儿元素
+        bind: function (el) {
+            el.style.color="red";
+        }
+    })
+
+    Vue.directive("focus", {
+        // 这里的el就是被绑定指令的那儿元素
+        inserted: function (el) {
+            el.focus();
+        }
+    })
+
+
+    let vue = new Vue({
+        //控制区域
+        el: "#app",
+        //被控制区域的数据
+        data: {
+            name: "zx",
+        }
+    });
+</script>
+</body>
+</html>
