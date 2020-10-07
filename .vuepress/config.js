@@ -72,64 +72,163 @@ module.exports = {
             ]
         },
         ],
+
         sidebar: [
+            ["Navigate.md", "导航"],
+            {
+                title: '前端',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // frontend
+                    "/cs/frontend/html.md",
+                    "/cs/frontend/css.md",
+                    "/cs/frontend/javascript.md",
+                    "/cs/frontend/jquery.md",
+                    "/cs/frontend/vue.md",
+                    "/cs/frontend/vuePress.md",
+                ]
+            },
 
-            // frontend
-            ["/cs/frontend/html.md", "html"],
-            ["/cs/frontend/css.md", "css"],
-            ["/cs/frontend/javascript.md", "javascript"],
-            ["/cs/frontend/jquery.md", "jquery"],
-            ["/cs/frontend/vue.md", "vue"],
-            ["/cs/frontend/vuePress.md", "vuePress"],
-
-
-
-            ["/cs/language/Python/Python.md", "Python"],
-            ["/cs/language/Java/JavaSE.md", "JavaSE"],
-            ["/cs/language/Java/Java多线程.md", "Java多线程"],
-            ["/cs/language/Java/注解和反射.md", "注解和反射"],
-            ["/cs/language/C/C.md", "C"],
-            ["/cs/backend/Django/Django.md", "Django"],
-            ["/cs/backend/JavaWeb/JavaWebNg/JavaWeb_ng.md", "JavaWeb_ng"],
-
-            ["/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md", "JavaWeb入门到实战"],
-            ["/cs/backend/SpringBoot/SpringBoot.md", "SpringBoot"],
-
-            // csBasic
-            ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
-            ["/cs/csBasic/Network/图解HTTP.md", "图解HTTP"],
-            ["/cs/csBasic/操作系统/操作系统王道考研.md", "操作系统王道考研"],
-
-            // 大三上
-            ["/cs/大三上/无线传感器网络.md", "无线传感器网络"],
-            ["/cs/大三上/工程概论.md", "工程概论"],
-            ["/cs/大三上/物联网通信技术.md", "物联网通信技术"],
+            {
+                title: '后端',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    "/cs/backend/Django/Django.md",
+                    "/cs/backend/JavaWeb/JavaWebNg/JavaWeb_ng.md",
+                    "/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md",
+                    "/cs/backend/SpringBoot/SpringBoot.md",
+                ]
+            },
 
 
-            // desktop
-            ["/cs/desktop/Electron/electron.md", "electron"],
-
-            // linux
-            ["/cs/Linux/Git/git.md", "git"],
-            ["/cs/Linux/linux.md", "linux"],
-            ["/cs/Linux/networkProgram.md", "networkProgram"],
-
-            // shell.md 无法显示
-            ["/cs/Linux/shell.md", "shell"],
-            ["/cs/Linux/Docker/DockerBasic.md", "Docker基础"],
-            ["/cs/Linux/Docker/Dockerfile.md", "Dockerfile"],
-
-            // Android
-            ["/cs/mobile/Android/AndroidDocNote.md", "AndroidDocNote"],
-            ["/cs/mobile/Android/第一行代码第三版笔记.md", "第一行代码第三版笔记"],
-
-            // 数据库
-            ["/cs/database/MySQL_ks.md", "MySQL"],
+            {
+                title: 'Java',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    "/cs/language/Java/JavaSE.md",
+                    "/cs/language/Java/Java多线程.md",
+                    "/cs/language/Java/注解和反射.md",
+                ]
+            },
 
 
-            // 学习区域
-            ["/study/learningMethod/如何高效学习.md", "如何高效学习"],
-            ["/cs/webSecurity/白帽子讲Web安全.md", "白帽子讲Web安全"],
+            {
+                title: 'Python',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    "/cs/language/Python/Python.md",
+                ]
+            },
+
+            {
+                title: 'C',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    "/cs/language/C/C.md",
+                ]
+            },
+
+            {
+                title: '计算机基础课程',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // csBasic
+                    ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
+                    ["/cs/csBasic/Network/图解HTTP.md", "图解HTTP"],
+                    ["/cs/csBasic/操作系统/操作系统王道考研.md", "操作系统王道考研"],
+                ]
+            },
+
+
+            {
+                title: 'Linux',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // linux
+                    ["/cs/Linux/Git/git.md", "git"],
+                    ["/cs/Linux/linux.md", "Linux"],
+                    ["/cs/Linux/networkProgram.md", "网络编程"],
+                    ["/cs/Linux/shell.md", "shell编程"],
+                    ["/cs/Linux/Docker/DockerBasic.md", "Docker基础"],
+                    ["/cs/Linux/Docker/Dockerfile.md", "Dockerfile"],
+                ]
+            },
+
+            {
+                title: '大三上',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // 大三上
+                    ["/cs/大三上/无线传感器网络.md", "无线传感器网络"],
+                    ["/cs/大三上/工程概论.md", "工程概论"],
+                    ["/cs/大三上/物联网通信技术.md", "物联网通信技术"],
+                ]
+            },
+
+            {
+                title: '桌面应用开发',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // desktop
+                    ["/cs/desktop/Electron/electron.md", "electron"],
+                ]
+            },
+
+            {
+                title: 'Android',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // Android
+                    ["/cs/mobile/Android/AndroidDocNote.md", "AndroidDocNote"],
+                    ["/cs/mobile/Android/第一行代码第三版笔记.md", "第一行代码第三版笔记"],
+                ]
+            },
+
+            {
+                title: '数据库',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // 数据库
+                    ["/cs/database/MySQL_ks.md", "MySQL"],
+                ]
+            },
+
+
+            {
+                title: '学习方法',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    // 学习区域
+                    ["/study/learningMethod/如何高效学习.md", "如何高效学习"],
+                ]
+            },
+
+            {
+                title: '网络安全',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    ["/cs/webSecurity/白帽子讲Web安全.md", "白帽子讲Web安全"],
+                ]
+            },
+
+
+
+
+
+
         ],
     },
     plugins: [
