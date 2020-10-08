@@ -6,17 +6,17 @@
 
 ## 安装
 
-1. node.js安装
+1. node.js 安装
 
-   官网下载 mac版安装即可
+   官网下载 mac 版安装即可
 
-2. Electron安装
+2. Electron 安装
 
    ```sh
    sudo npm install electron -g --unsafe-perm=true --allow-root
    ```
 
-   npm命令前都要加sudo, 不然会权限不足.
+   npm 命令前都要加 sudo, 不然会权限不足.
 
 3. 官方的例子
 
@@ -28,4 +28,3 @@
    ```
 
    ![](./electron.assets/image-20200920021951852.png)
-

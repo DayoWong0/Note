@@ -58,7 +58,7 @@ cp hello\* ./dir1
 
 ### find
 
-find [路径] [表达式]
+find [路径][表达式]
 
 表达式
 
@@ -96,33 +96,33 @@ gzip -d 压缩文件名
 
 ### chmod
 
-chmod [who] [opt] [mode] 文件名
+chmod [who][opt] [mode] 文件名
 
 who:
 
- u: 文件所有者
+u: 文件所有者
 
- g: 本人所在. 组成员
+g: 本人所在. 组成员
 
- o: 系统中的其他的用户
+o: 系统中的其他的用户
 
- a: 所有用户
+a: 所有用户
 
 opt:
 
- +: 增加
++: 增加
 
- -: 减少
+-: 减少
 
- =: 使存储权限等于
+=: 使存储权限等于
 
 mode 表示权限:
 
- r: 读权限
+r: 读权限
 
- w: 写权限
+w: 写权限
 
- x: 执行权限
+x: 执行权限
 
 对目录使用需要 -R 选项
 
@@ -226,7 +226,7 @@ ps aux
 
 - wait 命令
 
-- kill [-s 信号 | -p] [-a] 进程号
+- kill [-s 信号 | -p][-a] 进程号
 
   kill -l [信号]
 
@@ -398,7 +398,7 @@ echo 默认换行
 
   使用 let 命令时, 变量前的
 
-##  if_script:
+## if_script:
 
 ```sh
 #! bin/bsah
@@ -407,10 +407,10 @@ echo " abc is the username? input yes or no"
 read name
 if [ "$name"="yes" ]
 then
-	echo "hello abc!"	
+	echo "hello abc!"
 else
 	echo "abc is not your name"
-fi 
+fi
 exit 0
 ```
 
@@ -419,7 +419,7 @@ exit 0
 echo "yes or no"
 read name
 if [ "$name" = "yes" ]
-then 
+then
         echo "hello abc!"
 elif [ "$name" = "no" ]
 then
@@ -484,17 +484,17 @@ make 命令会检测一个大型程序, 代码改变后哪些部分需要重新�
 
 2. 隐含规则
 
-   makefile自带的规则
+   makefile 自带的规则
 
 #### 6.2.1.1 显示 格式
 
 目标: 依赖
 
-​		命令
+​ 命令
 
 例子
 
-1. 新建makefile文件
+1. 新建 makefile 文件
 
    vi makefile
 
@@ -503,9 +503,9 @@ hello: hello.c
 	gcc -o hello hello.c
 ```
 
-​	hello(可执行文件) 依赖于 hello.c(源文件)
+​ hello(可执行文件) 依赖于 hello.c(源文件)
 
-​	下面的命令时编译命令.
+​ 下面的命令时编译命令.
 
 1. vi hello.c
 
@@ -518,15 +518,15 @@ int main(){
 
 执行命令 make 可以自动编译为可执行文件
 
-修改hello.c 再执行make
+修改 hello.c 再执行 make
 
 ### 6.3 命令
 
 #### clean
 
-clean: 
+clean:
 
-​	rm ...
+​ rm ...
 
 清理文件
 
@@ -536,7 +536,7 @@ clean:
 make 可执行文件名字
 ```
 
-只对 这个可执行文件执行make命令
+只对 这个可执行文件执行 make 命令
 
 ### 6.4 变量
 
@@ -546,15 +546,15 @@ make 可执行文件名字
 
 2. 内部定义
 
-   - $@
+   - \$@
 
      目标文件
 
-   - $^
+   - \$^
 
      所有依赖文件
 
-   - $<
+   - \$<
 
      第一个依赖文件
 
@@ -565,3 +565,120 @@ make 可执行文件名字
 
 ```
 
+###    6.5 隐含规则
+
+C 程序 .o 文件由 .c 生成
+
+C++ 由 .cc 生成
+
+将 gcc 名字设置为变量, 方便以后切换版本
+
+隐含条件简化命令
+
+```makefile
+main.o: main.c **.h
+```
+
+### 6.3 Makefile 使用
+
+#### make 执行过程
+
+- 查找顺序
+
+  1. GNUmake
+
+     ...
+
+     makefile
+
+## 6.4 GDB 调试器
+
+编译错误
+
+运行错误时用 GDB 调试
+
+## 6.5 库 lib
+
+### 定义
+
+### 库函数：
+
+系统提供，供程序员调用，完成特定功能的函数，一般是 .o 文件。
+
+### 静态库
+
+- 一般以 .a 结尾。
+- 编译时：库函数合并在可执行文件中
+- 执行时：提供程序即可
+- 可执行文件会变大
+
+### 共享库
+
+- 以 .so .so.x 结尾
+
+- 其他性质与静态库相反
+
+  编译不加入
+
+  执行时要提供库文件
+
+  执行文件较小。多个可执行文件可以共享，适合大型程序。
+
+### 制作静态库
+
+gcc 生成 .o 文件 再用 ar -rc 打包
+
+```shell
+gcc -c stack.c
+```
+
+```shell
+ar -rc libstack.a stack.o
+```
+
+源文件 stack.c
+
+gcc 命令生成 stack.o 文件
+
+打包后的静态库：libstack.a
+
+### 使用静态库
+
+编译 main.c 时用 -L 参数加入静态库
+
+```shell
+gcc -o main main.c -L./ -lstack
+```
+
+然后运行 main
+
+### 动态库
+
+#### 制作
+
+```shell
+gcc stack.c -fPIC -shared -o libstack2.so
+```
+
+shared：共享库
+
+-fPIC： f 为选项 PIC 为参数：位置无关代码。（待修改）
+
+### 使用
+
+编译 main.c 加 L 参数，和使用静态库命令一样
+
+```shell
+gcc -o main2 main.c -L./ -lstack2
+```
+
+main2 中没有共享库的代码。只复制 main2 给别人不能直接执行，除非同时提供库文件。
+
+### 添加共享库
+
+设置环境变量，告诉系统动态库在哪里。
+
+```shell
+export LD_LIBRARY_PATH=./; # 修改共享库路径环境变量为当前目录
+$LD_LIBRARY_PATH # 查看环境变量
+```

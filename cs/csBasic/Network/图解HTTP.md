@@ -1,22 +1,22 @@
-# 图解HTTP
+# 图解 HTTP
 
-##  第一章 web基础
+## 第一章 web 基础
 
-### TCP和HTTP
+### TCP 和 HTTP
 
 ![image-20200728134236914](图解HTTP.assets/image-20200728134236914.png)
 
-客户端: 应用层HTTP 传输层TCP 进行网络传输时用的TCP 一步一步加那一层的头部
+客户端: 应用层 HTTP 传输层 TCP 进行网络传输时用的 TCP 一步一步加那一层的头部
 
 ![image-20200728134632718](图解HTTP.assets/image-20200728134632718.png)
 
-## 第二章 简单的HTTP协议
+## 第二章 简单的 HTTP 协议
 
-### HTTP是无状态的协议
+### HTTP 是无状态的协议
 
-增加了Cookie
+增加了 Cookie
 
-### HTTP方法
+### HTTP 方法
 
 - GET
 
@@ -30,47 +30,45 @@
 
 - HEAD
 
-  简化版的GET 只获取响应首部
+  简化版的 GET 只获取响应首部
 
 - DELETE
 
-  和PUT一样没验证机制 一般少用 除了RESTful API那种
+  和 PUT 一样没验证机制 一般少用 除了 RESTful API 那种
 
 - OPTIONS
 
-  询问支持哪些方法 比如GET POST等
+  询问支持哪些方法 比如 GET POST 等
 
   ![image-20200728144935524](图解HTTP.assets/image-20200728144935524.png)
 
 - TRACE
 
-  代理服务器中转一次MAX-Forwards次数就减少1
+  代理服务器中转一次 MAX-Forwards 次数就减少 1
 
   少用
 
-- CONNECT 
+- CONNECT
 
   - 简介
 
     要求用隧道协议连接代理
 
-    主要使用 SSL TLS协议把通信内容加密后经网络隧道传输
+    主要使用 SSL TLS 协议把通信内容加密后经网络隧道传输
 
   - 格式
 
-    CONNECT 代理服务器名: 端口号 HTTP版本
+    CONNECT 代理服务器名: 端口号 HTTP 版本
 
   ![image-20200728145439504](图解HTTP.assets/image-20200728145439504.png)
 
-  ### 不同HTTP版本支持的方法
-
-  
+  ### 不同 HTTP 版本支持的方法
 
 ![image-20200728145544319](图解HTTP.assets/image-20200728145544319.png)
 
 ### 持久连接: keep-alive
 
-只要任意一端没明确提出断开连接就保持连接 , 建立一次连接 进行多次TCP通信
+只要任意一端没明确提出断开连接就保持连接 , 建立一次连接 进行多次 TCP 通信
 
 ### Cookie
 
@@ -78,15 +76,15 @@
 
   服务器发送这个字段, 浏览器保存
 
-下次访问此网站时, 浏览器在请求头中加入 Cookie字段.
+下次访问此网站时, 浏览器在请求头中加入 Cookie 字段.
 
-服务器收到Cookie后 查询数据库 看看是否是登录状态
+服务器收到 Cookie 后 查询数据库 看看是否是登录状态
 
 ![image-20200728151735476](图解HTTP.assets/image-20200728151735476.png)
 
-## 第三章 HTTP报文内的HTTP信息
+## 第三章 HTTP 报文内的 HTTP 信息
 
-###  HTTP报文
+### HTTP 报文
 
 - 组成
 
@@ -96,7 +94,7 @@
 
 ![image-20200728180925800](图解HTTP.assets/image-20200728180925800.png)
 
- ![image-20200728180950827](图解HTTP.assets/image-20200728180950827.png)
+![image-20200728180950827](图解HTTP.assets/image-20200728180950827.png)
 
 ### 压缩
 
@@ -108,12 +106,12 @@
 
   ![image-20200728182308182](图解HTTP.assets/image-20200728182308182.png)
 
-  ## 第四章 返回结果的HTTP状态码
+  ## 第四章 返回结果的 HTTP 状态码
 
   ![image-20200728182534089](图解HTTP.assets/image-20200728182534089.png)
 
 - 200 成功
-- 301: 指定路径后面没添加斜杠会301重定向
+- 301: 指定路径后面没添加斜杠会 301 重定向
 
 - 401: 未认证
 - 401: 禁止访问
@@ -121,7 +119,7 @@
 - 500: 服务器内部错误
 - 503: 服务器忙, 暂时无法处理请求
 
-## 第五章 与HTTP协作的Web服务器
+## 第五章 与 HTTP 协作的 Web 服务器
 
 ### 代理 网关 隧道
 
@@ -135,25 +133,23 @@
 
 转发报文时 对报文内容进行加工
 
-## 第六章 HTTP首部
+## 第六章 HTTP 首部
 
-###  为Cookie服务的首部字段
+### 为 Cookie 服务的首部字段
 
-Set-Cookie: 服务器发的.让浏览器设置Cookie
+Set-Cookie: 服务器发的.让浏览器设置 Cookie
 
 Cookie: 浏览器
 
 ![image-20200729014507075](图解HTTP.assets/image-20200729014507075.png)
 
-
-
 ## HTTPS
 
-#### HTTPS就是身披SSL协议的HTTP
+#### HTTPS 就是身披 SSL 协议的 HTTP
 
-#### SSL 独立于HTTP, 其他协议也可使用 如SMTP 
+#### SSL 独立于 HTTP, 其他协议也可使用 如 SMTP
 
-HTTP + 加密 + 认证 + 完整性保护 =  HTTPS
+HTTP + 加密 + 认证 + 完整性保护 = HTTPS
 
 SSL(Secure Socket Layer): 安全套接层
 
@@ -171,9 +167,9 @@ TLS(Transport Layer Security): 安全层传输协议
 
 发送时: 使用对方的公钥加密
 
-接受时: 使用私钥解密 
+接受时: 使用私钥解密
 
-好处: 
+好处:
 
 - 不用发送自己的私钥, 私钥位于计算机本地
 
@@ -181,7 +177,7 @@ TLS(Transport Layer Security): 安全层传输协议
 
 所以需要保护好私钥, 私钥位于本地, 如果本地电脑被入侵, 别人拿到私钥, 那就不安全了
 
-例子: ssh登录linux服务器
+例子: ssh 登录 linux 服务器
 
 问题: 公钥都一样 能解密的私钥有很多?
 
@@ -189,9 +185,9 @@ TLS(Transport Layer Security): 安全层传输协议
 
 银行的网上银行
 
-## 第8章 确认访问用户身份的认证
+## 第 8 章 确认访问用户身份的认证
 
-### HTTP认证方式
+### HTTP 认证方式
 
 - BASIC 认证
 
@@ -203,27 +199,26 @@ TLS(Transport Layer Security): 安全层传输协议
 
 - 基于表单验证
 
-### Session管理
+### Session 管理
 
-将Session id放置于 Cookie字段
+将 Session id 放置于 Cookie 字段
 
 #### WebSocket
 
 服务器双方都可推送消息 一次建立多重数据可以在同一通信信道里传输
 
-## 第11章 Web的攻击技术
+## 第 11 章 Web 的攻击技术
 
-### SQL注入
+### SQL 注入
 
 ### XSS: 跨站脚本攻击
 
-### OS命令注入攻击
+### OS 命令注入攻击
 
-### HTTP首部注入攻击
+### HTTP 首部注入攻击
 
 ### 邮件首部注入攻击
 
 ### 目录遍历攻击
 
-###  远程文件包含漏洞
-
+### 远程文件包含漏洞

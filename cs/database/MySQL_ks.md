@@ -1,8 +1,8 @@
 # MySQL
 
-参考资料: 
+参考资料:
 
-[【狂神说Java】MySQL最新教程通俗易懂](https://www.bilibili.com/video/BV1NJ411J79W)
+[【狂神说 Java】MySQL 最新教程通俗易懂](https://www.bilibili.com/video/BV1NJ411J79W)
 
 ## 数据库分类
 
@@ -16,15 +16,15 @@
 
   Redis, MongDB
 
-## MySQL Docker配置
+## MySQL Docker 配置
 
-- MySQL版本: 5.7.19
+- MySQL 版本: 5.7.19
 
 - 首次运行
 
   端口: 3306
 
-  root密码: 123456
+  root 密码: 123456
 
   ```shell
   docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7.19
@@ -42,13 +42,13 @@
   docker stop 实例id
   ```
 
-- 进入MySQL命令行
+- 进入 MySQL 命令行
 
   ```shell
   docker exec -it 实例id mysql -u root -p
   ```
 
-##  MySQL命令
+## MySQL 命令
 
 ``` shell
 show databases; 	--查看所有数据库
@@ -67,18 +67,18 @@ creat database school; --创建数据库school
 ```
 
 ```shell
-exit;--退出 
+exit;--退出
 ```
 
-- if语句
+- if 语句
 
-  如果不存在数据库school则创建数据库school
+  如果不存在数据库 school 则创建数据库 school
 
 ```sql
 CREATE DATABASE IF NOT EXISTS school;
 ```
 
-- 如果表名或者字段名为SQL保留字, 用反单引号Tab键上面那个引起来
+- 如果表名或者字段名为 SQL 保留字, 用反单引号 Tab 键上面那个引起来
 
   ```sql
   USE `user`;
@@ -106,7 +106,7 @@ CREATE DATABASE IF NOT EXISTS school;
     student	CREATE TABLE `student` (↵  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '学员id',↵  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '姓名',↵  `age` int(3) NOT NULL COMMENT '年龄',↵  PRIMARY KEY (`id`)↵) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
     ```
 
-- DESC  表名: 显示表的结构.
+- DESC 表名: 显示表的结构.
 - 修改表名
 - 增加表的字段
 - 修改表的字段
@@ -116,10 +116,6 @@ CREATE DATABASE IF NOT EXISTS school;
 - 删除
 
   ![image-20200803164123498](MySQL-狂神.assets/image-20200803164123498.png)
-
-  
-
-
 
 ## 数据类型
 
@@ -145,7 +141,7 @@ CREATE DATABASE IF NOT EXISTS school;
 
 ![image-20200803155801960](MySQL-狂神.assets/image-20200803155801960.png)
 
-拓展: 
+拓展:
 
 ![image-20200803160202166](MySQL-狂神.assets/image-20200803160202166.png)
 
@@ -161,25 +157,19 @@ CREATE DATABASE IF NOT EXISTS school;
 
 ![image-20200803163403639](MySQL-狂神.assets/image-20200803163403639.png)
 
-## 3. MySQL数据管理
+## 3. MySQL 数据管理
 
 ### 3.1 外键(了解即可)
 
 ![image-20200803165416189](MySQL-狂神.assets/image-20200803165416189.png)
 
-
-
-### 3.2 DML语言(全部记住)
-
-
+### 3.2 DML 语言(全部记住)
 
 ### 3.3 添加
 
 ![image-20200803174239682](MySQL-狂神.assets/image-20200803174239682.png)
 
 ![image-20200803174309679](MySQL-狂神.assets/image-20200803174309679.png)
-
-
 
 ### 3.4 修改
 
@@ -197,7 +187,7 @@ CREATE DATABASE IF NOT EXISTS school;
 
   ![image-20200803180136888](MySQL-狂神.assets/image-20200803180136888.png)
 
-## 4. DQL查询数据(最重点)
+## 4. DQL 查询数据(最重点)
 
 ### 4.1 DQL
 
@@ -216,4 +206,3 @@ CREATE DATABASE IF NOT EXISTS school;
 ### 4.3
 
 https://www.bilibili.com/video/BV1NJ411J79W?p=17
-

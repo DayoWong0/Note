@@ -1,16 +1,16 @@
 # CSS
 
-参考资料: 
+参考资料:
 
 [学习 Web 开发--mozilla](https://developer.mozilla.org/zh-CN/docs/learn)
 
-[狂神CSS](https://www.bilibili.com/video/BV17z4y1D7Yj?p=16)
+[狂神 CSS](https://www.bilibili.com/video/BV17z4y1D7Yj?p=16)
 
 ## 0. 介绍
 
 ![image-20201001225450349](img/css/image-20201001225450349.png)
 
-## 1. css 3种引入方法
+## 1. css 3 种引入方法
 
 - 行内样式
 
@@ -26,25 +26,23 @@
 
   ```html
   <style>
-  h1 {
+    h1 {
       color: green;
-  }
+    }
   </style>
   ```
 
-  
+* 外部样式
 
-- 外部样式
-
-  外部文件 引入的css文件
+  外部文件 引入的 css 文件
 
   ```html
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
   ```
 
 ### 优先级
 
-就近原则. (可以与 html文件加载方式来理解: 从上到下一次加载, 所以近水楼台先得月)
+就近原则. (可以与 html 文件加载方式来理解: 从上到下一次加载, 所以近水楼台先得月)
 
 错误的理解: (行内样式 > 内部样式 > 外部样式)
 
@@ -55,22 +53,20 @@
   常用
 
   ```html
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
   ```
 
-  
-
-- 导入式(不建议)
+* 导入式(不建议)
 
   必须放在 style 标签里面
 
 ```html
 <style>
-  @import url("")
+  @import url("");
 </style>
 ```
 
-## 2. css选择器(重点)
+## 2. css 选择器(重点)
 
 选择页面上的某一个或者某一类元素
 
@@ -102,7 +98,7 @@
 
    #id 选取
 
-   id唯一
+   id 唯一
 
 #### 优先级
 
@@ -112,26 +108,26 @@ id 选择器 > class 选择器 > 标签选择器
 
 ### 2.2 层次选择器(了解即可)
 
-会查询资料使用即可 
+会查询资料使用即可
 
 1. 后代选择器
 
    在某个元素的后面的所有都选择
 
    ```css
-   body p{
+   body p {
      background: red;
    }
    ```
 
-   body 标签下的所有p标签 背景颜色为红色
+   body 标签下的所有 p 标签 背景颜色为红色
 
 2. 子选择器
 
    只选择后面 **一代**, 再后一代以及之后不选择, 儿子选择器
 
    ```css
-   body>p{
+   body > p {
      background: red;
    }
    ```
@@ -165,48 +161,45 @@ id 选择器 > class 选择器 > 标签选择器
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
     <style>
-        /*避免使用 class id 选择器*/
-        ul li:first-child{
-            background: red;
-        }
+      /*避免使用 class id 选择器*/
+      ul li:first-child {
+        background: red;
+      }
 
-        ul li:last-child{
-            background: blue;
-        }
+      ul li:last-child {
+        background: blue;
+      }
 
-    /*    选中p1: 定位到父元素 定位第一个元素 *
+      /*    选中p1: 定位到父元素 定位第一个元素 *
      */
 
-        /*选中父级元素的第一个元素并且是 p元素才生效.
+      /*选中父级元素的第一个元素并且是 p元素才生效.
             需要两个条件: 元素位置对; 元素标签名 对
         */
-        p:nth-child(1){
-            background: aquamarine;
-        }
+      p:nth-child(1) {
+        background: aquamarine;
+      }
 
-        /*选中父元素下第 1 个 p 类型的元素*/
-        p:nth-of-type(1){
-            background: black;
-        }
-        
+      /*选中父元素下第 1 个 p 类型的元素*/
+      p:nth-of-type(1) {
+        background: black;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <p>文本1</p>
     <p>文本2</p>
     <p>文本3</p>
     <ul>
-        <li>li1</li>
-        <li>li2</li>
-        <li>li3</li>
+      <li>li1</li>
+      <li>li2</li>
+      <li>li3</li>
     </ul>
-
-</body>
+  </body>
 </html>
 ```
 
@@ -224,35 +217,32 @@ id + class 选择器结合
       $=: 以...结尾
   ```
 
-
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
 
     <style>
-        .demo a{
-            float: left;
-            display: block;
-            height: 50px;
-            width: 50px;
-            /*圆角*/
-            border-radius: 10px;
-            background: blue;
-            /*文字对齐方式*/
-            text-align: center;
-            color: grey;
-            /*下划线去掉*/
-            text-decoration: none;
-            margin-right: 5px;
-            font: bold 20px/50px Arial;
-        }
-      
+      .demo a {
+        float: left;
+        display: block;
+        height: 50px;
+        width: 50px;
+        /*圆角*/
+        border-radius: 10px;
+        background: blue;
+        /*文字对齐方式*/
+        text-align: center;
+        color: grey;
+        /*下划线去掉*/
+        text-decoration: none;
+        margin-right: 5px;
+        font: bold 20px/50px Arial;
+      }
 
-    /*    选中存在id的元素
+      /*    选中存在id的元素
         属性名 = 属性值(可用正则表达式, 正则表达式用在等号前)
         =: 绝对等于
         *=: 包含这个元素
@@ -260,44 +250,42 @@ id + class 选择器结合
         $=: 以...结尾
 
     */
-        /*a[class*="links"]{*/
-        /*    background: yellow;*/
-        /*}*/
+      /*a[class*="links"]{*/
+      /*    background: yellow;*/
+      /*}*/
 
-    /*    选中href中以http开头的元素*/
-    /*    a[href^=http]{*/
-    /*        background: yellow;*/
-    /*    }*/
+      /*    选中href中以http开头的元素*/
+      /*    a[href^=http]{*/
+      /*        background: yellow;*/
+      /*    }*/
 
-    /*    以 pdf 结尾*/
+      /*    以 pdf 结尾*/
 
-        a[href$=pdf]{
-            background: yellow;
-        }
-
-
-
+      a[href$="pdf"] {
+        background: yellow;
+      }
     </style>
-
-</head>
-<body>
-
-<p class="demo">
-
-    <a href="https://www.baidu.com" class="links item first" id="first">1</a>
-    <a href="http://google.com" class="links item active" target="_blank" title="test">2</a>
-    <a href="images/123.html" class="links item">3</a>
-    <a href="images/123.png" class="links item">4</a>
-    <a href="images/123.jpg" class="links item">5</a>
-    <a href="abc">6</a>
-    <a href="/a.pdf">7</a>
-    <a href="/abc.pdf">8</a>
-    <a href="abc.doc">9</a>
-    <a href="abcd.doc" class="links item last">10</a>
-
-</p>
-
-</body>
+  </head>
+  <body>
+    <p class="demo">
+      <a href="https://www.baidu.com" class="links item first" id="first">1</a>
+      <a
+        href="http://google.com"
+        class="links item active"
+        target="_blank"
+        title="test"
+        >2</a
+      >
+      <a href="images/123.html" class="links item">3</a>
+      <a href="images/123.png" class="links item">4</a>
+      <a href="images/123.jpg" class="links item">5</a>
+      <a href="abc">6</a>
+      <a href="/a.pdf">7</a>
+      <a href="/abc.pdf">8</a>
+      <a href="abc.doc">9</a>
+      <a href="abcd.doc" class="links item last">10</a>
+    </p>
+  </body>
 </html>
 ```
 
@@ -316,32 +304,38 @@ id + class 选择器结合
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
 
     <style>
-        body{
-            font-family: Arial,serif;
-        }
-        h1{
-            font-size: 50px;
-        }
-        .p1{
-            font-weight: bold;
-        }
+      body {
+        font-family: Arial, serif;
+      }
+      h1 {
+        font-size: 50px;
+      }
+      .p1 {
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>故事介绍</h1>
 
-<h1>故事介绍</h1>
-
-<p class="p1">《红楼梦》，中国古代章回体长篇小说，中国古典四大名著之一，一般认为是清代作家曹雪芹所著。</p>
-<p>小说以贾、史、王、薛四大家族的兴衰为背景，以富贵公子贾宝玉为视角，以贾宝玉与林黛玉、薛宝钗的爱情婚姻悲剧为主线，</p>
-<p>描绘了一批举止见识出于须眉之上的闺阁佳人的人生百态，展现了真正的人性美和悲剧美，</p>
-<p>可以说是一部从各个角度展现女性美以及中国古代社会世态百相的史诗性著作。</p>
-
-</body>
+    <p class="p1">
+      《红楼梦》，中国古代章回体长篇小说，中国古典四大名著之一，一般认为是清代作家曹雪芹所著。
+    </p>
+    <p>
+      小说以贾、史、王、薛四大家族的兴衰为背景，以富贵公子贾宝玉为视角，以贾宝玉与林黛玉、薛宝钗的爱情婚姻悲剧为主线，
+    </p>
+    <p>
+      描绘了一批举止见识出于须眉之上的闺阁佳人的人生百态，展现了真正的人性美和悲剧美，
+    </p>
+    <p>
+      可以说是一部从各个角度展现女性美以及中国古代社会世态百相的史诗性著作。
+    </p>
+  </body>
 </html>
 ```
 
@@ -359,14 +353,14 @@ id + class 选择器结合
 a:hover 用得较多
 
 ```css
-        /*鼠标悬浮的颜色*/
-        a:hover{
-            color: orange;
-        }
-        /*鼠标左键按住未释放的状态*/
-        a:active{
-            color: green;
-        }
+/*鼠标悬浮的颜色*/
+a:hover {
+  color: orange;
+}
+/*鼠标左键按住未释放的状态*/
+a:active {
+  color: green;
+}
 ```
 
 - a:hover
@@ -377,7 +371,7 @@ a:hover 用得较多
 
 ### 3.6 列表
 
-css代码从外往内写
+css 代码从外往内写
 
 ### 3.7 背景
 
@@ -386,22 +380,22 @@ css代码从外往内写
 - 背景图片
 
   ```css
-  div{
+  div {
     width: 1000px;
     height: 700px;
     border: 1px solid red;
     /*默认背景图片平铺*/
     background-image: url("https://i1.hdslb.com/bfs/archive/3a7dfc1a440b1ec8b98701234cded53f54ad8b75.jpg@320w_200h_1c.webp");
   }
-  .div1{
+  .div1 {
     /*背景水平平铺*/
     background-repeat: repeat-x;
   }
-  .div2{
+  .div2 {
     /*背景竖直平铺*/
     background-repeat: repeat-y;
   }
-  .div3{
+  .div3 {
     /*不平铺*/
     background-repeat: no-repeat;
   }
@@ -409,7 +403,7 @@ css代码从外往内写
 
 ### 3.8 渐变
 
-渐变css模板
+渐变 css 模板
 
 https://www.grabient.com/
 
@@ -419,7 +413,7 @@ https://www.grabient.com/
 
 ![image-20201003150740827](img/css/image-20201003150740827.png)
 
- margin: 外边距
+margin: 外边距
 
 boder: 边框
 
@@ -431,7 +425,7 @@ padding: 内边距
 2. 样式
 3. 颜色
 
-### 4.3 内外边距 margin  padding
+### 4.3 内外边距 margin padding
 
 外边距的妙用: 居中元素
 
@@ -442,24 +436,22 @@ margin + border + padding + 内容 = 盒子模型大小
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
     <style>
-        div{
-            width: 100px;
-            height: 100px;
-            border: 10px solid red;
-            /*左上 右上 右下 左下 顺时针*/
-            border-radius: 50px;
-        }
+      div {
+        width: 100px;
+        height: 100px;
+        border: 10px solid red;
+        /*左上 右上 右下 左下 顺时针*/
+        border-radius: 50px;
+      }
     </style>
-</head>
-<body>
-
-<div></div>
-
-</body>
+  </head>
+  <body>
+    <div></div>
+  </body>
 </html>
 ```
 
@@ -506,13 +498,13 @@ clear: left;
 clear: both; 两侧都不能有浮动
 ```
 
-父级元素边框塌陷问题: 自己下的定义: 一个div中有浮动属性的一张图片 图片的高度大于div的高度的情况. 表现为图片显示区域超出 div 的高度.
+父级元素边框塌陷问题: 自己下的定义: 一个 div 中有浮动属性的一张图片 图片的高度大于 div 的高度的情况. 表现为图片显示区域超出 div 的高度.
 
 解决方案:
 
 1. 增加父级元素高度(不建议使用)
 
-2. 增加一个空的 div, 设置此 div css属性为 clear: both(清除浮动)
+2. 增加一个空的 div, 设置此 div css 属性为 clear: both(清除浮动)
 
 3. overflow
 
@@ -520,7 +512,7 @@ clear: both; 两侧都不能有浮动
 
 4. 父类添加一个伪类: after (建议使用)
 
-   和增加一个 空 div 的类似, 优点在于不用在 html中写 空的 div 标签, 只需要在css选择器中加上 :after
+   和增加一个 空 div 的类似, 优点在于不用在 html 中写 空的 div 标签, 只需要在 css 选择器中加上 :after
 
    ```
    #father:after{
@@ -532,7 +524,7 @@ clear: both; 两侧都不能有浮动
 
 小结:
 
-1. 浮动元素后面增加空的 div 
+1. 浮动元素后面增加空的 div
 
    简单, 需要空的 div
 
@@ -548,7 +540,7 @@ clear: both; 两侧都不能有浮动
 
    写法复杂一点点, 无其他缺点
 
-###  5.5 对比
+### 5.5 对比
 
 - display
 
@@ -568,7 +560,7 @@ position: relative;
 
 ### 6.2 绝对定位
 
-绝对定位: 基于XX定位
+绝对定位: 基于 XX 定位
 
 1. 没有父级元素定位的前提下, 相对于浏览器定位.
 2. 假设父级元素存在定位, 通常会相对于父级元素进行偏移
@@ -576,51 +568,49 @@ position: relative;
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
     <style>
-        div{
-            margin: 10px;
-            padding: 5px;
-            font-size: 12px;
-            line-height: 25px;
-        }
-        #father{
-            background-color: brown;
-            border: 1px solid red;
-            padding: 0;
-            position: relative;
-        }
+      div {
+        margin: 10px;
+        padding: 5px;
+        font-size: 12px;
+        line-height: 25px;
+      }
+      #father {
+        background-color: brown;
+        border: 1px solid red;
+        padding: 0;
+        position: relative;
+      }
 
-        #first{
-            background-color: orange;
-            border: 1px dashed black;
-        }
+      #first {
+        background-color: orange;
+        border: 1px dashed black;
+      }
 
-        #second{
-            background-color: green;
-            border: 1px dashed blue;
-            position: absolute;
-            right: 30px;
-            top: -10px;
-        }
+      #second {
+        background-color: green;
+        border: 1px dashed blue;
+        position: absolute;
+        right: 30px;
+        top: -10px;
+      }
 
-        #third{
-            background-color: #0093E9;
-            border: 1px dashed orange;
-        }
+      #third {
+        background-color: #0093e9;
+        border: 1px dashed orange;
+      }
     </style>
-</head>
-<body>
-
-
-<div id="father">
-    <div id="first">第1个盒子</div>
-    <div id="second">第2个盒子</div>
-    <div id="third">第3个盒子</div>
-</div>
-</body>
+  </head>
+  <body>
+    <div id="father">
+      <div id="first">第1个盒子</div>
+      <div id="second">第2个盒子</div>
+      <div id="third">第3个盒子</div>
+    </div>
+  </body>
 </html>
 ```
 
@@ -674,9 +664,8 @@ position: relative;
 
 ## 7. 动画
 
-css动画 谷歌搜素材
+css 动画 谷歌搜素材
 
-关键词 canvas 和 javascript, 用js做动画的更多.
+关键词 canvas 和 javascript, 用 js 做动画的更多.
 
 ## 8. 总结
-

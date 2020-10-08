@@ -1,24 +1,24 @@
 # 多线程
 
-[【狂神说Java】多线程详解](https://www.bilibili.com/video/BV1V4411p7EF)
+[【狂神说 Java】多线程详解](https://www.bilibili.com/video/BV1V4411p7EF)
 
-## 方法1: 继承Thread类 重写Run方法
+## 方法 1: 继承 Thread 类 重写 Run 方法
 
-- 自定义线程类继承Thread类
+- 自定义线程类继承 Thread 类
 
-- 重写run方法, 编写线程执行体
+- 重写 run 方法, 编写线程执行体
 
-- 创建线程对象, 调用start 方法启动线程
+- 创建线程对象, 调用 start 方法启动线程
 
   ```java
   package Demo01;
-  
+
   /*
   - 自定义线程类继承Thread类
   - 重写run方法, 编写线程执行体
   - 创建线程对象, 调用start 方法启动线程
    */
-  
+
   public class TestThread1 extends Thread{
       @Override
       public void run() {
@@ -27,17 +27,17 @@
               System.out.println("我在看代码" + i);
           }
       }
-  
+
       public static void main(String[] args) {
           //main方法 主线程
-  
+
           //创建一个线程对象
           TestThread1 testThread1 = new TestThread1();
-  
+
           //调用start方法开启线程
           testThread1.start();
   //        testThread.run();
-  
+
           for (int i = 0; i < 10000; i++) {
               System.out.println("我在学习多线程---" + i);
           }
@@ -45,17 +45,15 @@
   }
   ```
 
-  
+## 方法 2(推荐): 实现 Runnable 接口 实现 Run 方法
 
-## 方法2(推荐): 实现Runnable接口 实现Run方法
-
-- 实现接口Runnable 
+- 实现接口 Runnable
 
   ```java
-  public class Runnable implements java.lang.Runnable 
+  public class Runnable implements java.lang.Runnable
   ```
 
-- 重写run方法
+- 重写 run 方法
 
   ```java
   @Override
@@ -73,7 +71,7 @@
   Runnable testThread3 = new Runnable();
   ```
 
-- 将这个new出来的实现类对象放入Thread类的构造函数然后用start方法
+- 将这个 new 出来的实现类对象放入 Thread 类的构造函数然后用 start 方法
 
   ```java
   new Thread(testThread3).start();
@@ -109,23 +107,19 @@ public class Runnable implements java.lang.Runnable {
 }
 ```
 
-
-
 ![image-20200802121852052](JavaMultithreading.assets/image-20200802121852052.png)
 
-###  比较
+### 比较
 
-- 重写的run方法一样的
+- 重写的 run 方法一样的
 
 - 启动线程创建的对象不同
 
-  Runnable中使用了代理, 代理人为Thread
+  Runnable 中使用了代理, 代理人为 Thread
 
-- 建议使用Runnable
+- 建议使用 Runnable
 
-## 方法三: 实现Callable接口
-
-
+## 方法三: 实现 Callable 接口
 
 ## 初识并发问题
 
@@ -133,11 +127,11 @@ public class Runnable implements java.lang.Runnable {
 
 蒙的
 
-## Lamda表达式
+## Lamda 表达式
 
-## 进程礼让: yield方法
+## 进程礼让: yield 方法
 
-## 插队: join方法
+## 插队: join 方法
 
 ## 线程状态
 
@@ -178,10 +172,9 @@ public class Runnable implements java.lang.Runnable {
 
 ## 线程协作
 
-##  生产者消费者问题
+## 生产者消费者问题
 
 - 信号灯法
 - 缓冲区法
 
 ## 线程池
-

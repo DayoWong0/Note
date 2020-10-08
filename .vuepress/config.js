@@ -60,17 +60,33 @@ module.exports = {
         lastUpdated: true,
         repo: 'https://github.com/chengziqaq/Note',
         editLinks: true,
-        editLinkText: '在 Github 上编辑',
+        editLinkText: ' Edit on Github ',
         // logo: 'homepage.png',
-        nav: [{
-            text: 'Notes',
-            ariaLabel: 'Language Menu',
-            items: [{
-                text: 'Home Site',
-                link: 'https://chengziqaq.github.io/'
+        nav: [
+
+            {
+                text: '导航页',
+                ariaLabel: 'Language Menu',
+                link: '/Navigate.md',
+
             },
-            ]
-        },
+
+            {
+                text: '课程与考试',
+                ariaLabel: 'Language Menu',
+                link: '/exam/examtime.md',
+
+            },
+
+            // {
+            //     text: 'Notes',
+            //     ariaLabel: 'Language Menu',
+            //     items: [{
+            //         text: 'Home Site',
+            //         link: 'https://chengziqaq.github.io/'
+            //     },
+            //     ]
+            // },
         ],
 
         sidebar: [
@@ -185,8 +201,9 @@ module.exports = {
                 children: [
                     // linux
                     ["/cs/Linux/linux.md", "Linux"],
-                    ["/cs/Linux/shell.md", "shell编程"],
+                    ["/cs/Linux/shell.md", "shell 编程"],
                     ["/cs/Linux/Git/git.md", "git"],
+                    ["cs/Linux/Git/git和Github的使用.md", "git 和 Github 的使用"],
                     ["/cs/Linux/networkProgram.md", "网络编程"],
 
                     {
@@ -194,7 +211,7 @@ module.exports = {
                         collapsable: true,
                         sidebarDepth: 1,
                         children: [
-                            ["/cs/Linux/Docker/DockerBasic.md", "Docker基础"],
+                            ["/cs/Linux/Docker/DockerBasic.md", "Docker 基础"],
                             ["/cs/Linux/Docker/Dockerfile.md", "Dockerfile"],
                         ],
                     },
@@ -262,7 +279,7 @@ module.exports = {
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
-                    ["/cs/webSecurity/白帽子讲Web安全.md", "白帽子讲Web安全"],
+                    ["/cs/webSecurity/白帽子讲Web安全.md", "白帽子讲 Web 安全"],
                 ]
             },
 
