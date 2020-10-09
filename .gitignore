@@ -1,6 +1,6 @@
 _book/
 node_modules/
-.*.md
+._*
 .vscode/
 .DS_Store
 .vuepress/dist
