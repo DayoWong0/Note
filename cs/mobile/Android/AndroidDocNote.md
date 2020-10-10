@@ -69,3 +69,12 @@ setScale
 ExpanableListView
 
 ### GridView
+
+## 2. [Drawable 类](https://www.jianshu.com/p/d6c791709949)
+
+### 矢量图（ BitmapDrawable ）
+
+记录的是图里的坐标，需要使用的时候在现场绘制。
+
+
+

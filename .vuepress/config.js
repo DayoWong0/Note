@@ -203,7 +203,7 @@ module.exports = {
                     ["/cs/Linux/linux.md", "Linux"],
                     ["/cs/Linux/shell.md", "shell 编程"],
                     ["/cs/Linux/Git/git.md", "git"],
-                    ["cs/Linux/Git/git和Github的使用.md", "git 和 Github 的使用"],
+                    ["cs/Linux/Git/git和Github的基本使用.md", "git 和 Github 的基本使用"],
                     ["/cs/Linux/networkProgram.md", "网络编程"],
 
                     {
