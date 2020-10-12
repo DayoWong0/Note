@@ -41,7 +41,7 @@
 
 - Typora
 
-  一款好用的 Markdown 笔记软件，Win Mac Liunx 通用
+  一款好用的 Markdown 笔记软件，Windows macOS Linux 都可以使用
 
 - vuePress + GitPages + Travis Ci
   - vuePress 将 Markdown 渲染成静态网页。
@@ -52,7 +52,7 @@
 
 1. 当你在本地编辑了 Markdown 文件后，通过 git commit & push 到 Github， 稍等片刻，你的网站上就能看到效果，自动更新。
 2. 完全免费。不需要任何费用，当然需要花费一点点时间成本，适合长期使用。
-3. 不过由于国内原因，可能访问有时会出现问题，这时候需要一些正确的上网姿势。
+3. 不过由于国内原因，可能访问有时会出现问题，这时候需要一些正确的上网姿势或者试试国内的 Gitee，不过由于个人偏好问题，暂时只会使用 Gitpages。
 
 ### 其他
 

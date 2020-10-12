@@ -477,7 +477,7 @@ span a img strong ...
 
 ### 5.2 display
 
-多使用 inline-block 既是块元素又是行内元素，不用到 float 简单。
+多使用 inline-block 既是块元素又是行内元素，不用到 float，简单。
 
 ```
 block 块元素
