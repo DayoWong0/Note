@@ -205,7 +205,9 @@ module.exports = {
                     ["/cs/Linux/shell.md", "shell 编程"],
                     ["/cs/Linux/Git/git.md", "git"],
                     ["cs/Linux/Git/git和Github的基本使用.md", "git 和 Github 的基本使用"],
-                    ["/cs/Linux/networkProgram.md", "网络编程"],
+                    ["/cs/Linux/networkProgram.md", "Linux 网络编程"],
+                    ["cs/Linux/LinuxNetworkProgramExperiment.md", "Linux 网络编程上机实验"],
+
 
                     {
                         title: 'Docker',
@@ -251,6 +253,7 @@ module.exports = {
                     // Android
                     ["/cs/mobile/Android/AndroidDocNote.md", "AndroidDocNote"],
                     ["/cs/mobile/Android/第一行代码第三版笔记.md", "第一行代码第三版笔记"],
+                    ["cs/mobile/Android/Android-tg.md", "Android-tg(天哥在奔跑的教程)"],
                 ]
             },
 
