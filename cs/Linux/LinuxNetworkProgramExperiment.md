@@ -85,5 +85,6 @@ gcc -o v46 v46.c
 gcc -o v46 v46.c -std=c99
 ./v46 
 ./v46 
+cp .bash_history bash.txtbsaftp
 ```
 
