@@ -167,7 +167,7 @@ module.exports = {
             },
 
             {
-                title: '计算机基础课程',   // 必要的
+                title: '计算机专业课',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 2,    // 可选的, 默认值是 1
                 children: [
@@ -190,6 +190,7 @@ module.exports = {
                     },
                     // csBasic
                     ["/cs/csBasic/Network/图解HTTP.md", "图解HTTP"],
+                    ["cs/csBasic/math/离散数学.md", "离散数学"],
                 ]
             },
 

@@ -562,3 +562,366 @@ jsp 里最好别写代码. 多数用来数据展示。
 - 为了减少硬编码, 可以使用配置文件, 但是和注解比较起来, 较麻烦.
 
 # 第六周课 AJAX
+
+### JSON
+
+1. JSON内部包含的字符串必须要用双引号。
+2. JSON 数组 JSON 对象
+
+合格的 JSON 对象
+
+```json
+["one", "two", "three"]
+{ "one": 1, "two": 2, "three": 3 }
+{"names": ["张三", "李四"] }
+[ { "name": "张三"}, {"name": "李四"} ]　
+```
+
+
+
+
+
+
+
+
+
+# 作业2笔记
+
+## 1. web.xml 配置文件报错
+
+```xml
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!-- 定义Filter -->
+  <filter>
+    <!-- Filter的名字 -->
+    <filter-name>permissionCheckFilter</filter-name>
+    <!-- Filter的实现类 -->
+    <filter-class>filter.PermissionFilter</filter-class>
+    <!-- 下面3个init-param元素配置了3个参数 -->
+    <init-param>
+      <param-name>notCheckPath</param-name>
+      <param-value>/createberifyImage.do, /login.do, /logout.do, /error.jsp</param-value>
+    </init-param>
+  </filter>
+  <!-- 定义Filter拦截的URL地址 -->
+  <filter-mapping>
+    <!-- Filter的名字 -->
+    <filter-name>permissionCheckFilter</filter-name>
+    <!-- Filter负责拦截的URL -->
+    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+</web-app>
+```
+
+错误: The content of element type "filter-mapping" must match
+
+解决:
+
+[解决：The content of element type "web-app" must match "(icon?,display-](https://www.iteye.com/blog/jyao-1263650)
+
+接着 测试 过滤器效果, 发现打开 login.html 404
+
+删除了 target 文件 重新启动解决了 原因未知
+
+![image-20201011185615328](img/JavaWeb_ng/image-20201011185615328.png)
+
+## 2. 验证码不加载
+
+不过滤的地址配置错误 由于我自己的创建验证码的地址和老师给的参考代码不一样.
+
+修改之后启动还是不能加载. 查看后发现前端地址有问题 
+
+后端地址注解
+
+```
+/createVerifyImage.do
+```
+
+前端
+
+```
+createVerifyImage.do
+```
+
+前端不能加 "/" 否则会变为绝对路径, 而后端却必须要加, 不然启动服务器还会出错.
+
+接着点击验证码切换新的 又不能加载.
+
+原因: Javascript 代码没修改.
+
+修改 js 代码后还是出错
+
+又是前端相对路径前面不能 加 " / "
+
+#### 总结
+
+1. 前端相对路径开头不能有 "/", 后端路径注解必须有
+2. 项目开始写代码之前, 路径这些得先确定下来, 开发过程中修改费时间还容易出问题.
+
+## Cookie 和 Session
+
+1. 只要注意 cookie的 path 加上项目名就行
+2. 广告的精确推送使用 cookie 以前没想到过
+
+#### session 和 cookie 记住用户登录状态
+
+用户登录状态在服务端记录才安全. Cookie 用于记住用户名, 
+
+是否登录( 次要, 最终还要在服务端用 session 验证一次 ).
+
+参考:
+
+[java利用Session实现三天免登录](https://blog.csdn.net/huanyinghanlang/article/details/79061802)
+
+主要看这: 勾选了记住我 submit 传过来得数值为 1 .
+
+```java
+String remember = req.getParameter("remember");
+
+if (remember != null && remember.equals("1")) {// 需要记住密码
+				// 将用户名和密码存放在cookie对象中
+				Cookie cookie = new Cookie("userInfo", uname + ":" + pwd);
+				// 设置有效时间三天
+				cookie.setMaxAge(3 * 24 * 60 * 60);
+				// 设置有效页面
+				cookie.setPath("/uwo9/login.jsp");
+				// 将cookie对象存放至response
+				resp.addCookie(cookie);
+```
+
+### 读取 cookie
+
+需要先进行类型转换再得到 cookie 
+
+```java
+HttpServletRequest request = (HttpServletRequest) req;
+Cookie[] cookies = request.getCookies();
+```
+
+同理, 设置 cookie 需要
+
+```java
+HttpServletResponse  response= (HttpServletResponse) resp;
+```
+
+字符串分割取 cookie 里面的用户名和密码
+
+参考:
+
+
+
+[JAVA删除Cookie](https://blog.csdn.net/qq_39668217/article/details/87733608?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
+
+[Java split() 方法](https://www.runoob.com/java/java-string-split.html)
+
+## 权限分配实现
+
+这个难点在于数据库的设计, 不过老师给了数据库设计结构. 多对多结构
+
+关键数据库查询语句
+
+
+
+查询当前登录用户所属的角色，然后查询这些角色拥有权限, 连续查询以前没用过.
+
+```mysql
+SELECT
+	*
+FROM
+	t_resource
+WHERE
+	resourceId IN (
+		SELECT
+			resourceId
+		FROM
+			t_role_resource
+		WHERE
+			roleId IN (
+				SELECT
+					roleId
+				FROM
+					t_user_role
+				WHERE
+					userName = ?
+			)
+	)
+```
+
+#   第七周课
+
+## JSON
+
+- JSON.parse(): 用于将一个 JSON 字符串转换为 JavaScript 对象　
+
+  ```javascript
+  JSON.parse('{"name":"alex"}');
+  
+  JSON.parse('{name:"alex"}') ;    // 错误 name 需要加双引号
+  ```
+
+  
+
+- JSON.stringify(): 用于将 JavaScript 值转换为 JSON 字符串。　
+
+  ```javascript
+  var jsonStr=JSON.stringify({"name":"alex"})
+  ```
+
+## jQuery
+
+### 属性获取
+
+表单：val
+
+其他：html text
+
+### css 选择器
+
+用的 css 选择器较多
+
+### 属性选择器
+
+### 基本过滤选择器
+
+:first
+
+:last
+
+:even
+
+:odd
+
+### 方法
+
+ajax 方法例子
+
+```javascript
+$("#b1").click(function(){
+    var data = {
+        username: $("#username").val(),
+        password: $("#password").val()
+    };
+
+    $.ajax({
+        url: "login.do",
+        type: "POST",
+        data: data,
+        dataType: "JSON",
+        success: function (data){
+            alert(data)
+        },
+        error: function(data){
+            alert(" internet error")
+        }
+    })
+})
+```
+
+### 查询例子
+
+组合查询 某些支持模糊查询
+
+# 作业三笔记
+
+登录用原生 Javascript 和 XMLHttpRequest 完成
+
+注册用 jQuery 和 Ajax 完成
+
+### 主要问题
+
+#### DAO部分有问题
+
+- 后端代码写了但是从来没有连接数据库使用。
+- DAO 返回数据 `List<Download>` 不知道怎么使用。
+
+## 第四次作业
+
+### 页面设计
+
+尽量不出现滚动条
+
+表格导航栏固定
+
+## 开发步骤
+
+1. 需求分析
+
+2. 设计
+
+   - 前端
+
+     - 布局 
+
+       - html div container span 
+
+         - 表格
+
+           - thead 标题
+
+             不用 tr 方便选择
+
+           - tfoot 页脚
+
+             同上
+
+         - 浮动
+
+           左右浮动
+
+       - 任何元素都能做按钮，通过 css 设置美化
+
+     - 样式
+
+       - 渐变色
+       - bootstrap
+       - 阿里巴巴图标素材 alifont
+
+     - 框架
+
+       - bootstrap
+       - vue 的 elementUI
+
+   - 后端
+
+     - Controller DAO
+
+   - 交互
+
+     - 人机交互
+
+     - 交互数据的封装
+
+       前端请求后端数据返回的接口设计
+
+       - page分页查询参数
+
+         ? 开头的查询参数
+
+         JSON 数据需要用输入输出流才能接收
+
+       - 服务器返回
+
+         - 记录条数 当前为第几页
+
+           总之：就是看前端要什么数据，后端返回什么数据。
+
+3. 实现 
+
+   注重设计，设计好了写代码就是简单的事情了。
+
+4. 测试
+
+5. 部署
+
+6. 维护
+
+7. 持续集成
+
