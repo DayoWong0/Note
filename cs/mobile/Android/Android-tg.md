@@ -536,3 +536,144 @@ public class ButtonActivity extends AppCompatActivity {
 
 TextView 也可以被点击和 Button 绑定点击事件一样的。
 
+## 2.4 EditText
+
+### 2.4.1 常用属性
+
+```xml
+    <EditText
+        android:id="@+id/et_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#ffad33"
+        android:inputType="textPassword"
+        android:hint="输入密码时候的提示"
+        android:layout_below="@id/et_1"
+        android:background="@drawable/bg_username"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/et_2"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="90px"
+        android:layout_marginRight="90px"
+        android:background="@drawable/bg_btn4"
+        android:text="登录"
+        android:textSize="20sp"
+        android:textColor="#fff"/>
+```
+
+### 2.4.2 监听事件
+
+```xml
+    <EditText
+        android:id="@+id/et_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#ffad33"
+        android:hint="用户名（用户输入时的提示信息）"
+        android:background="@drawable/bg_username"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableLeft="@mipmap/ic_launcher_round"
+        android:drawablePadding="5dp"
+        android:maxLines="1"
+        />
+```
+
+setOnClickListener 监听点击事件
+
+addTextChangedListener 监听输入状态，charSequence 为当前输入框中的文本内容
+
+```java
+public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) 
+```
+
+
+
+```java
+package com.example.a1linearlayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class EditTextActivity extends AppCompatActivity {
+
+    private Button mBtnLogin;
+    private EditText mEtUserName;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_text);
+        mBtnLogin = findViewById(R.id.btn_login);
+
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(EditTextActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mEtUserName = findViewById(R.id.et_1);
+        // 输入变化的监听
+        mEtUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // charSequence 为当前输入框中的内容
+                Log.d("editText",charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+}
+```
+
+## 2.5 RadioButton
+
+
+
+
+
+## 2.6  CheckBox 复选框
+
+
+
+## 2.7 ImageView 和 使用第三方库加载网络图片
+
+
+
+## 2.8 ListView 列表视图
+
+
+
+
+
+## 2.9 GridView 网格视图
+
+
+
