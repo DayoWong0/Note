@@ -90,7 +90,7 @@ tar -zxvf 需要解包的文件名字
 
 解压:
 
-```bahs
+```bash
 gzip -d 压缩文件名
 ```
 
@@ -146,7 +146,7 @@ ln -s 源文件 符号链接(快捷方式)名称
 
 ### shutdown
 
-```//bash
+```bash
 shutdown -h now //立即关机
 ```
 
@@ -490,7 +490,7 @@ make 命令会检测一个大型程序, 代码改变后哪些部分需要重新�
 
 目标: 依赖
 
-​ 命令
+命令
 
 例子
 
@@ -503,13 +503,13 @@ hello: hello.c
 	gcc -o hello hello.c
 ```
 
-​ hello(可执行文件) 依赖于 hello.c(源文件)
+hello(可执行文件) 依赖于 hello.c(源文件)
 
-​ 下面的命令时编译命令.
+下面的命令时编译命令.
 
 1. vi hello.c
 
-```CQL
+```C
 #include <stdio.h>
 int main(){
      printf("hello world changed \n");
@@ -526,7 +526,7 @@ int main(){
 
 clean:
 
-​ rm ...
+rm ...
 
 清理文件
 
@@ -632,6 +632,8 @@ gcc 生成 .o 文件 再用 ar -rc 打包
 gcc -c stack.c
 ```
 
+----------------
+
 ```shell
 ar -rc libstack.a stack.o
 ```
@@ -682,3 +684,129 @@ main2 中没有共享库的代码。只复制 main2 给别人不能直接执行�
 export LD_LIBRARY_PATH=./; # 修改共享库路径环境变量为当前目录
 $LD_LIBRARY_PATH # 查看环境变量
 ```
+
+# 第七次课
+
+## 7.1 命令行参数
+
+传入给 main 函数
+
+```c
+int main(int argc, char *argv[])
+```
+
+- argc
+
+  命令行参数个数，执行程序名称算一个 + 用户输入的参数个数
+
+- \*argv[]
+
+  第一个参数为可执行文件的名字。
+
+  从第二个开始是自己输入的参数。
+
+  指向字符串首字母地址。最后一个 argv[argc] 为 NULL
+
+## 7.2 环境变量
+
+- 命令方式（临时的）
+
+  当前 shell 有效，新的 shell 中无效，重启也无效
+
+命令行下输入变量值，再在当前 shell 下指定命令执行脚本
+
+```shell
+var var1=12345;
+var var2=56789;
+```
+
+---
+
+```shell
+vi print.sh
+```
+
+输入以下内容
+
+```shell
+#/bin/bash
+echo "$var1"
+echo "$var2"
+```
+
+授权 + 执行
+
+```shell
+. print.sh # 此命令指定在当前 shell 执行此脚本 前面加了一个 . 能正常输出变量值
+```
+
+若用
+
+```shell
+./print.sh
+```
+
+没有输出：这是启动一个新的 shell，这里说的环境变量算临时变量吧。新的 shell 中无效。程序执行空间问题。具体看操作系统，堆栈啥的。
+
+- 函数方式（临时的）
+
+  ```shell
+待补充
+  ```
+  
+  对当前进程有效
+  
+- **配置文件修改（永久的，常用）**
+
+  这就是我们配置 Java Python 等常用的环境变量。
+
+  文件位于：？
+
+## 7.3 时间管理
+
+### 7.3.1 UTC 介绍
+
+- time_t
+
+  - 从 1970 年 1 月 1 日 午夜开始计数的秒数值。
+
+  - 与系统直接进行交互的类型，UTC
+
+- 结构体 struct tm
+
+  - 将 UTC 时间根据系统设置的时区进行分解
+
+    Java Python 等都遇到过
+
+- 字符串
+
+  例如：Tue Jul ...
+
+### 7.3.2 时间转换函数
+
+```c
+#include<stdio.h>
+#include<time.h>
+int main(){
+        time_t nowtime;
+        char *nowtime2;
+        struct tm *nowtime3;
+        time(&nowtime);
+        nowtime2=ctime(&nowtime);
+        printf("%s", nowtime2);
+        nowtime3=localtime(&nowtime);
+        printf("%d-%d-%d;%d
+               
+}
+```
+## 7.4 错误代码
+
+### error
+
+- error number
+
+​	引入头文件 error.h
+
+- strerror
+- perror
+

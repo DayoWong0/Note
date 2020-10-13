@@ -4,7 +4,9 @@
 
 [【天哥】Android 开发视频教程最新版 Android Studio 开发](https://www.bilibili.com/video/BV1Rt411e76H)
 
-[天哥写的部分(master)和我网友写的(beta)部分代码](https://github.com/taifus/Android_Learning)
+[课程代码](https://github.com/skypan-yes/AndroidCourse)
+
+[天哥写的部分 ( master ) 和网友写的 ( beta ) 部分代码](https://github.com/taifus/Android_Learning)
 
 ## 2.1 布局管理器
 
@@ -26,9 +28,9 @@
   android:orientation="horizontal"
   ```
 
-- 匹配父空间
+- 匹配父空间（ match_parent ）
 
-  布局文件从上到下开始，把前面的分配好了，剩下的内容给匹配父空间的。
+  布局文件从上到下开始，把前面的分配好了，从剩下的内容基础上分给匹配父空间的元素。
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -43,32 +45,25 @@
           android:orientation="horizontal"
           android:background="#000000"
           android:padding="20dp">
-  ```
-
-
-          <View
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#FF0033"/>
-      </LinearLayout>
-    
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="200dp"
-          android:orientation="horizontal"
-          android:background="#0066FF">
-    
-      </LinearLayout>
-
-
+                <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FF0033"/>
+    	</LinearLayout>
+  
+    	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:background="#0066FF">
+    	</LinearLayout>
   </LinearLayout>
-
   ```
-
-  第一个 LinearLayout 用了 父空间的 200dp 宽度，
-
-  父空间剩下的宽度 = 父空间宽度 - 200dp，给第二个 LinearLayout
-
+  
+     第一个 LinearLayout 用了 父空间的 200dp 宽度，
+  
+    父空间剩下的宽度 = 父空间宽度 - 200dp，给第二个 LinearLayout
+  
 - LinearLayout 默认水平排列，改成垂直排列需要修改父布局的属性
 
   ```xml
@@ -137,13 +132,75 @@ android:layout_weight="1"
 
 果然工作过的人出来讲课比没开发经验的老师讲课好多了，并且比我自己看书效率高多了，
 
-学习 Android 开发，我最害怕的就是界面设计。他把常用的讲了并且易懂，反观老师就是把书上的
-
-挨着讲，讲的又多又不具体。
+学习 Android 开发，我最害怕的就是界面设计。他把常用的讲了并且易懂。
 
 ### 2.1.2 相对布局 Relativelayout
 
-相对布局中的相对是参照的意思。
+- 相对布局中的相对是参照的意思。
+
+- **使用相对布局之前，保证父布局是相对布局才行。**
+
+  比如：父级为 LinearLayout 子布局为 RelativeLayout 此时子布局不能设置  **layout_alignParentBottom**
+
+  可以在 他们之间加一层 RelativeLayout 布局：设置 width height 为 match_parent
+
+  如下
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+  
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+  
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:background="#117CAC"
+              android:layout_alignParentBottom="true"
+              >
+  
+              <View
+                  android:id="@+id/v_1"
+                  android:layout_width="50dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="60dp"
+                  android:layout_marginTop="8dp"
+                  android:layout_marginBottom="5dp"
+                  android:background="#000000" />
+  
+              <View
+                  android:id="@+id/v_2"
+                  android:layout_width="50dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="60dp"
+                  android:layout_marginTop="8dp"
+                  android:layout_marginBottom="5dp"
+                  android:layout_toRightOf="@id/v_1"
+                  android:background="#000000" />
+  
+              <View
+                  android:id="@+id/v_3"
+                  android:layout_width="50dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="60dp"
+                  android:layout_marginTop="8dp"
+                  android:layout_marginBottom="5dp"
+                  android:layout_toRightOf="@id/v_2"
+                  android:background="#000000" />
+          </RelativeLayout>
+      </RelativeLayout>
+  
+  
+  </LinearLayout>
+  
+  ```
+
+  
 
 align：排整齐;校准;(尤指)使成一条直线;使一致。 我遇见的意思多指：对齐方式。
 
@@ -153,7 +210,7 @@ align：排整齐;校准;(尤指)使成一条直线;使一致。 我遇见的意
 
 看字面意思就能明白用法。 
 
-1. 在谁的左边、右边，底部对齐，对齐父空间底部、below 是下划线。
+1. 在谁的左边、右边，底部对齐，对齐父空间底部、 在某个元素下面绘制下划线。
 
 注意：安卓的布局文件命名只能小写字母加数字，否则不识别。
 
@@ -280,6 +337,8 @@ mTv6.setText(Html.fromHtml("<u>天哥在奔跑 html</u>"));
 
 </LinearLayout>
 ```
+
+
 
 ```java
 package com.example.a1linearlayout;
@@ -521,6 +580,8 @@ public class ButtonActivity extends AppCompatActivity {
 }
 ```
 
+
+
 ```xml
     <Button
         android:id="@+id/btn_3"
@@ -597,7 +658,7 @@ addTextChangedListener 监听输入状态，charSequence 为当前输入框中�
 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) 
 ```
 
-
+------
 
 ```java
 package com.example.a1linearlayout;
