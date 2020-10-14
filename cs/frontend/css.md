@@ -2,9 +2,11 @@
 
 参考资料:
 
-[学习 Web 开发--mozilla](https://developer.mozilla.org/zh-CN/docs/learn)
+[学习 Web 开发-mozilla](https://developer.mozilla.org/zh-CN/docs/learn)
 
 [狂神 CSS](https://www.bilibili.com/video/BV17z4y1D7Yj?p=16)
+
+[渐变 css 模板网站](https://www.grabient.com/)
 
 ## 0. 介绍
 

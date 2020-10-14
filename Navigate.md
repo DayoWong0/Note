@@ -71,11 +71,12 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 ## 排版
 
 - [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-CN.md)
+
   - 英文中文前后加一个空格
   - 数字和中文或英文之间加一个空格
   - 数字和单位之间加一个空格
   - 中文标点不用加空格，英文需要
-  - 专有名词一般是首字母大写，至少不能大小写写错
+  - 专有名词一般是首字母大写，大小写写错
     - macOS
     - Github
     - Java
@@ -103,11 +104,7 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
     只要有 `<` `>` 标签都算，不管是不是 html 的标签。
 
-    ​	vuePress 在浏览器显示时，会检测标签是否闭合（可以用 vueDevTools 插	件查看控制台报错信息），如果有任何一个没闭合的，页面不会显示。
-
-  
-
-  
+    ​ vuePress 在浏览器显示时，会检测标签是否闭合（可以用 vueDevTools 插 件查看控制台报错信息），如果有任何一个没闭合的，页面不会显示。
 
 ## 编码实践
 

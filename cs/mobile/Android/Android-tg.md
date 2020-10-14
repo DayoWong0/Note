@@ -6,7 +6,31 @@
 
 [课程代码](https://github.com/skypan-yes/AndroidCourse)
 
-[天哥写的部分 ( master ) 和网友写的 ( beta ) 部分代码](https://github.com/taifus/Android_Learning)
+[天写的部分 ( master ) 和网友写的 ( beta ) 部分代码](https://github.com/taifus/Android_Learning)
+
+[安卓基础入门-菜鸟教程（大致看了一下内容，写得很好）](https://www.runoob.com/w3cnote/android-tutorial-intro.html)
+
+[Android布局中的尺寸单位介绍](https://www.jianshu.com/p/0296fada6df3)
+
+## 遇到的问题
+
+### 布局
+
+布局对我来说好难 css 也是，定位达不到想要的效果。听完课自己上手操作就懵逼。
+
+- 不明白 dp sp 等单位的意思
+
+  每个视频教程都没提到
+
+- 课程里讲解的布局例子不够需求
+
+  - 需要自己多试试，去查每个控件有什么属性。
+
+- padding 和 margin 意思知道，但是什么时候用哪一个不清楚
+
+  padding margin 只在 LinearLayout 之类的元素里使用？
+
+-  orientation 和 gravity 区别
 
 ## 2.1 布局管理器
 
@@ -14,11 +38,27 @@
 
 ### 2.1.1 线性布局 LinearLayout
 
+#### 常用属性
+
+id	
+
+layout_width 
+
+layout_height 
+
+background
+
+layout_margin
+
+layout_padding
+
+orientation （LinearLayout 特有）：子元素排列方式，水平 （ horizontal）和 垂直 （vertical）
+
 #### 前端类似部分
 
 - 布局宽高度通常使用 dp 而不是 px，这样便于布局适配屏幕
 
-- padding 和 css 的一样
+- padding margin background width height  id 和 css 的一样
 
 - 这个什么意思？
 
@@ -30,7 +70,7 @@
 
 - 匹配父空间（ match_parent ）
 
-  布局文件从上到下开始，把前面的分配好了，从剩下的内容基础上分给匹配父空间的元素。
+  布局文件从上到下开始，把前面的分配好了，从剩下的 宽/高 度分给匹配父空间的元素。
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -77,6 +117,10 @@
 #### View 默认从左上排列
 
 设置父元素的对齐方式属性改变这以默认行为
+
+gravity：内部排列的元素的对齐方式。
+
+gravity 和 oritation 区别？
 
 ```xml
 android:gravity="center"
