@@ -1,40 +1,32 @@
-// net01.cpp : 定义控制台应用程序的入口点。
+// client.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "stdafx.h"
 #include "stdafx.h"
 #include <stdio.h>
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
-// <> header: find in system lib
-// "" header: first find in project file if not find then to find in system lib
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	int len;
-	SOCKET fd, clientfd;
+	sockaddr_in server;
+	SOCKET fd; 
 	WSADATA wsaData;
-	SOCKADDR_IN server, client;
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
 	fd = socket(AF_INET, SOCK_STREAM, 0);
 
-	memset(&server, 0, sizeof(server));
-
+	memset(&server, 0 , sizeof(server));
+	//memset(&server, 0 , sizeof(sockaddr_in));
 	server.sin_family = AF_INET;
-	// port 1234
 	server.sin_port = htons(1234);
-	server.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
+	server.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+	// Windows should use last function inet_addr,inet_aton did not work
+	// inet_aton("127.0.0.1", &server.sin_addr);
 
-	bind(fd, (sockaddr*)&server, sizeof(server));
+	connect(fd, (sockaddr *)&server, sizeof(server));
 
-	listen(fd, 5);
+	send(fd, "hello", 5, 0 );
 
-	len = sizeof(client);
-
-	clientfd = accept(fd, (sockaddr*)&client, &len);
-
-	printf("%s\n\r", inet_ntoa(client.sin_addr));
-
-	closesocket(clientfd);
 	closesocket(fd);
 
 	getchar();
