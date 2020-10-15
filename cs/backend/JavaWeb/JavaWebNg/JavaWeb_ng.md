@@ -1,14 +1,52 @@
-# Java Web -ng-02
+# JavaWeb-NG
+
+## 参考
+
+- [使用List](https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552)
+
+# 经验总结
+
+### Java 后端代码
+
+- 什么时候写一个新的函数或者方法
+
+  大量重复用到的代码，比如作业 1 2 3  用到的 error.jsp 转发重定向，可以将错误信息和跳转到的地址作为参数使用
+
+- 什么时候用静态方法
+
+  当方法比较独立，不容易抽象出一个类的时候。？
+
+- 方法、类 参数 命名
+
+  
+
+
+
+### 数据库
+
+
+
+### CSS
+
+
+
+### JavaScript
+
+
+
+
+
+# 第一周课
 
 ## 部署方式
 
 三种
 
-1.
+1. 
 
-2.
+2. 
 
-3.
+3. 
 
 ## 项目文件存放目录
 
@@ -118,7 +156,7 @@ POST 请求时, 客户端发送非西文数据时使用编码: iso 8859-1
 
 2. 手工编码 可对单个数据编码进行转换
 
-# javaweb-03
+# 第二周课
 
 ## 地址映射
 
@@ -170,7 +208,7 @@ public class CreateVerifyCodeImagesServlet extends HttpServlet {
 @WebServlet(urlPatterns = "/controller/vcode.do")
 ```
 
-# 作业 1 复习笔记
+# 作业 1 笔记
 
 ### 4.2 虚拟目录的配置
 
@@ -570,6 +608,8 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 合格的 JSON 对象
 
+数组 对象 以及他们的嵌套。
+
 ```json
 ["one", "two", "three"]
 { "one": 1, "two": 2, "three": 3 }
@@ -585,7 +625,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 
 
-# 作业2笔记
+# 作业 2 笔记
 
 ## 1. web.xml 配置文件报错
 
@@ -716,21 +756,29 @@ HttpServletResponse  response= (HttpServletResponse) resp;
 
 参考:
 
-
-
 [JAVA删除Cookie](https://blog.csdn.net/qq_39668217/article/details/87733608?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
 
 [Java split() 方法](https://www.runoob.com/java/java-string-split.html)
 
 ## 权限分配实现
 
+- 问题
+
+  - 后端怎么判断够不够某个权限。
+
+    每个权限分开判断？判断一次查询一次数据库？
+
+    ~~查询出所有权限，从查询结果判断有没有当前访问资源的权限。（性能低一些，但是现在这个阶段不用考虑性能问题，可以放在缓存中）~~
+
+    
+
 这个难点在于数据库的设计, 不过老师给了数据库设计结构. 多对多结构
 
-关键数据库查询语句
+关键在数据库查询语句
 
 
 
-查询当前登录用户所属的角色，然后查询这些角色拥有权限, 连续查询以前没用过.
+查询当前登录用户所属的角色，然后查询这些角色拥有权限的资源信息, .
 
 ```mysql
 SELECT
@@ -754,6 +802,34 @@ WHERE
 			)
 	)
 ```
+
+上面这 sql 语句 
+
+先看最上面 查询结果是 t_resource 表中的所有信息。
+
+再看 最后一句：通过用户名查询。
+
+再看中间：通过用户名查询用户属于哪个角色。管理员还是用户等
+
+合起来：通过用户名查询这个用户拥有权限的所有资源信息。
+
+如果某个资源没有权限，则查询不到。
+
+判断指定的资源在不在查询结果中完成权限判断。
+
+
+
+看了之前的代码，发现查询结果返回值写错了。原因是 sql 语句没看懂。
+
+改好了之后，发现 List<> 用法不会，谷歌一下，之后在考虑 permittionFilter 之后怎么重定向，传什么数据，感觉好像哪里不对。突然想起 filter 是中间过程，跳过过滤后需要用。之前对 filter 的工作原理理解错误：忘了 filter 是中间过程，之前错误的将它直接当成 servlet 来使用
+
+```java
+chain.dofilter(req, resp)
+```
+
+~~并将页面重定向封装为一个方法~~
+
+也就两三行，感觉封装没必要（或者因为我封装得太差了？）
 
 #   第七周课
 
@@ -829,7 +905,7 @@ $("#b1").click(function(){
 
 组合查询 某些支持模糊查询
 
-# 作业三笔记
+# 作业 3 笔记
 
 ~~登录用原生 Javascript 和 XMLHttpRequest 完成~~
 
