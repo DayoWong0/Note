@@ -187,3 +187,16 @@ int _tmain(int argc, _TCHAR* argv[])
 
 ### 1.2.2 在基本代码上修改
 
+- client.c 在连接后 connect(...) 加入代码
+
+  [在线查看差异-client.c](https://github.com/chengziqaq/Note/commit/97fe12120f81ce6f417bbfca52a1f9ac9342baf1#diff-9d9936830bb5c6ba0a8c19033d7bd4805a147e85e0b65a90ae0836412d8417de)
+
+  ```c
+  send(fd, "hello", 5, 0);
+  ```
+
+  
+
+- server.c 改得较多。
+
+  [在线查看差异-server.c](https://github.com/chengziqaq/Note/commit/34f9fbde14129218596575a093b52f380fa1e872#diff-9d9936830bb5c6ba0a8c19033d7bd4805a147e85e0b65a90ae0836412d8417de)

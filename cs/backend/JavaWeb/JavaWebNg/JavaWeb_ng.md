@@ -831,13 +831,58 @@ $("#b1").click(function(){
 
 # 作业三笔记
 
-登录用原生 Javascript 和 XMLHttpRequest 完成
+~~登录用原生 Javascript 和 XMLHttpRequest 完成~~
 
-注册用 jQuery 和 Ajax 完成
+登录注册都用 jQuery 和 Ajax 完成
+
+### 第一步 修改 Javascript 代码
+
+1. 首先参考老师的代码将 Javascript 代码修改成了函数调用的。
+
+2. 需要写后端返回 JSON 数据的接口。
+
+   参考：[[JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)](https://my.oschina.net/u/4287266/blog/3891785)
+
+   第一种方法 找不到 JSONObject，所以用第二种一样的。
+
+   ```java
+   login_info = "登录成功";
+   resp.setContentType("application/json;charset=utf-8;");
+   String result = " {\"code\": 0,\"info\": \"" + login_info + "\"}";
+   resp.getWriter().print(result);
+   ```
+
+   需要用转义字符 \ 转义 引号。
+
+   ```json
+   
+   ```
+
+   改好后，先测试第一个，出错。需要修改过滤器配置文件。
+
+   将 ajaxLoginCheck.do 加入不需要访问权限的。还是 404 .
+
+   发现是前端传过来的参数不对。后端需要的是 userName， 我传来的是 email，修改又有 500 （服务器内部错误）问题。数据库连接出了问题（我根本没开数据库），后面找个空闲时间再安排好数据库。
+
+   
+
+   把查询数据库的操作改为了自己手动新建一个 User 对象，然后测试，
+
+   一直出现验证码错误。。原来又是前端传的 验证码 变量名称和后端的不一样。
+
+   
+
+   终于改好了
+
+   
+
+   谨记：前后端传的参数一定要协商好，不然后期测试容易懵逼而且替换起来真的难受。
+
+
 
 ### 主要问题
 
-#### DAO部分有问题
+#### DAO 部分有问题
 
 - 后端代码写了但是从来没有连接数据库使用。
 - DAO 返回数据 `List<Download>` 不知道怎么使用。

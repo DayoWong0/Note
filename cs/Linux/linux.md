@@ -750,10 +750,8 @@ echo "$var2"
 
 - 函数方式（临时的）
 
-  ```shell
-待补充
-  ```
-  
+  -----
+
   对当前进程有效
   
 - **配置文件修改（永久的，常用）**
@@ -809,4 +807,253 @@ int main(){
 
 - strerror
 - perror
+
+# 第八次课 文件 IO
+
+## 8.1 标准IO 与文件 IO
+
+- 标准 IO
+
+  语言提供的 IO，对平台提供的文件操作 API 有封装，换平台重新编译即可，可移植性强。
+
+  - 全缓冲
+
+    填满标准 IO 缓冲区再进行实际 IO。
+
+  - 行缓冲
+
+    遇到换行执行一次实际 IO，终端就是用的这个。
+
+- 文件 IO
+
+## 8.2 文件系统简介
+
+### 文件系统类型
+
+- Linux：ext2，ext3
+- Windows：NTFS，FAT
+- macOS：APFS
+
+### VFS 虚拟文件系统
+
+作用：屏蔽不同文件系统的不同之处，对应用程序和用户透明的（他们感受不到文件系统的差异）。
+
+#### 索引节点 inode
+
+- Linux 采取 “按名存取” 访问文件。
+
+- 文件分为两部分
+
+  - 索引节点 inode
+
+    - 记录文件的属性信息（不包括文件名）。可以用 ls -l 查看
+
+    - 数据块
+
+      文件具体内容
+
+- **目录文件** 中保存着 **文件名** 和 **索引节点** inode 的对应关系。
+
+### 一个简单的 Unix 文件系统组成
+
+- **引导块**：EFI 分区位于的地方
+- **超级块**
+- 索引节点表 （ inode ）
+
+- 数据块
+
+### 文件类型
+
+- 普通文件
+- 目录文件
+- 字符设备文件
+- 块设备文件
+- <font color=red>FIFO 文件</font>
+- 符号链接文件
+- <font color=red>socket 套接字文件</font>
+
+### 文件权限
+
+- 字母
+
+  r：read
+
+  w：write
+
+  x：execute 执行
+
+  `-` ：无权限
+
+- 数字
+
+  chmod 777 filename
+
+- 宏
+
+  了解即可，用的不多。编程时常用 <font color=red>数字</font> 表示权限
+
+### 访问文件的内核数据结构
+
+进程默认打开三个描述符
+
+### 常用系统调用
+
+#### 1. 创建/打开 文件
+
+```c
+#include <sys/stat.h>
+#include <fcntl.h>
+ int open ( 参数待补充 )
+```
+
+- 打开已存在的文件时 perms 参数不用提供
+- 新建文件需要 perms 参数
+
+- 参数
+
+  - path
+  - flags：打开方式，可用或运算 `|`
+  - perms
+
+- 返回值
+
+  用于判断文件打开出错没
+
+  - -1：出错
+  - 0：成功
+
+#### 2. 关闭文件
+
+```c
+int close(fd);
+```
+
+#### 3. 练习
+
+P73 例 4-4 
+
+fd.c
+
+```c
+#include <fcntl.h>
+int main(int argc, char const *argv[])
+{
+    int fd1, fd2, fd3;
+    fd1 = open("f1", O_RDWR);
+    fd2 = open("f2", O_RDWR);
+    fd3 = open("f3", O_RDWR);
+    
+    printf("fd1=%d\n",fd1);
+    printf("fd2=%d\n",fd2);
+    printf("fd3=%d\n",fd3);
+
+    close(fd1);
+    close(fd2);
+    close(fd3);
+    
+    return 0;
+}
+
+```
+
+---
+
+fd1.c
+
+```c
+#include <fcntl.h>
+int main(int argc, char const *argv[])
+{
+    int fd1, fd2, fd3;
+    fd1 = open("f1", O_RDWR);
+    fd2 = open("f2", O_RDWR);
+    printf("fd1=%d\n",fd1);
+    printf("fd2=%d\n",fd2);
+    close(fd1);
+
+    fd3 = open("f3", O_RDWR);
+    printf("fd3=%d\n",fd3);
+
+    close(fd2);
+    close(fd3);
+    return 0;
+}
+
+```
+
+创建文件 f1 f2 f3，再编译运行。
+
+```shell
+touch f1 f2 f3
+```
+
+输出
+
+- fd：3 4 5
+  - 进程执行的时候打开了三个文件（中间没有关闭），进程描述符分别占用 3 4 5 号。
+
+- fd1：3 4 3
+  - 进程执行的时候先打开了两个文件，进程描述符分别占用 3 4 号，先关闭了 fd1，再打开 fd3。系统调用 open 每次打开文件总是得到一个最小的可用文件描述符。
+
+具体解释看 P74。
+
+#### close 与 文件描述符
+
+进程 open 文件时，系统有一张表记录进程打开的文件。
+
+close 一个 fd，fd 指向的打开文件列表中引用计数器减1，如果减为0，不仅释放文件描述符，还释放该打开文件表项。
+
+#### 4. 读文件
+
+```c
+ssize_ read(fd, buf, nbytes);
+```
+
+
+
+- 参数
+
+  - fd：文件描述符
+  - buf：读出的数据放在哪个缓冲区
+  - nbytes：读取多少个字节
+
+- 返回值
+
+  - -1：失败
+  - 成功：返回已读取的字符数。
+
+  只通过返回值是否为 -1 判断读取失败。
+
+#### 文件偏移量
+
+指针从文件头字符的移动量
+
+#### 文件定位函数 lseek
+
+```c
+off_t lseek(int fd, off_t pos, int whence);
+```
+
+- 参数
+
+  - fd
+
+  - whence
+
+    - SEEK——SET
+    - ...
+
+    
+
+  - pos
+
+    可正可负 0 ，相对于 whence 的偏移量
+
+- 返回值
+
+  - -1
+  - ...
+  - 
+
+
 
