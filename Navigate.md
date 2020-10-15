@@ -68,6 +68,35 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
 - [**vuePress + GitPages + Travis Ci + MarkDown 笔记网站实现过程**](cs/frontend/vuePress.md)
 
+## 文本内容基本框架
+
+```markdown
+# 文件名
+## 参考
+参考资料 可以是网址、书籍名称 ISBN 书籍 PDF地址等信息、视频地址、自由发挥
+## 待解决问题
+没解决的问题，解决之后放到经验总结
+
+## 经验总结（已解决问题）
+写出自己学习过程中遇到的问题以及解决办法，作为以后的参考
+
+## 正文
+```
+
+```markdown
+# 文件名
+
+## 参考
+
+## 待解决问题
+
+## 经验总结（已解决问题）
+
+## 正文
+```
+
+
+
 ## 排版
 
 - [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-CN.md)
@@ -90,7 +119,7 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
 - 标题和序号
 
-  写清楚标题和需要，方便生成导航栏，快速定位需要找到的笔记。
+  写清楚二级标题，方便生成导航栏，左侧导航栏不显示一级标题，所以最小用二级标题，一级标题一般用于文档最开头，和文件名相同（在 Github 新建仓库生成 README.md 文件时就是这样）
 
   序号方便写作时的排版。
 

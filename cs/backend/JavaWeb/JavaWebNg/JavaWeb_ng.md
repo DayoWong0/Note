@@ -3,8 +3,19 @@
 ## 参考
 
 - [使用List](https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552)
+- [[JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)](https://my.oschina.net/u/4287266/blog/3891785)
 
-# 经验总结
+## 问题
+
+### 作业2
+
+- 后端代码写了但是从来没有连接数据库使用。
+
+- ~~DAO 返回数据 `List<Download>` 不知道怎么使用。~~
+
+  
+
+## 经验总结
 
 ### Java 后端代码
 
@@ -14,9 +25,9 @@
 
 - 什么时候用静态方法
 
-  当方法比较独立，不容易抽象出一个类的时候。？
+  当方法比较独立，不容易抽象出一个类的时候。不用类初始化之类的？
 
-- 方法、类 参数 命名
+- 方法、类 参数 命名规则
 
   
 
@@ -36,9 +47,9 @@
 
 
 
-# 第一周课
+## 第一周课
 
-## 部署方式
+### 部署方式
 
 三种
 
@@ -48,9 +59,9 @@
 
 3. 
 
-## 项目文件存放目录
+### 项目文件存放目录
 
-### 前端
+#### 前端
 
 - 静态文件:
 
@@ -66,7 +77,7 @@
 
   \*.jsp
 
-### 后端
+#### 后端
 
 均放于 WEB-INF 目录下
 
@@ -78,27 +89,27 @@ lib: 存放程序所需要的包(\*.jar)
 
 web.xml: 本应用配置文件
 
-## idea web 项目创建
+### idea web 项目创建
 
 out.flush: 立即输出, 不用等待缓存完毕就输出
 
-## 配置文件解析
+### 配置文件解析
 
 ### web.xml
 
-## 问题
+### 问题
 
 1. 三种 web 服务器配置方法(主要用第三种方法)
 2. idea 生成的文件太少, 以及怎么在 idea 上配置开发环境
 3. 配置文件的作用
 
-## 作业
+### 作业
 
 1. 重现一次访问
 2. DAO 数据库写好
 3.
 
-## 总结
+### 总结
 
 配置文件:
 
@@ -108,11 +119,11 @@ web.xml 中的
 
 </servelet-mapping>
 
-## servelet
+### servelet
 
 教材 P19
 
-## html
+### html
 
 1. p 标签自动换行
 
@@ -134,7 +145,7 @@ web.xml 中的
    </table>
    ```
 
-## HTTP 方法
+### HTTP 方法
 
 GET: 不安全 有长度限制
 
@@ -156,9 +167,9 @@ POST 请求时, 客户端发送非西文数据时使用编码: iso 8859-1
 
 2. 手工编码 可对单个数据编码进行转换
 
-# 第二周课
+## 第二周课
 
-## 地址映射
+### 地址映射
 
 1. 注解
 
@@ -178,13 +189,13 @@ POST 请求时, 客户端发送非西文数据时使用编码: iso 8859-1
 
 2. 配置文件
 
-## 用户登录案例
+### 用户登录案例
 
 - 用户名 密码 验证码
 
-## 出错
+### 出错
 
-### url 地址写错
+#### url 地址写错
 
 正确写法:
 
@@ -208,17 +219,17 @@ public class CreateVerifyCodeImagesServlet extends HttpServlet {
 @WebServlet(urlPatterns = "/controller/vcode.do")
 ```
 
-# 作业 1 笔记
+## 作业 1 笔记
 
 ### 4.2 虚拟目录的配置
 
-#### 定义: 建立 URL 地址与项目的物理路径之间的映射，这个过程叫做虚拟路径的映射。
+定义: 建立 URL 地址与项目的物理路径之间的映射，这个过程叫做虚拟路径的映射。
 
 例如：在浏览器中输入地址 [http://localhost:8080/test/index.html](http://localhost:8080/test/index.html)服务器必须知道/test（虚拟目录）这个目录对应服务器中的哪个物理目录
 
 有三种方法, 方法 3 用的多, 主要看它.
 
-#### 配置方法 3
+### 配置方法 3
 
 在 $Tomcat_home$\conf\Catalina\localhost 路径下新建一个 XML 文件（conf 目录下如果没有对应子目录，请手工新建），注意：XML 文件的名字必须和定义的虚拟目录名一致，在下例中，文件名必须为 test.xml，文件内容如下:
 
@@ -231,7 +242,7 @@ public class CreateVerifyCodeImagesServlet extends HttpServlet {
 
 推荐使用第三种配置方法，对于该种配置方法，web 应用程序可以存放在服务器的任何位置，每个应用一个单独的配置文件。
 
-#### 注意
+注意
 
 1. test 为虚拟目录
 2. xml 配置文件的 docBase 是静态文件 html css js 的目录(docBase 目录需要改为你自己的静态文件夹目录)
@@ -239,7 +250,7 @@ public class CreateVerifyCodeImagesServlet extends HttpServlet {
 
 ### IDEA Maven 新建项目
 
-#### 参考
+参考
 
 1. [javaweb-06：IDEA 中 Maven 的操作](https://www.bilibili.com/video/BV12J411M7Sj?p=60)
 
@@ -314,8 +325,6 @@ public class CreateVerifyCodeImagesServlet extends HttpServlet {
 
 ![image-20200920120758891](JavaWeb_ng_02.assets/image-20200920120758891.png)
 
-### 结束
-
 6. 上课时跟着老师敲了一部分代码. 现在跟着文档完善一下.
 
 然后启动服务器.
@@ -366,7 +375,7 @@ HTTP500.html 不能访问
 
 HTTP404.html 可以访问
 
-## el 表达式不显示
+### el 表达式不显示
 
 需要在 jsp 文件前面加入以下代码
 
@@ -402,7 +411,7 @@ public class LoginController extends HttpServlet {
 </html>
 ```
 
-## 访问网址错误导致 jstl 和 el 数据不显示
+### 访问网址错误导致 jstl 和 el 数据不显示
 
 正确的访问网址为
 
@@ -414,7 +423,7 @@ servlet 需要传数据给 jsp 文件, 若直接访问 jsp 文件, 没有这个�
 
 只有访问 /getDownloadList.do 才能使得 jsp 文件得到数据
 
-# 第三周课
+## 第三周课
 
 ### MVC 模型
 
@@ -456,11 +465,11 @@ View 响应和数据处理
 
    - doGet
 
-### 新建 servlet
+#### 新建 servlet
 
 参考 [使用 IntelliJ IDEA 新建一个 Servlet 项目](https://blog.csdn.net/chang_ge/article/details/79917956)
 
-#### 两种 URL 映射方法
+### 两种 URL 映射方法
 
 参考
 
@@ -514,11 +523,11 @@ View 响应和数据处理
 
 ### 获得客户机请求参数
 
-# 第四周课
+## 第四周课
 
 - 前端页面网址 没有斜杠开头 后端却是以斜杠开头(web.xml 配置文件 和 类名上的注解 )
 
-## JSP (Java Server Page)
+### JSP (Java Server Page)
 
 动态页面, html 文件里嵌入 Java 代码
 
@@ -555,7 +564,7 @@ body 中
 
 jsp 里最好别写代码. 多数用来数据展示。
 
-## 流程控制
+### 流程控制
 
 (不推荐用 JSP 做流程控制)
 
@@ -563,7 +572,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 若用到了 Java 中的 类 需要在头文件 import 该类
 
-## 数据库
+### 数据库
 
 [IDEA Maven mysql 数据库操作 有 java 代码例子](https://www.cnblogs.com/dadian/p/11938707.html)
 
@@ -571,9 +580,9 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 代码位于 src/main/java/DAO/UserDAO.java 中
 
-# 第五周课
+## 第五周课
 
-## 过滤器
+### 过滤器
 
 访问控制, 拦截请求, 对请求重新编码和压缩响应信息等
 
@@ -599,7 +608,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 - 为了减少硬编码, 可以使用配置文件, 但是和注解比较起来, 较麻烦.
 
-# 第六周课 AJAX
+## 第六周课 AJAX
 
 ### JSON
 
@@ -625,9 +634,9 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 
 
-# 作业 2 笔记
+## 作业 2 笔记
 
-## 1. web.xml 配置文件报错
+### 1. web.xml 配置文件报错
 
 ```xml
 <!DOCTYPE web-app PUBLIC
@@ -673,7 +682,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 ![image-20201011185615328](img/JavaWeb_ng/image-20201011185615328.png)
 
-## 2. 验证码不加载
+### 2. 验证码不加载
 
 不过滤的地址配置错误 由于我自己的创建验证码的地址和老师给的参考代码不一样.
 
@@ -691,7 +700,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 createVerifyImage.do
 ```
 
-前端不能加 "/" 否则会变为绝对路径, 而后端却必须要加, 不然启动服务器还会出错.
+前端不能加 "/" 否则会变为绝对路径, 而后端却必须要加, 不然启动服务器会出错.
 
 接着点击验证码切换新的 又不能加载.
 
@@ -706,7 +715,7 @@ createVerifyImage.do
 1. 前端相对路径开头不能有 "/", 后端路径注解必须有
 2. 项目开始写代码之前, 路径这些得先确定下来, 开发过程中修改费时间还容易出问题.
 
-## Cookie 和 Session
+### Cookie 和 Session
 
 1. 只要注意 cookie的 path 加上项目名就行
 2. 广告的精确推送使用 cookie 以前没想到过
@@ -737,7 +746,7 @@ if (remember != null && remember.equals("1")) {// 需要记住密码
 				resp.addCookie(cookie);
 ```
 
-### 读取 cookie
+#### 读取 cookie
 
 需要先进行类型转换再得到 cookie 
 
@@ -760,23 +769,19 @@ HttpServletResponse  response= (HttpServletResponse) resp;
 
 [Java split() 方法](https://www.runoob.com/java/java-string-split.html)
 
-## 权限分配实现
+### 权限分配实现
 
 - 问题
 
-  - 后端怎么判断够不够某个权限。
+  - 后端怎么判断有没有某个权限。
 
-    每个权限分开判断？判断一次查询一次数据库？
+    ~~每个权限分开判断？判断一次查询一次数据库？~~
 
-    ~~查询出所有权限，从查询结果判断有没有当前访问资源的权限。（性能低一些，但是现在这个阶段不用考虑性能问题，可以放在缓存中）~~
+    查询出所有权限，从查询结果判断有没有当前访问资源的权限。（性能低一些，但是现在这个阶段不用考虑性能问题，以后可以放在缓存中）
 
     
 
-这个难点在于数据库的设计, 不过老师给了数据库设计结构. 多对多结构
-
-关键在数据库查询语句
-
-
+这个难点在于数据库的设计和下面的 sql 语句, 不过老师给了数据库设计结构. 多对多结构
 
 查询当前登录用户所属的角色，然后查询这些角色拥有权限的资源信息, .
 
@@ -815,13 +820,11 @@ WHERE
 
 如果某个资源没有权限，则查询不到。
 
-判断指定的资源在不在查询结果中完成权限判断。
+判断指定的资源（代码实现中我使用的 resourceName 判断，感觉需要改进）在不在查询结果中完成权限判断。
 
+看了之前的代码，发现查询结果返回类写错了。原因是 sql 语句没看懂。
 
-
-看了之前的代码，发现查询结果返回值写错了。原因是 sql 语句没看懂。
-
-改好了之后，发现 List<> 用法不会，谷歌一下，之后在考虑 permittionFilter 之后怎么重定向，传什么数据，感觉好像哪里不对。突然想起 filter 是中间过程，跳过过滤后需要用。之前对 filter 的工作原理理解错误：忘了 filter 是中间过程，之前错误的将它直接当成 servlet 来使用
+改好了之后，发现 List<> 用法不会，谷歌一下，之后再考虑 permittionFilter 之后怎么重定向，传什么数据，感觉好像哪里不对。突然想起 filter 是中间过程，过滤通过后需要调用 chain.dofilter。之前对 filter 的工作原理理解错误：忘了 filter 是中间过程，之前错误的将它直接当成 servlet 来使用
 
 ```java
 chain.dofilter(req, resp)
@@ -831,9 +834,9 @@ chain.dofilter(req, resp)
 
 也就两三行，感觉封装没必要（或者因为我封装得太差了？）
 
-#   第七周课
+##   第七周课
 
-## JSON
+### JSON
 
 - JSON.parse(): 用于将一个 JSON 字符串转换为 JavaScript 对象　
 
@@ -851,21 +854,21 @@ chain.dofilter(req, resp)
   var jsonStr=JSON.stringify({"name":"alex"})
   ```
 
-## jQuery
+### jQuery
 
-### 属性获取
+#### 属性获取
 
 表单：val
 
 其他：html text
 
-### css 选择器
+#### css 选择器
 
 用的 css 选择器较多
 
-### 属性选择器
+#### 属性选择器
 
-### 基本过滤选择器
+#### 基本过滤选择器
 
 :first
 
@@ -875,7 +878,7 @@ chain.dofilter(req, resp)
 
 :odd
 
-### 方法
+#### 方法
 
 ajax 方法例子
 
@@ -901,15 +904,15 @@ $("#b1").click(function(){
 })
 ```
 
-### 查询例子
+#### 查询例子
 
 组合查询 某些支持模糊查询
 
-# 作业 3 笔记
+## 作业 3 笔记
 
 ~~登录用原生 Javascript 和 XMLHttpRequest 完成~~
 
-登录注册都用 jQuery 和 Ajax 完成
+登录注册都用 jQuery 和 Ajax 完成，原生 Javascript 太难用了。
 
 ### 第一步 修改 Javascript 代码
 
@@ -919,7 +922,7 @@ $("#b1").click(function(){
 
    参考：[[JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)](https://my.oschina.net/u/4287266/blog/3891785)
 
-   第一种方法 找不到 JSONObject，所以用第二种一样的。
+   文章中提到的第一种方法 找不到 JSONObject，所以用第二种。
 
    ```java
    login_info = "登录成功";
@@ -931,7 +934,7 @@ $("#b1").click(function(){
    需要用转义字符 \ 转义 引号。
 
    ```json
-   
+   String result = " {\"code\": 1,\"info\": \"" + login_info + "\"}";
    ```
 
    改好后，先测试第一个，出错。需要修改过滤器配置文件。
@@ -952,16 +955,9 @@ $("#b1").click(function(){
 
    
 
-   谨记：前后端传的参数一定要协商好，不然后期测试容易懵逼而且替换起来真的难受。
-
-
-
-### 主要问题
-
-#### DAO 部分有问题
-
-- 后端代码写了但是从来没有连接数据库使用。
-- DAO 返回数据 `List<Download>` 不知道怎么使用。
+   谨记：前后端传的参数一定要协商好，前后端传送的参数不要随便修改，不然后期测试容易懵逼而且替换起来真的难受。
+   
+   
 
 ## 第四次作业
 
@@ -971,7 +967,7 @@ $("#b1").click(function(){
 
 表格导航栏固定
 
-## 开发步骤
+## 项目开发流程介绍
 
 1. 需求分析
 
