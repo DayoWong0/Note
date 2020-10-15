@@ -3,7 +3,7 @@
 ## 参考
 
 - [使用List](https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552)
-- [[JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)](https://my.oschina.net/u/4287266/blog/3891785)
+- [JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)
 
 ## 问题
 
@@ -47,7 +47,7 @@
 
 
 
-## 第一周课
+## 第一周课  Tomcat
 
 ### 部署方式
 
@@ -167,7 +167,7 @@ POST 请求时, 客户端发送非西文数据时使用编码: iso 8859-1
 
 2. 手工编码 可对单个数据编码进行转换
 
-## 第二周课
+## 第二周课 后端
 
 ### 地址映射
 
@@ -219,7 +219,7 @@ public class CreateVerifyCodeImagesServlet extends HttpServlet {
 @WebServlet(urlPatterns = "/controller/vcode.do")
 ```
 
-## 作业 1 笔记
+## 作业 1 笔记：登录案例
 
 ### 4.2 虚拟目录的配置
 
@@ -423,7 +423,7 @@ servlet 需要传数据给 jsp 文件, 若直接访问 jsp 文件, 没有这个�
 
 只有访问 /getDownloadList.do 才能使得 jsp 文件得到数据
 
-## 第三周课
+## 第三周课 Servlet
 
 ### MVC 模型
 
@@ -523,7 +523,7 @@ View 响应和数据处理
 
 ### 获得客户机请求参数
 
-## 第四周课
+## 第四周课 JSP
 
 - 前端页面网址 没有斜杠开头 后端却是以斜杠开头(web.xml 配置文件 和 类名上的注解 )
 
@@ -580,7 +580,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 代码位于 src/main/java/DAO/UserDAO.java 中
 
-## 第五周课
+## 第五周课 Filter
 
 ### 过滤器
 
@@ -634,7 +634,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 
 
-## 作业 2 笔记
+## 作业 2 笔记：Filter 实现权限管理
 
 ### 1. web.xml 配置文件报错
 
@@ -834,7 +834,7 @@ chain.dofilter(req, resp)
 
 也就两三行，感觉封装没必要（或者因为我封装得太差了？）
 
-##   第七周课
+##   第七周课 jQuery 和 JSON
 
 ### JSON
 
@@ -908,7 +908,7 @@ $("#b1").click(function(){
 
 组合查询 某些支持模糊查询
 
-## 作业 3 笔记
+## 作业 3 笔记 Ajax 登录注册
 
 ~~登录用原生 Javascript 和 XMLHttpRequest 完成~~
 
@@ -956,16 +956,6 @@ $("#b1").click(function(){
    
 
    谨记：前后端传的参数一定要协商好，前后端传送的参数不要随便修改，不然后期测试容易懵逼而且替换起来真的难受。
-   
-   
-
-## 第四次作业
-
-### 页面设计
-
-尽量不出现滚动条
-
-表格导航栏固定
 
 ## 项目开发流程介绍
 
@@ -1041,4 +1031,12 @@ $("#b1").click(function(){
 6. 维护
 
 7. 持续集成
+
+## 作业 4：
+
+### 页面设计
+
+尽量不出现滚动条
+
+表格导航栏固定
 
