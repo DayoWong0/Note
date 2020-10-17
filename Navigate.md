@@ -110,7 +110,7 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
     - Github
     - Java
     - Python
-    - Javascript
+    - JavaScript
     - Linux
     - Windows
     - ARM
