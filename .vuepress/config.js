@@ -99,7 +99,7 @@ module.exports = {
                     // frontend
                     "/cs/frontend/html.md",
                     "/cs/frontend/css.md",
-                    "/cs/frontend/Javascript.md",
+                    "/cs/frontend/javascript.md",
                     "/cs/frontend/JavaScript-KS.md",
                     "/cs/frontend/jquery.md",
                     "/cs/frontend/vue.md",
