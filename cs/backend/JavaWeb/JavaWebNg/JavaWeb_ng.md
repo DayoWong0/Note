@@ -2,18 +2,16 @@
 
 ## 参考
 
-- [使用List](https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552)
-- [JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)
+- [使用 List](https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552)
+- [JavaWeb 返回 json 数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)
 
 ## 问题
 
-### 作业2
+### 作业 2
 
 - 后端代码写了但是从来没有连接数据库使用。
 
 - ~~DAO 返回数据 `List<Download>` 不知道怎么使用。~~
-
-  
 
 ## 经验总结
 
@@ -21,7 +19,7 @@
 
 - 什么时候写一个新的函数或者方法
 
-  大量重复用到的代码，比如作业 1 2 3  用到的 error.jsp 转发重定向，可以将错误信息和跳转到的地址作为参数使用
+  大量重复用到的代码，比如作业 1 2 3 用到的 error.jsp 转发重定向，可以将错误信息和跳转到的地址作为参数使用
 
 - 什么时候用静态方法
 
@@ -29,35 +27,23 @@
 
 - 方法、类 参数 命名规则
 
-  
-
-
-
 ### 数据库
-
-
 
 ### CSS
 
-
-
 ### JavaScript
 
-
-
-
-
-## 第一周课  Tomcat
+## 第一周课 Tomcat
 
 ### 部署方式
 
 三种
 
-1. 
+1.
 
-2. 
+2)
 
-3. 
+3.
 
 ### 项目文件存放目录
 
@@ -75,7 +61,7 @@
 
 - 动态文件:
 
-  \*.jsp
+  \*.java
 
 #### 后端
 
@@ -381,7 +367,7 @@ HTTP404.html 可以访问
 
 参考: [EL 表达式无法显示，直接显示\${xxx}](https://blog.csdn.net/lianzhang861/article/details/81232351)
 
-```jsp
+```java
 <%@ page isELIgnored="false" %>
 ```
 
@@ -396,7 +382,7 @@ public class LoginController extends HttpServlet {
     }
 ```
 
-```jsp
+```java
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE HTML>
@@ -612,7 +598,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 ### JSON
 
-1. JSON内部包含的字符串必须要用双引号。
+1. JSON 内部包含的字符串必须要用双引号。
 2. JSON 数组 JSON 对象
 
 合格的 JSON 对象
@@ -625,14 +611,6 @@ jsp 里最好别写代码. 多数用来数据展示。
 {"names": ["张三", "李四"] }
 [ { "name": "张三"}, {"name": "李四"} ]　
 ```
-
-
-
-
-
-
-
-
 
 ## 作业 2 笔记：Filter 实现权限管理
 
@@ -686,7 +664,7 @@ jsp 里最好别写代码. 多数用来数据展示。
 
 不过滤的地址配置错误 由于我自己的创建验证码的地址和老师给的参考代码不一样.
 
-修改之后启动还是不能加载. 查看后发现前端地址有问题 
+修改之后启动还是不能加载. 查看后发现前端地址有问题
 
 后端地址注解
 
@@ -717,18 +695,18 @@ createVerifyImage.do
 
 ### Cookie 和 Session
 
-1. 只要注意 cookie的 path 加上项目名就行
+1. 只要注意 cookie 的 path 加上项目名就行
 2. 广告的精确推送使用 cookie 以前没想到过
 
 #### session 和 cookie 记住用户登录状态
 
-用户登录状态在服务端记录才安全. Cookie 用于记住用户名, 
+用户登录状态在服务端记录才安全. Cookie 用于记住用户名,
 
 是否登录( 次要, 最终还要在服务端用 session 验证一次 ).
 
 参考:
 
-[java利用Session实现三天免登录](https://blog.csdn.net/huanyinghanlang/article/details/79061802)
+[java 利用 Session 实现三天免登录](https://blog.csdn.net/huanyinghanlang/article/details/79061802)
 
 主要看这: 勾选了记住我 submit 传过来得数值为 1 .
 
@@ -748,7 +726,7 @@ if (remember != null && remember.equals("1")) {// 需要记住密码
 
 #### 读取 cookie
 
-需要先进行类型转换再得到 cookie 
+需要先进行类型转换再得到 cookie
 
 ```java
 HttpServletRequest request = (HttpServletRequest) req;
@@ -765,7 +743,7 @@ HttpServletResponse  response= (HttpServletResponse) resp;
 
 参考:
 
-[JAVA删除Cookie](https://blog.csdn.net/qq_39668217/article/details/87733608?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
+[JAVA 删除 Cookie](https://blog.csdn.net/qq_39668217/article/details/87733608?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
 
 [Java split() 方法](https://www.runoob.com/java/java-string-split.html)
 
@@ -779,13 +757,11 @@ HttpServletResponse  response= (HttpServletResponse) resp;
 
     查询出所有权限，从查询结果判断有没有当前访问资源的权限。（性能低一些，但是现在这个阶段不用考虑性能问题，以后可以放在缓存中）
 
-    
-
 这个难点在于数据库的设计和下面的 sql 语句, 不过老师给了数据库设计结构. 多对多结构
 
 查询当前登录用户所属的角色，然后查询这些角色拥有权限的资源信息, .
 
-```mysql
+```sql
 SELECT
 	*
 FROM
@@ -808,7 +784,7 @@ WHERE
 	)
 ```
 
-上面这 sql 语句 
+上面这 sql 语句
 
 先看最上面 查询结果是 t_resource 表中的所有信息。
 
@@ -834,24 +810,22 @@ chain.dofilter(req, resp)
 
 也就两三行，感觉封装没必要（或者因为我封装得太差了？）
 
-##   第七周课 jQuery 和 JSON
+##    第七周课 jQuery 和 JSON
 
 ### JSON
 
-- JSON.parse(): 用于将一个 JSON 字符串转换为 JavaScript 对象　
+- JSON.parse(): 用于将一个 JSON 字符串转换为 JavaScript 对象
 
   ```javascript
   JSON.parse('{"name":"alex"}');
-  
-  JSON.parse('{name:"alex"}') ;    // 错误 name 需要加双引号
+
+  JSON.parse('{name:"alex"}'); // 错误 name 需要加双引号
   ```
 
-  
-
-- JSON.stringify(): 用于将 JavaScript 值转换为 JSON 字符串。　
+* JSON.stringify(): 用于将 JavaScript 值转换为 JSON 字符串。
 
   ```javascript
-  var jsonStr=JSON.stringify({"name":"alex"})
+  var jsonStr = JSON.stringify({ name: "alex" });
   ```
 
 ### jQuery
@@ -883,25 +857,25 @@ chain.dofilter(req, resp)
 ajax 方法例子
 
 ```javascript
-$("#b1").click(function(){
-    var data = {
-        username: $("#username").val(),
-        password: $("#password").val()
-    };
+$("#b1").click(function() {
+  var data = {
+    username: $("#username").val(),
+    password: $("#password").val(),
+  };
 
-    $.ajax({
-        url: "login.do",
-        type: "POST",
-        data: data,
-        dataType: "JSON",
-        success: function (data){
-            alert(data)
-        },
-        error: function(data){
-            alert(" internet error")
-        }
-    })
-})
+  $.ajax({
+    url: "login.do",
+    type: "POST",
+    data: data,
+    dataType: "JSON",
+    success: function(data) {
+      alert(data);
+    },
+    error: function(data) {
+      alert(" internet error");
+    },
+  });
+});
 ```
 
 #### 查询例子
@@ -920,7 +894,7 @@ $("#b1").click(function(){
 
 2. 需要写后端返回 JSON 数据的接口。
 
-   参考：[[JavaWeb 返回json数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)](https://my.oschina.net/u/4287266/blog/3891785)
+   参考：[[JavaWeb 返回 json 数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)](https://my.oschina.net/u/4287266/blog/3891785)
 
    文章中提到的第一种方法 找不到 JSONObject，所以用第二种。
 
@@ -943,19 +917,47 @@ $("#b1").click(function(){
 
    发现是前端传过来的参数不对。后端需要的是 userName， 我传来的是 email，修改又有 500 （服务器内部错误）问题。数据库连接出了问题（我根本没开数据库），后面找个空闲时间再安排好数据库。
 
-   
+把查询数据库的操作改为了自己手动新建一个 User 对象，然后测试，
 
-   把查询数据库的操作改为了自己手动新建一个 User 对象，然后测试，
+一直出现验证码错误。。原来又是前端传的 验证码 变量名称和后端的不一样。
 
-   一直出现验证码错误。。原来又是前端传的 验证码 变量名称和后端的不一样。
+终于改好了
 
-   
+谨记：前后端传的参数一定要协商好，前后端传送的参数不要随便修改，不然后期测试容易懵逼而且替换起来真的难受。
 
-   终于改好了
 
-   
 
-   谨记：前后端传的参数一定要协商好，前后端传送的参数不要随便修改，不然后期测试容易懵逼而且替换起来真的难受。
+### ajax 登录
+
+Gson maven 依赖
+
+```xml
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.6</version>
+</dependency>
+```
+
+---
+
+```Java
+Map<String, Object> map = new HashMap<String, Object>();
+
+if (判断逻辑){
+  map.put("code", 1或0);
+  map.put("info", "提示信息");
+}
+else ...
+
+String jsonStr = new Gson().toJson(map);
+resp.setContentType("text/json;charset=uft-8");
+PrintWriter out = resp.getWriter();
+out.print(jsonStr);
+out.flush();
+out.close();
+```
 
 ## 项目开发流程介绍
 
@@ -965,9 +967,9 @@ $("#b1").click(function(){
 
    - 前端
 
-     - 布局 
+     - 布局
 
-       - html div container span 
+       - html div container span
 
          - 表格
 
@@ -1008,7 +1010,7 @@ $("#b1").click(function(){
 
        前端请求后端数据返回的接口设计
 
-       - page分页查询参数
+       - page 分页查询参数
 
          ? 开头的查询参数
 
@@ -1020,7 +1022,7 @@ $("#b1").click(function(){
 
            总之：就是看前端要什么数据，后端返回什么数据。
 
-3. 实现 
+3. 实现
 
    注重设计，设计好了写代码就是简单的事情了。
 
@@ -1039,4 +1041,3 @@ $("#b1").click(function(){
 尽量不出现滚动条
 
 表格导航栏固定
-

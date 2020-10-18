@@ -1,5 +1,9 @@
 # JavaScript-KS
 
+## 参考
+
+[【狂神说Java】JavaScript最新教程通俗易懂](https://www.bilibili.com/video/BV1JJ41177di)
+
 ## 1. 介绍
 
 一个好的后端得精通 JavaScript
@@ -226,7 +230,144 @@ let i = 1;
 
 ```javascript
 var 对象名 = {
-  
+  属性名：属性值,
+  属性名：属性值,
+  ...
 }
 ```
+
+1. 对象赋值
+
+2. 使用一个不存在的对象属性，不会报错！输出 undefined
+
+3. 动态删减属性
+
+   ```javascript
+   delete 对象明.对象属性
+   ```
+
+4. 动态的添加属性
+
+   直接给对象赋值
+
+5. 判断属性值是否在这个对象中！xxx in xxx
+
+   ```javascript
+   'age' in person
+   
+   'toString' in person // 继承
+   ```
+
+6. 判断一个属性是否是这个对象自身拥有的 
+
+   ```javascript
+   对象.hasOwnProperty("属性值")
+   ```
+
+### 3.4 流程控制
+
+if 判断
+
+while 循环，避免程序死循环
+
+for 循环
+
+forEach 循环
+
+for in 循环
+
+### 3.5 Map 和 Set
+
+Map：
+
+```javascript
+var map = new Map( [ ["tom",100],["jack", 90], ["Alice", 99] ] ); // key-value 键值对
+var name = map.get("tom"); // 通过 key 获得 
+map.set("admin", 89) // 设置值
+map.delete("tom") // 设置值
+console.log(name);
+```
+
+类似于 Python 中的字典
+
+Set：无序不重复的集合
+
+```javascript
+set.add();
+set.delete();
+set.has(); // 是否含有某值
+```
+
+### 3.6 iterator
+
+> es 6 新特性
+
+遍历数组
+
+```javascript
+var arr = [3, 4, 5]
+for (var x of arr){
+  console.log(x)
+}
+```
+
+遍历 map 
+
+```javascript
+var map = new Map( [ ["tom",100],["jack", 90], ["Alice", 99] ] );
+for( let x of map){
+  console.log(x)
+}
+```
+
+## 4. 函数
+
+方法：对象（属性，方法）
+
+函数：
+
+### 4.1 定义函数
+
+> 定义方式 1
+
+绝对值函数
+
+```javascript
+function abs(x){
+  
+  return ..
+}
+```
+
+一单执行到 return 代表函数结束，返回结果
+
+如果没有执行 return， 函数也会返回结果，结果就是 undefined
+
+> 定义方式 2
+
+```javascript
+var abs = function(x){ 
+}
+
+abs()
+```
+
+匿名函数，可以把结果赋值给 abc，通过 abc 调用函数
+
+和方法 1 等价
+
+> arguments
+
+不定参数
+
+> rest
+
+ES6 新特性，获取除了已经定义的参数之外的所有参数
+
+### <font color=red>4.2 变量的作用域</font>
+
+- var 定义的变量有作用域，函数体内声明的变量不能在函数体外使用。
+
+- 内部函数可以访问外部函数的成员，反之不行
+- 内部函数变量和外部函数变量名称相同时，由内向外查找，内部变量会屏蔽外部变量。
 

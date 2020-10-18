@@ -20,7 +20,7 @@
 
 [vuePress 官方文档](https://vuepress.vuejs.org/zh/guide/getting-started.html)
 
-```shel
+```shell
 yarn init
 ```
 
@@ -32,7 +32,7 @@ yarn add -D vuepress
 
 ---
 
-```shel
+```shell
 mkdir docs && echo '# Hello VuePress' > docs/README.md
 ```
 
@@ -63,12 +63,11 @@ mkdir docs && echo '# Hello VuePress' > docs/README.md
   "devDependencies": {
     "vuepress": "^1.7.0"
   },
-    "scripts": {
+  "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   }
 }
-
 ```
 
 ---
@@ -91,7 +90,7 @@ yarn docs:dev
 
 手动创建文件夹。会不会太傻了。vuePress 不能自动生成配置吗？
 
-在 doc文件夹下新建 `.vuepress`
+在 doc 文件夹下新建 `.vuepress`
 
 参考
 
@@ -117,7 +116,7 @@ https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/VuePress.html#vuep
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
-    }
+  }
 }
 ```
 
@@ -126,8 +125,6 @@ https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/VuePress.html#vuep
 ```shell
 yarn
 ```
-
-
 
 在 .vuepress 文件夹下 新建 config.js，粘贴一下内容
 
@@ -139,13 +136,13 @@ module.exports = {
   head: [
     [
       "link",
-      { rel: "icon", href: "/gamepad_game_128px.ico" } //浏览器的标签栏的网页图标,基地址/docs/.vuepress/public
-    ]
+      { rel: "icon", href: "/gamepad_game_128px.ico" }, //浏览器的标签栏的网页图标,基地址/docs/.vuepress/public
+    ],
   ],
 
   //markdown扩展
   markdown: {
-    lineNumbers: true //是否在每个代码块的左侧显示行号
+    lineNumbers: true, //是否在每个代码块的左侧显示行号
   },
 
   //默认主题配置
@@ -157,7 +154,7 @@ module.exports = {
       { text: "创建Github仓库", link: "/pages/Github.md" },
       { text: "配置VuePress", link: "/pages/VuePress.md" },
       { text: "TravisCI生成和发布", link: "/pages/TravisCI.md" },
-      { text: "博客", link: "https://tsanfer.xyz" }
+      { text: "博客", link: "https://tsanfer.xyz" },
     ],
     sidebarDepth: 2, //侧边栏深度
     //侧边栏
@@ -165,7 +162,7 @@ module.exports = {
       ["/pages/flow.md", "思路"],
       ["/pages/Github.md", "创建Github仓库"],
       ["/pages/VuePress.md", "配置VuePress"],
-      ["/pages/TravisCI.md", "TravisCI生成和发布"]
+      ["/pages/TravisCI.md", "TravisCI生成和发布"],
     ],
 
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
@@ -184,7 +181,7 @@ module.exports = {
     editLinkText: "在 Github 上编辑此页",
 
     smoothScroll: true, //页面滚动效果
-    lastUpdated: "最后更新" // string | boolean
+    lastUpdated: "最后更新", // string | boolean
   },
 
   //插件
@@ -193,10 +190,9 @@ module.exports = {
     "@vuepress/nprogress", //网页加载进度条
     "@vuepress/back-to-top", //返回页面顶部按钮
     "@vuepress/nprogress", //提示加载进度
-    "reading-progress" //提示阅读进度
-  ]
+    "reading-progress", //提示阅读进度
+  ],
 };
-
 ```
 
 ---
@@ -211,7 +207,6 @@ yarn add vuepress-theme-reco
 // .vuepress/config.js
 
 module.exports = {
-  theme: 'reco'
-}  
+  theme: "reco",
+};
 ```
-

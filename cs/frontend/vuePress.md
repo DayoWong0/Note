@@ -202,7 +202,7 @@ git push -f git@github.com:chengziqaq/Note.git master:gh-pages
 
 https://tsanfer.github.io/VuePress-GithubPages-TravisCI/pages/Github.html#ssh%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5github
 
-```cmd
+```shell
 ssh-keygen
 ```
 
