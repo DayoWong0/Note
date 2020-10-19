@@ -7,6 +7,8 @@
 
 ## 问题
 
+- 局部变量和全局变量问题。
+
 ### 作业 2
 
 - 后端代码写了但是从来没有连接数据库使用。
@@ -1041,3 +1043,142 @@ out.close();
 尽量不出现滚动条
 
 表格导航栏固定
+
+## 第八周课
+
+### 弹出层实现：设置背景透明度。
+
+- 两个 div
+  - 背景 div
+  - 内容 div
+
+
+
+
+
+a 标签做按钮，设置它的css。
+
+css：
+
+- 块元素 block ：从上往下放置
+
+  div form 
+
+- 行内元素 inline ：从左往右放置
+
+  a img input span 
+
+- inline-block：
+
+  display 属性可以改变属性。
+
+### 交互设计
+
+$(选择器).事件(函数)；
+
+选择器选择某个元素，当此元素发生时间后，执行函数。
+
+$(document).ready( function() ); 
+
+网页加载完成执行函数
+
+> 1. 静态元素事件绑定
+
+常用 css 选择器
+
+- id
+- class
+- ...
+
+
+
+> 2. 动态元素事件绑定
+
+~~当你 操作 某个元素时，jQuery 给此元素的父元素添加属性？~~
+
+这个需要好好理解下
+
+```javascript
+//①　动态产生的tbody下的tr鼠标移上，离开事件
+$("tbody").on("mouseover", "tr", function() {
+        $(this).addClass('tr_hover'); //通过jQuery控制实现鼠标悬停上的背景色
+ });
+ $("tbody").on("mouseout", "tr", function() {
+        $(this).removeClass('tr_hover'); //通过jQuery控制实现鼠标悬停上的背景色
+ });
+//②　动态产生的tbody下的tr里面的input点击事件
+$("tbody").on("click", "tr input:checkbox", function() {
+        if (this.checked == true) {
+            $(this).parents("tr").addClass('tr_select');
+        } else {
+            $(this).parents("tr").removeClass('tr_select');
+        }
+ });
+//③　动态产生的table下的删除修改按钮点击事件
+$('table').on('click', '#btnDel',  事件处理函数);
+$('table').on('click', '#btnEdit',  事件处理函数);
+注意：元素的事件绑定一般写在document的ready事件中，只有当在元素相应事件发生后才会执行。
+```
+
+对于 1 ：
+
+​	当鼠标点在 tbody 标签上时，tbody 下的 tr 标签增加一个 class 属性，属性值为 tr_hover。浏览器会将 tr_hover 的样式应用到 tbody 下的 tr 标签上，即当前鼠标停留的位置。
+
+对于2 和 3 差不多。
+
+- 需要重用或者行数很多的 JavaScript 代码写成一个函数。
+
+### 数据库
+
+#### 查询
+
+##### 多表连接查询
+
+一对多、多对多都是用到。
+
+join 关键字。
+
+- 表的别名 = 表的前缀
+
+- 表的链接
+
+  - 左连接 left-join
+
+    以左表为准，左表有的全显示
+
+  - inner：
+
+    左表无匹配的不显示？
+
+- 条件查询
+
+  - WHERE 
+
+  - LIKE
+
+    模糊查询
+
+- 其他 SQL 参数
+
+  - order by
+
+    - desc
+    - asc
+
+  - limit
+
+    分页查询
+
+  - in
+    - 批量操作、或操作
+
+- SQL 注入安全问题
+
+  - 尽量不用 SQL 语句字符串拼接。
+
+### 问题
+
+- 怎样将重复性的代码合并或者怎么设计。
+  - 比如 DAO 查询语句，多个参数查询。
+    - if 语句判断某个参数是否为 null 或 ” “，空格
+- 数据库查询语句不熟，只会简单的语句。

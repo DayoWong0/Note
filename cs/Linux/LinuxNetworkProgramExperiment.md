@@ -200,3 +200,174 @@ int _tmain(int argc, _TCHAR* argv[])
 - server.c 改得较多。
 
   [在线查看差异-server.c](https://github.com/chengziqaq/Note/commit/34f9fbde14129218596575a093b52f380fa1e872#diff-9d9936830bb5c6ba0a8c19033d7bd4805a147e85e0b65a90ae0836412d8417de)
+
+## 1.3 UDP
+
+### 1.3.1 单收单发
+
+server.c 
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+void main(){
+    int fd;
+    char buf[100];
+    int len, num;
+    struct sockaddr_in server, client;
+
+    fd = socket(AF_INET, SOCK_DGRAM, 0);
+
+    memset(&server, 0, sizeof(server));
+    server.sin_family = AF_INET;
+    server.sin_port = htons(9999);
+    server.sin_addr.s_addr = htonl(INADDR_ANY);
+    bind(fd, (struct sockaddr*)&server, sizeof(server));
+    
+    len = sizeof(client);
+    num = recvfrom(fd, buf, 100, 0, (struct sockaddr*)&client, &len);
+    buf[num] = 0;
+    printf("%s\n\r", buf);
+    close(fd);
+}
+
+```
+
+---
+
+client.c
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+void main(){
+    int fd;
+    char buf[100];
+    int len, num;
+    struct sockaddr_in server, client;
+
+    fd = socket(AF_INET, SOCK_DGRAM, 0);
+
+    memset(&server, 0, sizeof(server));
+    server.sin_family = AF_INET;
+    server.sin_port = htons(9999);
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    
+    strcpy(buf, "hello");
+    num = sendto(fd, buf, strlen(buf), 0, (struct sockaddr*)&server, sizeof(server));
+    printf("over\n\r");
+    close(fd);
+}
+
+```
+
+### 1.3.2 双方均可收发
+
+server.c
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+void main()
+{
+	int fd;
+	char buf[100];
+	int len, num;
+	struct sockaddr_in server, client;
+
+	fd = socket(AF_INET, SOCK_DGRAM, 0);
+	memset(&server, 0, sizeof(server));
+	server.sin_family = AF_INET;
+	server.sin_port   = htons(9999);
+	server.sin_addr.s_addr = htonl(INADDR_ANY);
+	bind(fd, (struct sockaddr*)&server, sizeof(server));
+	
+	len = sizeof(client);
+	num=recvfrom(fd, buf, 100, 0,(struct sockaddr*)&client, &len);
+	if(fork()>0)
+	while(1)
+	{
+		num=recvfrom(fd, buf, 100, 0,(struct sockaddr*)&client, &len);
+		buf[num] = 0;
+		printf("%s", buf);
+	}
+	else
+	while(1)
+	{	
+		fgets(buf, 100, stdin);
+		printf("%s",buf);
+		sendto(fd, buf, strlen(buf),0, (struct sockaddr*)&client, sizeof(client));
+	}
+	close(fd);
+}
+
+```
+
+---
+
+client.c
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+void main()
+{
+	int fd;
+	char buf[100];
+	int len, num;
+	struct sockaddr_in server, client;
+
+	fd = socket(AF_INET, SOCK_DGRAM, 0);
+	memset(&server, 0, sizeof(server));
+	server.sin_family = AF_INET;
+	server.sin_port   = htons(9999);
+	server.sin_addr.s_addr = inet_addr("127.0.0.1");
+	
+	sendto(fd, "start", 5, 0,(struct sockaddr*)&server, sizeof(server));
+	if(fork()>0)
+	while(1)
+	{	
+		fgets(buf, 100, stdin);
+		sendto(fd, buf, strlen(buf), 0,(struct sockaddr*)&server, sizeof(server));
+	}
+	else
+	while(1)
+	{
+		len = sizeof(server);
+		num = recvfrom(fd, buf, 100, 0, (struct sockaddr*)&server, &len);
+		buf[num] = 0;
+		printf("RECV:%s", buf);
+	}
+	close(fd);
+}
+
+```
+
