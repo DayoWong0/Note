@@ -758,9 +758,103 @@ public class EditTextActivity extends AppCompatActivity {
 }
 ```
 
-## 2.5 RadioButton
+## 封装 Intent 方法
+
+```java
+package com.example.a1linearlayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+
+    // 声明 Button 组件
+    private Button mBtnTextView;
+    private Button mBtnButton;
+    private Button mBtnEditText;
+    private Button mBtnRadioButton;
+
+    @Override 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.linear_layout);
+//        setContentView(R.layout.a01linear_layout);
+//        setContentView(R.layout.a02relative_layout);
+        setContentView(R.layout.a03text_view);
+
+        mBtnTextView = findViewById(R.id.btn_textview);
+        mBtnButton = findViewById(R.id.btn_button);
+        mBtnEditText = findViewById(R.id.btn_edittext);
+        mBtnRadioButton = findViewById(R.id.btn_radiobutton);
+        setListeners();
+    }
+
+    private void setListeners(){
+        OnClick onClick = new OnClick();
+        mBtnTextView.setOnClickListener(onClick);
+        mBtnButton.setOnClickListener(onClick);
+        mBtnEditText.setOnClickListener(onClick);
+        mBtnRadioButton.setOnClickListener(onClick);
+    }
+
+    private class OnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = null;
+            switch (view.getId()){
+                case R.id.btn_textview:
+                    // 跳转到 TextView 演示界面
+                    intent = new Intent(MainActivity.this, TextViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.btn_button:
+                    // 跳转到 Button 演示界面
+                    intent = new Intent(MainActivity.this, ButtonActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.btn_edittext:
+                    // 跳转到 EditText 演示界面
+                    intent = new Intent(MainActivity.this, EditTextActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.btn_radiobutton:
+                    // 跳转到 RadioButtonActivity 演示界面
+                    intent = new Intent(MainActivity.this, RadioButtonActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            startActivity(intent);
+        }
+    }
+}
+
+```
 
 
+
+## 2.5 RadioButton 和 RadioGroup
+
+### RadioButton
+
+- checked 属性：true 默认选中，需要加 id 属性，否则会无作用。
+
+### RadioGroup
+
+- below 属性
+- orientation 属性
+
+## 去掉应用名称
+
+Styles.xml：NoActionBar
+
+```xml
+<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+```
 
 
 
@@ -772,7 +866,7 @@ public class EditTextActivity extends AppCompatActivity {
 
 ## 2.7 ImageView 和 使用第三方库加载网络图片
 
-
+https://www.bilibili.com/video/BV1Rt411e76H?p=10
 
 ## 2.8 ListView 列表视图
 
