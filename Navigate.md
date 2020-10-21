@@ -146,6 +146,16 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 - [代码可读性](https://github.com/CyC2018/CS-Notes/blob/master/notes/代码可读性.md)
 - [代码风格规范](https://github.com/CyC2018/CS-Notes/blob/master/notes/代码风格规范.md)
 
+## 如何提问
+
+**如何科学提问：** 《[别像弱智一样提问](https://github.com/octowhale/Stop-Ask-Questions-The-Stupid-Ways/blob/master/README.md)》
+
+**搜索引擎：** 为了你的身体健康、事业有成，请尽量**减少使用百度**的频率。
+
+![you-are-not-prepared.png](img/Navigate/you-are-not-prepared.png)
+
+![baiduit.jpg](img/Navigate/baiduit.jpg)
+
 ## 学习方法
 
 1. 看视频快速入门
@@ -154,7 +164,7 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
    只听不做跟没学差不多，费时费力。
 
-3. 看优秀书籍和官方英文文档以及博客深入和系统化
+3. 看高分书籍和官方英文文档以及博客深入和系统化
 
 4. 查看开源项目
 

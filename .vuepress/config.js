@@ -99,9 +99,19 @@ module.exports = {
                     // frontend
                     "/cs/frontend/html.md",
                     "/cs/frontend/css.md",
-                    "/cs/frontend/javascript.md",
-                    "/cs/frontend/JavaScript-KS.md",
+
+                    {
+                        title: 'JavaScript',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            ["/cs/frontend/javascript.md", "JavaScript自己的笔记"],
+                            ["https://github.com/DayoWong0/JavaScript_notes", "JavaScript别人的笔记"],
+                            ["/cs/frontend/JavaScript-KS.md", "JavaScript-KS"]
+                        ]
+                    },
                     "/cs/frontend/jquery.md",
+                    "/cs/frontend/bootstrap.md",
                     "/cs/frontend/vue.md",
                     "/cs/frontend/vuePress.md",
                 ]
@@ -242,7 +252,7 @@ module.exports = {
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
                     // desktop
-                    ["/cs/desktop/Electron/electron.md", "electron"],
+                    ["/cs/desktop/Electron/electron.md", "Electron"],
                 ]
             },
 

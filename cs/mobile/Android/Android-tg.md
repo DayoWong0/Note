@@ -764,6 +764,8 @@ public class EditTextActivity extends AppCompatActivity {
 
 
 
+
+
 ## 2.6  CheckBox 复选框
 
 

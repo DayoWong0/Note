@@ -1,6 +1,6 @@
-# MySQL
+# MySQL-KS
 
-参考资料:
+## 参考
 
 [【狂神说 Java】MySQL 最新教程通俗易懂](https://www.bilibili.com/video/BV1NJ411J79W)
 
