@@ -1117,3 +1117,23 @@ fd2 is 4
 fd1:write num=12 bytes into f1
 fd2:read 12 bytes from f1: hello world!
 ```
+
+#### 硬链接与符号链接（软链接）
+
+#### 文件权限修饰位 - setuid
+
+setuid 改变文件权限，让普通用户获得部分 root 用户才有的权限。
+
+#### dup/dup2
+
+- 重定向
+
+  
+
+- 两个函数
+
+  - dup
+
+    
+
+  - dup2
