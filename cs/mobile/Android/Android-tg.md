@@ -12,6 +12,10 @@
 
 [Android布局中的尺寸单位介绍](https://www.jianshu.com/p/0296fada6df3)
 
+[Android layout属性大全](https://blog.csdn.net/lushengchu_luis/article/details/8708099)
+
+[Android 之 Adapter 用法总结](https://www.cnblogs.com/devinzhang/archive/2012/01/20/2328334.html)
+
 ## 遇到的问题
 
 ### 布局
@@ -866,15 +870,128 @@ Styles.xml：NoActionBar
 
 ## 2.7 ImageView 和 使用第三方库加载网络图片
 
-https://www.bilibili.com/video/BV1Rt411e76H?p=10
+ImageView
 
-## 2.8 ListView 列表视图
+- scaleType
 
+  - fitXY
 
+    撑满控件，宽高可能改变
 
+  - fitCenter
 
+    保持宽高比缩放，直至能完全显示
+
+  - centerCrop
+
+    保持宽高比缩放，直至完全覆盖控件，裁剪显示
+
+- 网络库 Glide https://github.com/bumptech/glide
+
+  上 GitHub 搜索 Glide 将 Gradle 配置文件粘贴到 build.gradle 模块配置文件中（不是全局的 build.gradle 文件）
+
+  ![image-20201023163208653](img/Android-tg/image-20201023163208653.png)
+
+  后点击 Sync Gradle
+  
+  编写代码
+  
+  ```java
+  private ImageView mIv4;
+  ...
+  Glide.with(this).load("https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png").into(mIv4);
+  ```
+  
+  再 manifest 加入网络权限
+  
+  ```xml
+  <uses-permission android:name="android.permission.INTERNET" />
+  ```
+  
+  
+
+## 2.8 ListView 列表视图（了解即可）
+
+ListView 被 RecycleView 代替
+
+#### 常用属性
+
+#### Adapter 接口
+
+##### 概念
+
+[Android 之 Adapter 用法总结](https://www.cnblogs.com/devinzhang/archive/2012/01/20/2328334.html)
+
+Adapter 是连接后端数据和前端显示的适配器接口，是数据和UI（View）之间一个重要的纽带
+
+![img](img/Android-tg/2012012021592978.jpg)
+
+xml listSelector 属性：选择后的颜色等属性。
 
 ## 2.9 GridView 网格视图
 
+### 属性
 
+- ```
+  <?xml version="1.0" encoding="utf-8"?>
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="15dp">
+      <GridView
+          android:id="@+id/gv"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:numColumns="3" // 三列
+          android:horizontalSpacing="10dp" // 横向/左右 距离
+          android:verticalSpacing="10dp"/> // 垂直/上下 距离
+  </LinearLayout>
+  ```
+
+### Adapter 似懂非懂
+
+## 2.10 滚动视图 ScrollView
+
+- 子元素只能有一个
+
+  之前的 LinearLayout 作为一个整体放在 ScrollView 内部
+
+- 布局嵌套可以实现部分元素可以左右滚动
+
+## 2.11 RecycleView
+
+先跳过了
+
+## 2.12 WebView
+
+### 作用
+
+- 加载 URL ( 网络或本地 assets 文件夹下的 html 文件 )
+
+  - ```java
+    webview.loadUrl("https://m.baidu.com");
+    webview.loadUrl("file:///android_asset/test.html"); // 三个斜杠
+    ```
+
+- 加载 html 代码
+
+  ```java
+  webview.loadData(); // 可能出现乱码
+  webview.loadDataWithBaseURL(); // 乱码情况少一些
+  ```
+
+  ![](img/Android-tg/image-20201024003342559.png)
+
+  ![image-20201024003532132](img/Android-tg/image-20201024003532132.png)
+
+  
+
+- Native 和 JavaScript 相互调用
+
+## 3.1 Toast
+
+
+
+## 3.2 AlertDialog
 
