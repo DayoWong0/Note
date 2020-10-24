@@ -4,9 +4,11 @@
 
 [【天哥】Android 开发视频教程最新版 Android Studio 开发](https://www.bilibili.com/video/BV1Rt411e76H)
 
-[课程代码](https://github.com/skypan-yes/AndroidCourse)
+[课程代码（天哥原版）](https://github.com/skypan-yes/AndroidCourse)
 
-[天写的部分 ( master ) 和网友写的 ( beta ) 部分代码](https://github.com/taifus/Android_Learning)
+[课程代码（自己注释版本）](https://github.com/DayoWong0/AndroidCourse/tree/8a05eaf259c8c9b3df9351482dec3b44f276644b/app/src/main)
+
+[天哥写的部分 ( master ) 和网友写的 ( beta ) 部分代码](https://github.com/taifus/Android_Learning)
 
 [安卓基础入门-菜鸟教程（大致看了一下内容，写得很好）](https://www.runoob.com/w3cnote/android-tutorial-intro.html)
 
@@ -989,9 +991,132 @@ xml listSelector 属性：选择后的颜色等属性。
 
 - Native 和 JavaScript 相互调用
 
+  ```java
+              // 执行 JavaScript 代码
+              mWvMain.evaluateJavascript("javascript:alert('hello')",callbackfunction());
+  ```
+
+  
+
 ## 3.1 Toast
 
+- 显示位置
 
+  ```java
+  // 居中 Toast
+  Toast toastCenter = Toast.makeText(getApplicationContext(),"居中Toast",Toast.LENGTH_LONG);
+  toastCenter.setGravity(Gravity.CENTER,0,0);
+  toastCenter.show();
+  ```
+
+  
+
+- 自定义样式（ 加图片、文字 ）
+
+  ```java
+  Toast toastCustom = new Toast(getApplicationContext());
+  LayoutInflater inflater = LayoutInflater.from(ToastActivity.this);
+  View view = inflater.inflate(R.layout.layout_toast,null);
+  ImageView imageView = (ImageView) view.findViewById(R.id.iv_toast);
+  TextView textView = (TextView) view.findViewById(R.id.tv_toast);
+  imageView.setImageResource(R.drawable.icon_smile);
+  textView.setText("自定义Toast");
+  toastCustom.setView(view);
+  toastCustom.setDuration(Toast.LENGTH_LONG);
+  toastCustom.show();
+  ```
+
+  
+
+- 封装使得 （什么原因？）点击 Toast 马上显示，没有排队现象
+
+  ```java
+  package com.skypan.helloworld.util;
+  
+  import android.content.Context;
+  import android.widget.Toast;
+  
+  /**
+   * Created by skypan on 2017/9/5.
+   */
+  
+  public class ToastUtil {
+      public static Toast mToast;
+      public static void showMsg(Context context,String msg){
+          if(mToast == null){
+              mToast = Toast.makeText(context,msg,Toast.LENGTH_LONG);
+          }else{
+              mToast.setText(msg);
+          }
+          mToast.show();
+      }
+  }
+  ```
+
+  
 
 ## 3.2 AlertDialog
 
+https://www.bilibili.com/video/BV1Rt411e76H?p=20
+
+## 3.3 ProgressBar & ProgressDialog
+
+
+
+## 3.4 自定义 Dialog
+
+
+
+## 3.5 PopupWindow
+
+
+
+## 4.1.1 Activity 创建三部曲
+
+
+
+## 4.1.2 Activity 的声明周期
+
+
+
+## 4.1.3 Activity 的跳转和数据传递
+
+
+
+## 4.1.2 Activity 的 4 种启动模式
+
+
+
+## 4-2-1 Fragment详解（一）
+
+
+
+## 4-2-2 Fragment详解（二）
+
+
+
+## 4-2-3 Fragment详解（三）
+
+
+
+## 4-2-4 Fragment详解（四）
+
+
+
+## 5-1 基于监听的事件处理机制
+
+
+
+## 5-2 基于回调的事件处理机制
+
+
+
+## 5-3 源码剖析，了解View的事件分发
+
+
+
+## 5-5 Handler消息处理（没有5.4）
+
+
+
+## 7-1 SharedPreferences 轻量数据存储(没有6)
