@@ -1057,9 +1057,225 @@ xml listSelector 属性：选择后的颜色等属性。
 
 ## 3.2 AlertDialog
 
-https://www.bilibili.com/video/BV1Rt411e76H?p=20
+AlertDialog 两个包内都有
+
+1. android.support.v7.app
+
+   兼容包，各个版本都适用，用这个即可
+
+2. android.app
+
+```java
+AlertDialog.Builder builder = new AlertDialog.Builder(DialogActivity.this);
+```
+
+Builder 设计模式，感兴趣自行学习。
+
+链式编程 和 JavaScript 好像。
+
+- 默认样式
+
+  ```java
+  AlertDialog.Builder builder = new AlertDialog.Builder(DialogActivity.this);
+  builder.setTitle("请回答").setMessage("你觉得课程如何？")
+      .setIcon(R.drawable.icon_user)
+      .setPositiveButton("棒", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+              ToastUtil.showMsg(DialogActivity.this, "你很诚实");
+          }
+      }).setNeutralButton("还行", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          ToastUtil.showMsg(DialogActivity.this, "你再瞅瞅～");
+      }
+  }).setNegativeButton("不好", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          ToastUtil.showMsg(DialogActivity.this, "睁眼说瞎话");
+      }
+  }).show();
+  ```
+
+  到目前为止提到的 Context（上下文)多指 
+
+  ```java
+  类名.this
+  ```
+
+  
+
+- 单选样式
+
+  1. 没有 RadioButton，少用
+
+     ```java
+     final String[] array2 = new String[]{"男", "女"};
+     AlertDialog.Builder builder2 = new AlertDialog.Builder(DialogActivity.this);
+     builder2.setTitle("选择性别").setItems(array2, new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+             ToastUtil.showMsg(DialogActivity.this, array2[which]);
+         }
+     }).show();
+     ```
+
+     2. 有 RadioButton
+
+        ```java
+        final String[] array3 = new String[]{"男", "女"};
+        AlertDialog.Builder builder3 = new AlertDialog.Builder(DialogActivity.this);
+        builder3.setTitle("选择性别").setSingleChoiceItems(array3, 1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ToastUtil.showMsg(DialogActivity.this, array3[which]);
+                dialog.dismiss();
+            }
+        }).setCancelable(false) // 必须选择对话框才消失
+            .show();
+        ```
+
+        
+
+- 多选样式
+
+  ```java
+  final String[] array4 = new String[]{"唱歌", "跳舞","写代码"};
+  boolean[] isSelected = new boolean[]{false,false,true};
+  AlertDialog.Builder builder4 = new AlertDialog.Builder(DialogActivity.this);
+  builder4.setTitle("选择兴趣").setMultiChoiceItems(array4, isSelected, new DialogInterface.OnMultiChoiceClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+          ToastUtil.showMsg(DialogActivity.this,array4[which]+":"+isChecked);
+      }
+  }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          //
+      }
+  }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+  
+      }
+  }).show();
+  ```
+
+  
+
+- 自定义
+
+  ```java
+  AlertDialog.Builder builder5 = new AlertDialog.Builder(DialogActivity.this);
+  // 自定义布局
+  View view = LayoutInflater.from(DialogActivity.this).inflate(R.layout.layout_dialog,null);
+  EditText etUserName = (EditText) view.findViewById(R.id.et_username);
+  EditText etPassWord = (EditText) view.findViewById(R.id.et_password);
+  Button btnLogin = (Button) view.findViewById(R.id.btn_login);
+  btnLogin.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          //
+      }
+  });
+  builder5.setTitle("请先登录").setView(view).show();
+  ```
+
+  
 
 ## 3.3 ProgressBar & ProgressDialog
+
+```java
+package com.skypan.helloworld;
+
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+
+import com.skypan.helloworld.util.ToastUtil;
+
+public class ProgressActivity extends AppCompatActivity {
+
+    private ProgressBar mPb3;
+    private Button mBtnStart,mBtnProgressDialog1,mBtnProgressDialog2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_progress);
+        mPb3 = (ProgressBar) findViewById(R.id.pb3);
+        mBtnStart = (Button) findViewById(R.id.btn_start);
+        mBtnProgressDialog1 = (Button) findViewById(R.id.btn_progress_dialog1);
+        mBtnProgressDialog2 = (Button) findViewById(R.id.btn_progress_dialog2);
+        mBtnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handler.sendEmptyMessage(0);
+            }
+        });
+        mBtnProgressDialog1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog progressDialog = new ProgressDialog(ProgressActivity.this);
+                progressDialog.setTitle("提示");
+                progressDialog.setMessage("正在加载");
+                progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        ToastUtil.showMsg(ProgressActivity.this,"cancel...");
+                    }
+                });
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+        });
+        mBtnProgressDialog2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog progressDialog = new ProgressDialog(ProgressActivity.this);
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progressDialog.setTitle("提示");
+                progressDialog.setMessage("正在下载...");
+                progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, "棒", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //
+                    }
+                });
+                progressDialog.show();
+            }
+        });
+    }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(mPb3.getProgress() < 100){
+                handler.postDelayed(runnable,500);
+            }else{
+                ToastUtil.showMsg(ProgressActivity.this,"加载完成");
+            }
+        }
+    };
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            mPb3.setProgress(mPb3.getProgress()+5);
+            handler.sendEmptyMessage(0);
+        }
+    };
+}
+
+```
 
 
 
