@@ -1050,11 +1050,10 @@ out.close();
 
 - 两个 div
   - 背景 div
+  
   - 内容 div
-
-
-
-
+  
+    
 
 a 标签做按钮，设置它的css。
 
@@ -1170,6 +1169,7 @@ join 关键字。
     分页查询
 
   - in
+    
     - 批量操作、或操作
 
 - SQL 注入安全问题
@@ -1181,4 +1181,87 @@ join 关键字。
 - 怎样将重复性的代码合并或者怎么设计。
   - 比如 DAO 查询语句，多个参数查询。
     - if 语句判断某个参数是否为 null 或 ” “，空格
-- 数据库查询语句不熟，只会简单的语句。
+- 数据库语句不熟，只会简单的语句。
+
+## 第九周课
+
+### 理念
+
+html css JavaScript 是基础
+
+框架只是工具，现在的框架入门挺容易，学习成本不高。不应花太多时间在学习上面。应该是入门之后，查看文档现学现用来实现你想要的功能。多思考，自信点
+
+### Vue 参考
+
+[Vue API](https://cn.vuejs.org/v2/api/)
+
+[Vue 教程](https://cn.vuejs.org/v2/guide/)
+
+Vue + jQuery Ajax 实现
+
+先写代码框架，例如先建立类，方法，方法参数，返回类型，注释，基本流程控制，框架搭建好后再写具体的代码，这样层次清晰，也不容易出错，由具体到细节。
+
+```html
+var _self = this; // 解决冲突，jQuery 和 Vue 中 this 冲突 
+```
+
+### 前端常见框架
+
+- <font color=red>jQuery</font>
+
+- 其他 jQuery 插件
+
+  - 日期选择
+  - 图片轮播
+  - 树状菜单 zTree
+  - 表单校验
+
+- jQuery easyUI
+
+  基于 jQuery + css
+
+- <font color=red>Bootstrap</font>
+
+  将常见样式封装，通过类选择器设置属性，自适应电脑和手机。
+
+- Vue
+
+- Angular.js
+
+- Node.js
+
+- EChart
+
+  数据可视化，各种图标。只需要提供指定格式的数据。框架提供了模板，提供数据填充即可。
+
+- HightChart
+
+  同上
+
+### API
+
+- 本地函数也称为 API
+
+  如 Java 中的库函数，所有就有 Java API 这个说法
+
+- 现在的 API 多指服务器提供的数据接口
+
+  - 字符流 key:value，网址上传送的查询参数 ?key1=value1&key2=value2
+
+  - 服务器返回 JSON 字符串
+
+    返回对象和数组
+
+### 云
+
+Paas
+
+lass
+
+Saas
+
+### 怎样根据官方文档学习
+
+1. 查看示例
+2. 快速入门
+3. 具体使用时查询文档

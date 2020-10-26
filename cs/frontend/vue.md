@@ -1,6 +1,10 @@
 # [VUE](https://www.bilibili.com/video/BV1U5411h7oH)
 
-[VUE 中文文档](https://cn.vuejs.org/v2/guide/index.html)
+## 参考
+
+[Vue API](https://cn.vuejs.org/v2/api/)
+
+[Vue 教程](https://cn.vuejs.org/v2/guide/)
 
 ## 基本使用
 

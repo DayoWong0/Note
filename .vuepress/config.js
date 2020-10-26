@@ -58,7 +58,7 @@ module.exports = {
 
     themeConfig: {
         lastUpdated: true,
-        repo: 'https://github.com/chengziqaq/Note',
+        repo: 'https://github.com/DayoWong0/Note',
         editLinks: true,
         editLinkText: ' Edit on Github ',
         // logo: 'homepage.png',
@@ -83,7 +83,7 @@ module.exports = {
             //     ariaLabel: 'Language Menu',
             //     items: [{
             //         text: 'Home Site',
-            //         link: 'https://chengziqaq.github.io/'
+            //         link: 'https://DayoWong0.github.io/'
             //     },
             //     ]
             // },
@@ -111,8 +111,9 @@ module.exports = {
                         ]
                     },
                     "/cs/frontend/jquery.md",
-                    "/cs/frontend/bootstrap.md",
                     "/cs/frontend/vue.md",
+                    "/cs/frontend/ElementUI.md",
+                    "/cs/frontend/bootstrap.md",
                     "/cs/frontend/vuePress.md",
                 ]
             },
@@ -141,6 +142,7 @@ module.exports = {
                             ["/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md", "JavaWeb-KS"],
                         ]
                     },
+
 
                     "/cs/backend/SpringBoot/SpringBoot.md",
                 ]
