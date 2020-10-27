@@ -1137,3 +1137,112 @@ setuid 改变文件权限，让普通用户获得部分 root 用户才有的权�
     
 
   - dup2
+
+## 进程控制
+
+### 1. 进程基本概念
+
+- PCB
+
+  struct task_struct
+
+  记录进程相关信息
+
+  - 进程标识符
+  - 文件描述符
+  - 进程状态
+  - ...
+
+- PID
+
+  - 非负整数
+
+  - 最大 32767，id 号不够用才用最小的空闲 id
+
+  - init 进程 pid 为 1，为所有进程的祖先
+
+    pstree 命令
+
+- PPID
+
+  父进程标识符
+
+  除了 init 进程，其他进程都有 父进程。
+
+  父进程唯一，子进程不唯一。
+
+#### PID PPID 获取
+
+```c
+
+```
+
+#### 用户标识
+
+##### UID 
+
+
+
+##### GID
+
+
+
+##### 实际 ID
+
+进程创建者
+
+##### 有效 ID
+
+进程访问系统资源的身份 ID
+
+### 进程创建
+
+```c
+pid_t fork(void)
+```
+
+- 父进程返回 子进程 pid，子进程返回0。出错返回 -1。
+
+  产生了一个新的进程空间。子进程空间的内容来自父进程，子进程是父进程代码的一部分。
+
+- fork 函数是执行的操作系统的代码。
+
+- fork 会将父进程的代码和变量（变量是吗？）全部复制一份给子进程，进程空间独立。
+
+- fork 因为是系统调用，返回后先执行父进程还是子进程不确定，由操作系统调度情况决定。
+
+  系统调用 API 和普通用户函数调用不一样。
+
+  调用 fork 父进程放弃了 CPU，给操作系统执行。 
+
+```c
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+main(){
+    // 接受子进程 pid 的值
+    pid_t id;
+
+    // 系统调用
+    id = fork();
+
+    // 进程创建失败，返回值为 -1
+    if (id<0)
+    {
+        perror("fork");
+        exit(1);
+    }
+    // 创建成功 id = 0，为子进程
+    else if (id==0)
+    {
+        printf("I am child, my pid = %d\n", getpid());
+    }
+    else
+    {
+        printf("I am parent, my pid is %d \n", getpid());
+    }
+    printf("%d print this sentence \n", getpid());
+}
+```
+
