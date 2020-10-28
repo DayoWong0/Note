@@ -17,7 +17,7 @@ main(){
         exit(1);
     }
     // 创建成功 id = 0，为子进程
-    else if (id==0)
+    else if (id==0) 
     {
         for (i = 0; i < 10; i++)
         {

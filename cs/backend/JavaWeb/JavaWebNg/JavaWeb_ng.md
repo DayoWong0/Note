@@ -1211,7 +1211,9 @@ join 关键字。
 
 ![image-20201026201140367](./img/JavaWeb_ng/image-20201026201140367.png)
 
-![image-20201026201221313](img/JavaWeb_ng/image-20201026201221313.png)
+![image-20201027123341314](img/JavaWeb_ng/image-20201027123341314.png)
+
+
 
 #### 界面 css
 
@@ -1219,13 +1221,160 @@ join 关键字。
 
 [CSS居中完整指南](https://www.w3cplus.com/css/centering-css-complete-guide.html)
 
+[表格合并](https://www.w3school.com.cn/tiy/t.asp?f=html_table_span)
+
+##### 基本布局
+
+![image-20201027123148087](img/JavaWeb_ng/image-20201027123148087.png)
+
+勉强能看。差的东西是 **定位** 和颜色方面的。
+
+##### hover 和 选中
+
+```css
+/* 表格中鼠标悬停行的颜色*/
+.tr_hover{
+    background-color: #5dae78;
+}
+
+/* 表格中选中元素的颜色 */
+.tr_selected{
+    background-color: #2b7e66;
+}
+```
 
 
 
+---
+
+```javascript
+// 鼠标悬停改变背景色
+$("tbody")
+  .on("mouseover","tr",function(){
+  $(this).addClass('tr_hover');
+})
+  .on("mouseout","tr",function(){
+  $(this).removeClass('tr_hover');
+});
+
+// checkbox 表格中被选中行颜色改变
+$("tbody td input:checkbox").click(
+  function (){
+    if (this.checked === true){
+      $(this).parents("tr").addClass("tr_selected");
+    }
+    else {
+      $(this).parents("tr").removeClass("tr_selected");
+    }
+  }
+);
+```
+
+JavaScript 链式编程，可以这样写，一个选择器只写一次，可以多添加几个事件，选择器多次使用 IDEA 会 warning。
+
+##### 隔行变色
+
+```javascript
+// 单双行颜色循环变化
+$("tbody tr:even").addClass("tr_even");
+$("tbody tr:odd").addClass("tr_odd");
+```
 
 
 
+----
 
+```css
+.tr_even{
+    background-color: #a4dbe2;
+}
+
+.tr_odd{
+    background-color: #f1eaea;
+}
+```
+
+css 文件中从上到下，靠后的属性会覆盖前面的，所有 .tr_even 和 .tr_odd 放在 .tr_hover 和 .tr_selected 前面。注意颜色区分要明显一点。
+
+##### 动态元素事件和静态元素事件区别
+
+暂时未知
+
+
+
+##### 全选按钮
+
+[【jQuery】复选框的批量处理：全选、非全选](https://blog.csdn.net/LZGS_4/article/details/47075351)
+
+<font color=yellow>注意：元素的事件绑定一般写在 document 的 ready 事件中，只有当在元素相应事件发生后才会执行</font>
+
+```javascript
+
+```
+
+---
+
+```css
+
+```
+
+#####  导航按钮等
+
+[jQuery 绑定 select 标签的onchange事件](https://blog.csdn.net/zzq900503/article/details/45023817)
+
+##### 工具栏按钮
+
+##### table 按钮操作
+
+```javascript
+$('table').on('click', '#btnDel',  事件处理函数);
+```
+
+这个方法怎么用？貌似这个事件处理函数不能调用外部函数吗？还是参数没给对。
+
+事件处理函数不能加括号
+
+```javascript
+$('table')
+  .on('click','.btnDel', tdDel)
+// 表格中的修改按钮事件
+  .on('click','.btnEdit',tdEdit);
+```
+
+[Location.reload()](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/reload)
+
+```javascript
+// 重新加载页面，不使用缓存
+window.location.reload(true);
+```
+
+获取多个 checkbox中的 value 属性出错，拼接后的结果全是 username01，命名选择了 username02
+
+![image-20201028013046157](img/JavaWeb_ng/image-20201028013046157.png)
+
+解决
+
+```javascript
+else {
+  // 定义数组
+  let vals = [];
+  checkedItems.each(function (index, item) {
+    // 循环将选择复选框的 value 值加入数组中
+    // 要用 this 才行 用 checkedItems 每次都是 push 第一个元素
+    // 错误写法
+    // console.log(checkedItems.val());
+    console.log($(this).val());
+    vals.push($(this).val());
+  });
+```
+
+
+
+[ jQuery on 事件](https://api.jquery.com/on/)
+
+[jQuery on() 方法](https://www.runoob.com/jquery/event-on.html)
+
+### JavaScript this 关键字
 
 
 
@@ -1233,7 +1382,7 @@ join 关键字。
 
 ##### 组合查询
 
-- 最初打开时，点击查询按钮没有筛选条件（ 像极了学校的选课系统 ），返回数据，显示在 tbody 中
+- ~~最初打开时，点击查询按钮不带筛选条件（ 像极了学校的选课系统 ）~~，onload 事件后 ajax 请求得到，显示在 tbody 中，不需要用户主动查询，
 
 - 从左上角输入框获取查询数据，通过 URL 参数发送给后端，参数数量不定，查找按钮绑定事件，返回的数据加到 tbody 中显示
 
@@ -1262,6 +1411,14 @@ join 关键字。
 > {"pageSize":"10","pageNumber":"1","sort":"userName","sortOrder":"desc"}
 
 暴露出了我自己设计各个操作时，实现复杂。
+
+
+
+![image-20201028123749168](img/JavaWeb_ng/image-20201028123749168.png)
+
+老师给的 JSON 字符串 差了一个逗号。pageNumber 要用 .text() 获取，其他几个用 .val
+
+[jQuery 修改标签属性](https://blog.csdn.net/q5706503/article/details/83041426?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
 
 #### 排序输出
 
@@ -1328,6 +1485,27 @@ css hover
 - 窗口弹出修改界面
 
   老师给的文档里有实现方法
+  
+  ![image-20201028195356688](img/JavaWeb_ng/image-20201028195356688.png)
+  
+  并没有居中，推测是 jQuery 中设置的 css 属性没有生效。一直没解决。后来设置 css 完成
+  
+  ```css
+  .white_content{
+      display: none;
+      position: absolute;
+      width: 390px;
+      left: 20%; // 设置的这两个
+      top: 15%;
+      border: 6px solid lightblue;
+      border-radius: 1em;
+      background-color: white;
+      z-index: 1002;
+      overflow: auto;
+  }
+  ```
+  
+  
 
 ##### 批量修改
 
@@ -1430,4 +1608,4 @@ Saas
 
 1. 查看示例
 2. 快速入门
-3. 具体使用时查询文档
+3. 具体使用时查询文档 

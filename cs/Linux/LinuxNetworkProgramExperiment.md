@@ -697,6 +697,122 @@ netcat TCP/IP的瑞士军刀
 
 [代码地址](https://github.com/DayoWong0/Note/tree/master/cs/Linux/linuxNetCode/course04)
 
+## Windows 
+
+[代码地址](https://github.com/DayoWong0/Note/tree/master/cs/Linux/linuxNetCode/course05)
+
+获取 域名信息
+
+```c
+// name.cpp : 定义控制台应用程序的入口点。
+//
+
+#include "stdafx.h"
+#include <stdlib.h>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib")
+
+int main(int argc, char* argv[])
+{
+	WSADATA wsaData;
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+	
+	struct hostent  *hp;
+	char **p;
+	unsigned int addr;
+	char name[1024];
+
+	//hp = gethostbyname("www.taobao.com");
+	addr = inet_addr("211.67.48.2");
+	hp = gethostbyaddr((char*)&addr,4, AF_INET );
+	gethostname(name, sizeof(name));
+	puts(name);
+
+	if(hp == NULL)
+	{
+		exit(2);
+	}
+	for(p = hp->h_addr_list; *p!=0; p++)
+	{
+		struct in_addr in;
+		char **q;
+		memcpy(&in.s_addr, *p, sizeof(in.s_addr));
+		printf("%s\t%s", inet_ntoa(in), hp->h_name);
+		for(q=hp->h_aliases; *q!=0; q++)
+			printf("%s", *q);
+		putchar('\n');
+	}
+
+
+	getchar();
+	return 0;
+}
+
+
+```
+
+---
+
+```c
+// getaddrinfo.cpp : 定义控制台应用程序的入口点。
+//
+
+#include "stdafx.h"
+
+#include <stdio.h>
+#include <WinSock2.h>
+#include <WS2tcpip.h>
+
+#pragma comment(lib,"ws2_32.lib")
+
+int main(int argc, char *argv[])
+{
+	//初始化环境
+	WSADATA ws;
+	WSAStartup(MAKEWORD(2, 2), &ws);
+
+
+	struct addrinfo hints;
+	struct addrinfo *res, *cur;
+	struct sockaddr_in *addr;
+	// 保存Ip地址信息 xxx.xxx.xxx.xxx
+	char m_IpAddr[16];
+
+	//初始化 hints
+	memset(&hints, 0, sizeof(addrinfo));
+	hints.ai_family = AF_INET;	//IPv4
+	hints.ai_flags = AI_PASSIVE; //匹配所有 IP 地址
+	hints.ai_protocol = 0;        //匹配所有协议
+	hints.ai_socktype = SOCK_STREAM; //流类型
+
+	//获取 ip address ， res 指向一个链表Address Information链表
+	int ret = getaddrinfo("www.baidu.com", NULL, &hints, &res);
+	if (ret == -1)
+	{
+		perror("getaddrinfo");
+		exit(-1);
+	}
+
+	//输出获取的信息
+	for (cur = res; cur != NULL; cur = cur->ai_next)
+	{
+		addr = (struct sockaddr_in *) cur->ai_addr; //获取当前 address
+
+		sprintf(m_IpAddr, "%d.%d.%d.%d", addr->sin_addr.S_un.S_un_b.s_b1,
+			addr->sin_addr.S_un.S_un_b.s_b2,
+			addr->sin_addr.S_un.S_un_b.s_b3,
+			addr->sin_addr.S_un.S_un_b.s_b4);
+
+		printf("%s\n", m_IpAddr); //输出到控制台
+	}
+	//清除环境信息
+	WSACleanup();
+	system("pause");
+	return 0;
+}
+```
+
 
 
 

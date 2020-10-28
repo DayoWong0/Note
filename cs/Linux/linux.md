@@ -1138,7 +1138,7 @@ setuid 改变文件权限，让普通用户获得部分 root 用户才有的权�
 
   - dup2
 
-## 进程控制
+## 进程
 
 ### 1. 进程基本概念
 
@@ -1215,6 +1215,8 @@ pid_t fork(void)
 
   调用 fork 父进程放弃了 CPU，给操作系统执行。 
 
+fork1.c
+
 ```c
 #include <unistd.h>
 #include <stdlib.h>
@@ -1246,3 +1248,106 @@ main(){
 }
 ```
 
+---
+
+fork2.c
+
+执行顺序不确定
+
+```c
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+main(){
+    // 接受子进程 pid 的值
+    pid_t id;
+    int i;
+
+    // 系统调用
+    id = fork();
+
+    // 进程创建失败，返回值为 -1
+    if (id<0)
+    {
+        perror("fork");
+        exit(1);
+    }
+    // 创建成功 id = 0，为子进程
+    else if (id==0) 
+    {
+        for (i = 0; i < 10; i++)
+        {
+        printf("I am child, my pid = %d\n", getpid());
+        sleep(1);
+        }
+    }
+    else
+    {
+        for ( i = 0; i < 10; i++)
+        {
+            printf("I am parent, my pid is %d \n", getpid());
+            sleep(1);
+        }
+    }
+    printf("%d print this sentence \n", getpid());
+}
+```
+
+---
+
+forkvalue.c
+
+全局变量和父子进程关系
+
+父子进程的进程空间独立，只能访问各自的变量
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+
+int global;
+char buf[] = "write information to stdout\n";
+int main(int argc, char* argv[]){
+    int var = 0;
+    pid_t pid;
+    if (write(STDOUT_FILENO, buf, strlen(buf) <0 ))
+    {
+        /* code */
+        perror("write error");
+    }
+    printf("before fork\n");
+    if((pid=fork()) <0 ){
+        perror("fork error");
+    }
+    
+    else if (pid == 0)
+    {
+        // 子进程修改全局变量
+        /* code */
+        global ++;
+        var ++;
+    }
+    else
+    {
+        /* code */
+        sleep(1);
+    }
+    printf("pid = %d global = %d var = %d\n", getpid(), global, var);
+    exit(0);
+    
+}
+```
+
+用输出重定向输出会有两次 `before fork` 这个句子
+
+因为 write 使用 操作系统输出信息
+
+printf 是 c 函数库输出的，没直接到操作系统，再 C 函数库的缓冲区中。调用 fork 时，留在 C 函数库缓冲区中的数据，给了子进程。
+
+所以子进程执行时又输出了一次。
+
+C 语言缓冲区的内容也要给子进程。

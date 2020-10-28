@@ -1287,6 +1287,69 @@ public class ProgressActivity extends AppCompatActivity {
 
 
 
+## 4.0 XW ANdroid Intent
+
+### 预备知识
+
+- Java 反射
+
+- 序列化
+
+  类序列化为文件以及文件反序列化为对象。
+
+  我接触到的就是 对象转为 JSON 保存到文件。
+
+  - Parcelable Interface
+
+    - 序列化类到共享内存里，效率高
+    - 仅 Android 中可用，非 Java 语言通用属性。
+
+  - Serializable Interface
+
+    - 通过文件或内存实现，效率低
+
+    - Java 通用
+
+### Intent
+
+显式启动
+
+隐式启动
+
+- 常用属性
+  - Component
+
+  - Action
+
+  - Category
+
+  - Data
+
+    访问的 URI
+
+    如
+
+    - content://contacts/people
+    - tel:电话号码
+    - smsto:号码
+
+  - Type
+
+  - Extras
+
+  - Flags
+
+先整体后具体
+
+- 常用函数
+
+```xml
+<action android:name = my_action_1>// 注册此类支持的活动
+<category android:name = MY_CATEGORY1>// 支持的类别注册    
+```
+
+
+
 ## 4.1.1 Activity 创建三部曲
 
 
