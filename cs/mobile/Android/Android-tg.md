@@ -1,4 +1,4 @@
-# Android 天哥在奔跑的教程
+# [【天哥】Android 开发视频教程最新版 Android Studio 开发](https://www.bilibili.com/video/BV1Rt411e76H?t=4)
 
 ## 参考资料：
 
@@ -12,9 +12,9 @@
 
 [安卓基础入门-菜鸟教程（大致看了一下内容，写得很好）](https://www.runoob.com/w3cnote/android-tutorial-intro.html)
 
-[Android布局中的尺寸单位介绍](https://www.jianshu.com/p/0296fada6df3)
+[Android 布局中的尺寸单位介绍](https://www.jianshu.com/p/0296fada6df3)
 
-[Android layout属性大全](https://blog.csdn.net/lushengchu_luis/article/details/8708099)
+[Android layout 属性大全](https://blog.csdn.net/lushengchu_luis/article/details/8708099)
 
 [Android 之 Adapter 用法总结](https://www.cnblogs.com/devinzhang/archive/2012/01/20/2328334.html)
 
@@ -36,7 +36,7 @@
 
   padding margin 只在 LinearLayout 之类的元素里使用？
 
--  orientation 和 gravity 区别
+- orientation 和 gravity 区别
 
 ## 2.1 布局管理器
 
@@ -46,11 +46,11 @@
 
 #### 常用属性
 
-id	
+id
 
-layout_width 
+layout_width
 
-layout_height 
+layout_height
 
 background
 
@@ -64,7 +64,7 @@ orientation （LinearLayout 特有）：子元素排列方式，水平 （ horiz
 
 - 布局宽高度通常使用 dp 而不是 px，这样便于布局适配屏幕
 
-- padding margin background width height  id 和 css 的一样
+- padding margin background width height id 和 css 的一样
 
 - 这个什么意思？
 
@@ -96,7 +96,7 @@ orientation （LinearLayout 特有）：子元素排列方式，水平 （ horiz
             android:layout_height="match_parent"
             android:background="#FF0033"/>
     	</LinearLayout>
-  
+
     	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -105,11 +105,11 @@ orientation （LinearLayout 特有）：子元素排列方式，水平 （ horiz
     	</LinearLayout>
   </LinearLayout>
   ```
-  
-     第一个 LinearLayout 用了 父空间的 200dp 宽度，
-  
-    父空间剩下的宽度 = 父空间宽度 - 200dp，给第二个 LinearLayout
-  
+
+  第一个 LinearLayout 用了 父空间的 200dp 宽度，
+
+  父空间剩下的宽度 = 父空间宽度 - 200dp，给第二个 LinearLayout
+
 - LinearLayout 默认水平排列，改成垂直排列需要修改父布局的属性
 
   ```xml
@@ -190,7 +190,7 @@ android:layout_weight="1"
 
 - **使用相对布局之前，保证父布局是相对布局才行。**
 
-  比如：父级为 LinearLayout 子布局为 RelativeLayout 此时子布局不能设置  **layout_alignParentBottom**
+  比如：父级为 LinearLayout 子布局为 RelativeLayout 此时子布局不能设置 **layout_alignParentBottom**
 
   可以在 他们之间加一层 RelativeLayout 布局：设置 width height 为 match_parent
 
@@ -202,18 +202,18 @@ android:layout_weight="1"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical">
-  
+
       <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent">
-  
+
           <RelativeLayout
               android:layout_width="match_parent"
               android:layout_height="40dp"
               android:background="#117CAC"
               android:layout_alignParentBottom="true"
               >
-  
+
               <View
                   android:id="@+id/v_1"
                   android:layout_width="50dp"
@@ -222,7 +222,7 @@ android:layout_weight="1"
                   android:layout_marginTop="8dp"
                   android:layout_marginBottom="5dp"
                   android:background="#000000" />
-  
+
               <View
                   android:id="@+id/v_2"
                   android:layout_width="50dp"
@@ -232,7 +232,7 @@ android:layout_weight="1"
                   android:layout_marginBottom="5dp"
                   android:layout_toRightOf="@id/v_1"
                   android:background="#000000" />
-  
+
               <View
                   android:id="@+id/v_3"
                   android:layout_width="50dp"
@@ -244,13 +244,11 @@ android:layout_weight="1"
                   android:background="#000000" />
           </RelativeLayout>
       </RelativeLayout>
-  
-  
-  </LinearLayout>
-  
-  ```
 
-  
+
+  </LinearLayout>
+
+  ```
 
 align：排整齐;校准;(尤指)使成一条直线;使一致。 我遇见的意思多指：对齐方式。
 
@@ -258,7 +256,7 @@ align：排整齐;校准;(尤指)使成一条直线;使一致。 我遇见的意
 
 ![image-20201012141045090](img/Android-tg/image-20201012141045090.png)
 
-看字面意思就能明白用法。 
+看字面意思就能明白用法。
 
 1. 在谁的左边、右边，底部对齐，对齐父空间底部、 在某个元素下面绘制下划线。
 
@@ -298,21 +296,17 @@ android:drawableRight="@drawable/ic_launcher_background"
 
 ### 2.2.6 中划线、下划线
 
-可以由  getPaint().setFlags 方法
+可以由 getPaint().setFlags 方法
 
 ```java
 mTv5.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 ```
-
-
 
 html 标签的方法设置下划线和中划线。
 
 ```java
 mTv6.setText(Html.fromHtml("<u>天哥在奔跑 html</u>"));
 ```
-
-
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -388,8 +382,6 @@ mTv6.setText(Html.fromHtml("<u>天哥在奔跑 html</u>"));
 </LinearLayout>
 ```
 
-
-
 ```java
 package com.example.a1linearlayout;
 
@@ -424,8 +416,6 @@ public class TextViewActivity extends AppCompatActivity {
 }
 ```
 
-
-
 ### 2.2.7 跑马灯
 
 ```xml
@@ -445,7 +435,7 @@ public class TextViewActivity extends AppCompatActivity {
         />
 ```
 
-​	点击之后才能实现
+​ 点击之后才能实现
 
 ## 2.3 Button
 
@@ -456,19 +446,15 @@ android:textSize="20sp"
 android:textColor="#ffffff"
 ```
 
-
-
 ### 2.3.2 自定义背景形状
 
-用 
+用
 
-android:background="@drawable/bg_btn2" 
+android:background="@drawable/bg_btn2"
 
 android:background="@drawable/bg_btn3"
 
 引用自定义背景
-
-
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -525,8 +511,6 @@ drawable/Bg_btn2.xml
 </shape>
 ```
 
-
-
 drawable/Bg_btn_3.xml
 
 ```xml
@@ -541,8 +525,6 @@ drawable/Bg_btn_3.xml
         android:radius="15dp"/>
 </shape>
 ```
-
-
 
 ### 2.3.3 自定义按压效果
 
@@ -584,7 +566,7 @@ drawable/bg_btn4
 
 ### 2.3.4 绑定点击事件
 
-#### 方式1（不常用）
+#### 方式 1（不常用）
 
 ```xml
     <Button
@@ -600,7 +582,7 @@ drawable/bg_btn4
         android:layout_below="@id/btn_4"/>
 ```
 
-Java方法
+Java 方法
 
 ```java
     public void showToast(View view) {
@@ -608,7 +590,7 @@ Java方法
     }
 ```
 
-#### 方式2 （常用方式）
+#### 方式 2 （常用方式）
 
 ```java
 public class ButtonActivity extends AppCompatActivity {
@@ -629,8 +611,6 @@ public class ButtonActivity extends AppCompatActivity {
     }
 }
 ```
-
-
 
 ```xml
     <Button
@@ -705,10 +685,10 @@ setOnClickListener 监听点击事件
 addTextChangedListener 监听输入状态，charSequence 为当前输入框中的文本内容
 
 ```java
-public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) 
+public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
 ```
 
-------
+---
 
 ```java
 package com.example.a1linearlayout;
@@ -784,7 +764,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnEditText;
     private Button mBtnRadioButton;
 
-    @Override 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.linear_layout);
@@ -841,8 +821,6 @@ public class MainActivity extends AppCompatActivity {
 
 ```
 
-
-
 ## 2.5 RadioButton 和 RadioGroup
 
 ### RadioButton
@@ -862,13 +840,7 @@ Styles.xml：NoActionBar
 <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 ```
 
-
-
-
-
-## 2.6  CheckBox 复选框
-
-
+## 2.6 CheckBox 复选框
 
 ## 2.7 ImageView 和 使用第三方库加载网络图片
 
@@ -895,22 +867,20 @@ ImageView
   ![image-20201023163208653](img/Android-tg/image-20201023163208653.png)
 
   后点击 Sync Gradle
-  
+
   编写代码
-  
+
   ```java
   private ImageView mIv4;
   ...
   Glide.with(this).load("https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png").into(mIv4);
   ```
-  
+
   再 manifest 加入网络权限
-  
+
   ```xml
   <uses-permission android:name="android.permission.INTERNET" />
   ```
-  
-  
 
 ## 2.8 ListView 列表视图（了解即可）
 
@@ -924,7 +894,7 @@ ListView 被 RecycleView 代替
 
 [Android 之 Adapter 用法总结](https://www.cnblogs.com/devinzhang/archive/2012/01/20/2328334.html)
 
-Adapter 是连接后端数据和前端显示的适配器接口，是数据和UI（View）之间一个重要的纽带
+Adapter 是连接后端数据和前端显示的适配器接口，是数据和 UI（View）之间一个重要的纽带
 
 ![img](img/Android-tg/2012012021592978.jpg)
 
@@ -987,16 +957,12 @@ xml listSelector 属性：选择后的颜色等属性。
 
   ![image-20201024003532132](img/Android-tg/image-20201024003532132.png)
 
-  
-
-- Native 和 JavaScript 相互调用
+* Native 和 JavaScript 相互调用
 
   ```java
               // 执行 JavaScript 代码
               mWvMain.evaluateJavascript("javascript:alert('hello')",callbackfunction());
   ```
-
-  
 
 ## 3.1 Toast
 
@@ -1009,9 +975,7 @@ xml listSelector 属性：选择后的颜色等属性。
   toastCenter.show();
   ```
 
-  
-
-- 自定义样式（ 加图片、文字 ）
+* 自定义样式（ 加图片、文字 ）
 
   ```java
   Toast toastCustom = new Toast(getApplicationContext());
@@ -1026,20 +990,18 @@ xml listSelector 属性：选择后的颜色等属性。
   toastCustom.show();
   ```
 
-  
-
 - 封装使得 （什么原因？）点击 Toast 马上显示，没有排队现象
 
   ```java
   package com.skypan.helloworld.util;
-  
+
   import android.content.Context;
   import android.widget.Toast;
-  
+
   /**
    * Created by skypan on 2017/9/5.
    */
-  
+
   public class ToastUtil {
       public static Toast mToast;
       public static void showMsg(Context context,String msg){
@@ -1052,8 +1014,6 @@ xml listSelector 属性：选择后的颜色等属性。
       }
   }
   ```
-
-  
 
 ## 3.2 AlertDialog
 
@@ -1097,15 +1057,13 @@ Builder 设计模式，感兴趣自行学习。
   }).show();
   ```
 
-  到目前为止提到的 Context（上下文)多指 
+  到目前为止提到的 Context（上下文)多指
 
   ```java
   类名.this
   ```
 
-  
-
-- 单选样式
+* 单选样式
 
   1. 没有 RadioButton，少用
 
@@ -1135,8 +1093,6 @@ Builder 设计模式，感兴趣自行学习。
             .show();
         ```
 
-        
-
 - 多选样式
 
   ```java
@@ -1156,14 +1112,12 @@ Builder 设计模式，感兴趣自行学习。
   }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-  
+
       }
   }).show();
   ```
 
-  
-
-- 自定义
+* 自定义
 
   ```java
   AlertDialog.Builder builder5 = new AlertDialog.Builder(DialogActivity.this);
@@ -1180,8 +1134,6 @@ Builder 设计模式，感兴趣自行学习。
   });
   builder5.setTitle("请先登录").setView(view).show();
   ```
-
-  
 
 ## 3.3 ProgressBar & ProgressDialog
 
@@ -1277,8 +1229,6 @@ public class ProgressActivity extends AppCompatActivity {
 
 ```
 
-
-
 ## 3.4 自定义 Dialog
 
 ```java
@@ -1290,8 +1240,6 @@ IOnCancelListener
 这一集 23 分钟左右 讲到了链式编程的实现，自己写一个类，set 方法返回值为 this（此 class ）。然后就可以愉快的使用 点点点，继续设置其他选项。
 
 ## 3.5 PopupWindow
-
-
 
 ## 4.0 XW ANdroid Intent
 
@@ -1323,6 +1271,7 @@ IOnCancelListener
 隐式启动
 
 - 常用属性
+
   - Component
 
   - Action
@@ -1351,59 +1300,49 @@ IOnCancelListener
 
 ```xml
 <action android:name = my_action_1>// 注册此类支持的活动
-<category android:name = MY_CATEGORY1>// 支持的类别注册    
+<category android:name = MY_CATEGORY1>// 支持的类别注册
 ```
 
-
-
 ## 4.1.1 Activity 创建三部曲
-1. 新建类继承Activity 或其子类
+
+1. 新建类继承 Activity 或其子类
 2. 在 AndroidManifest 中声明
 3. 创建 layout 并在 Activity 的 onCreate 中设置
 
+## [P25 4-1-2 Activity 的生命周期](https://www.bilibili.com/video/BV1Rt411e76H?p=25)
 
-## 4.1.2 Activity 的声明周期
+## [P26 4-1-3 Activity 的跳转和数据传递](https://www.bilibili.com/video/BV1Rt411e76H?p=26)
 
+## [P27 4-1-4 Activity 的 4 种启动模式](https://www.bilibili.com/video/BV1Rt411e76H?p=27)
 
+## [P28 4-2-1 Fragment 详解（一）](https://www.bilibili.com/video/BV1Rt411e76H?p=28)
 
-## 4.1.3 Activity 的跳转和数据传递
+## [P29 4-2-2 Fragment 详解（二）](https://www.bilibili.com/video/BV1Rt411e76H?p=29)
 
+## [P30 4-2-3 Fragment 详解（三）](https://www.bilibili.com/video/BV1Rt411e76H?p=30)
 
+## [P31 4-2-4 Fragment 详解（四）](https://www.bilibili.com/video/BV1Rt411e76H?p=31)
 
-## 4.1.2 Activity 的 4 种启动模式
+## [P32 5-1 基于监听的事件处理机制](https://www.bilibili.com/video/BV1Rt411e76H?p=32)
 
+## [P33 5-2 基于回调的事件处理机制](https://www.bilibili.com/video/BV1Rt411e76H?p=33)
 
+## [P34 5-3 源码剖析，了解 View 的事件分发](https://www.bilibili.com/video/BV1Rt411e76H?p=34)
 
-## 4-2-1 Fragment详解（一）
+## [P35 5-5 Handler 消息处理](https://www.bilibili.com/video/BV1Rt411e76H?p=35)
 
+## [P36 7-1 SharedPreferences 轻量数据存储](https://www.bilibili.com/video/BV1Rt411e76H?p=36)
 
+## [P37 7-2-1 Android 存储概念](https://www.bilibili.com/video/BV1Rt411e76H?p=37)
 
-## 4-2-2 Fragment详解（二）
+## [P38 7-2-2 File 内部存储](https://www.bilibili.com/video/BV1Rt411e76H?p=38)
 
+## [P39 7-2-3 File 外部存储](https://www.bilibili.com/video/BV1Rt411e76H?p=39)
 
+## [P40 8-1 BroadcastReceiver](https://www.bilibili.com/video/BV1Rt411e76H?p=40)
 
-## 4-2-3 Fragment详解（三）
+## [P41 属性动画](https://www.bilibili.com/video/BV1Rt411e76H?p=41)
 
+## [P42 附 1 如何分析错误日志](https://www.bilibili.com/video/BV1Rt411e76H?p=42)
 
-
-## 4-2-4 Fragment详解（四）
-
-
-
-## 5-1 基于监听的事件处理机制
-
-
-
-## 5-2 基于回调的事件处理机制
-
-
-
-## 5-3 源码剖析，了解View的事件分发
-
-
-
-## 5-5 Handler消息处理（没有5.4）
-
-
-
-## 7-1 SharedPreferences 轻量数据存储(没有6)
+## [P43 附 2 按压水波纹效果](https://www.bilibili.com/video/BV1Rt411e76H?p=43)
