@@ -1357,7 +1357,9 @@ IOnCancelListener
 
 
 ## 4.1.1 Activity 创建三部曲
-
+1. 新建类继承Activity 或其子类
+2. 在 AndroidManifest 中声明
+3. 创建 layout 并在 Activity 的 onCreate 中设置
 
 
 ## 4.1.2 Activity 的声明周期
