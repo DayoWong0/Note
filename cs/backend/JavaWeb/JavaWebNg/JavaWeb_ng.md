@@ -1523,7 +1523,309 @@ css hover
 
 ### 后端
 
+#### 修改为真正的 DAO 设计模式
+
+之前的代码没有真正实现 DAO 设计模式
+
+修改了数据库相关的代码
+
+IUserDAO：接口，定义对 User 类的操作，不实现方法。
+
+UserDAOImpl：实现 IUserDAO 接口，包含 SQL 语句以及对查询结果处理返回方法需要的值，不包含数据库连接
+
+CheckUserExistController：代码中用到了数据库。
+
+ 1. 建立数据库连接类
+
+ 2. 从 DAOFactory 中 getIUserDAOInstance，需要传入连接类对象
+
+ 3. 使用 getIUserDAOInstance 实例对象里的方法
+
+ 4. 关闭数据库连接对象
+
+    在查询数据库的前一行（不是新建连接类的时候） 用 try 包围 数据库查询语句，查询语句后一行用 catch，最后 finally 关闭链接对象
+
+    实际操作用到的代码
+
+    ```java
+    // 1 建立数据库连接类
+    Connection con = new DatabaseConnection().getConnection();
+    // 2 从 DAOFactory 中 getIUserDAOInstance，需要传入连接类对象
+    IUserDAO iUserDAOInstance = DAOFactory.getIUserDAOInstance(con);
+    
+    try{
+        // 3 使用 getIUserDAOInstance 实例对象里的方法
+    	boolean isExist = iUserDAOInstance.checkUserExistByUserName(userName);
+        // 业务逻辑操作
+    }catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }finally {
+        // 4 controller 关闭数据库连接对象，不管是否异常都要关闭
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    ```
+
+- IUserDAO
+
+  ```java
+  
+  
+  package dao;
+  
+  import vo.User;
+  
+  import java.sql.SQLException;
+  
+  public interface IUserDAO {
+      /**
+       * 通过用户名查询用户信息
+       * @param userName 用户名
+       * @return User类
+       */
+      User getByUserName(String userName) throws SQLException;
+  
+  
+      boolean insert(User user) throws Exception;
+  
+      /** 查看用户名是否已经被使用
+       * @param userName 用户名
+       * @return true：  用户名已被注册 或 查询过程出错
+       *         false： 用户名未被注册
+       *
+       */
+      boolean checkUserExistByUserName(String userName) throws SQLException;
+  
+      /** 查看 email 是否已经被使用
+       * @param email    邮箱
+       * @return true：  邮箱已被注册 或 查询过程出错
+       *         false： 邮箱未被注册
+       *
+       */
+      boolean checkUserExistByEmail(String email) throws SQLException;
+  
+  }
+  
+  ```
+
+- UserDAOImpl
+
+  ```java
+  package dao.impl;
+  
+  import dao.IUserDAO;
+  import vo.User;
+  
+  import java.sql.*;
+  
+  public class UserDAOImpl implements IUserDAO {
+  
+      private Connection conn;
+      private PreparedStatement pstmt;
+  
+      // 实例化时，给该类提供连接对象
+      public UserDAOImpl(Connection conn) {
+          this.conn = conn;
+      }
+  
+      /**
+       * 通过用户名查询用户信息
+       * @param userName 用户名
+       * @return User类
+       */
+      @Override
+      public User getByUserName(String userName) throws SQLException {
+          String sql="select * from t_user where username=?";
+          this.pstmt=this.conn.prepareStatement(sql);
+          this.pstmt.setString(1, userName);
+  
+          User user = new User();
+          ResultSet rs = this.pstmt.executeQuery();
+          if (rs.next()) {
+              user.setUserName(rs.getString("userName"));
+              user.setRealName(rs.getString("realName"));
+              user.setEmail(rs.getString("email"));
+              user.setProvince(rs.getString("province"));
+              user.setCity(rs.getString("city"));
+              user.setPassword(rs.getString("password"));
+              user.setChrName(rs.getString("chrName"));
+              user.setRole(rs.getString("role"));
+          }
+          else {
+              user = null;
+          }
+          return user;
+      }
+  
+  
+      @Override
+      public boolean insert(User user) throws Exception{
+          //获取数据库连接
+          String sql="" +
+                  "INSERT INTO t_user (userName, realName, email, province,city,password,chrName, role)" +
+                  "VALUES (?,?,?,?,?,?,?,?);";
+          this.pstmt=this.conn.prepareStatement(sql);
+          this.pstmt.setString(1, user.getUserName());
+          this.pstmt.setString(2, user.getRealName());
+          this.pstmt.setString(3, user.getEmail());
+          this.pstmt.setString(4, user.getProvince());
+          this.pstmt.setString(5, user.getCity());
+          this.pstmt.setString(6, user.getPassword());
+          this.pstmt.setString(7, user.getChrName());
+          this.pstmt.setString(8, user.getRole());
+  
+          if (this.pstmt.executeUpdate() > 0) {
+              return true;
+          }
+          else {
+              return false;
+          }
+      }
+  
+      /** 查看用户名是否已经被使用
+       * @param userName 用户名
+       * @return true：  用户名已被注册 或 查询过程出错
+       *         false： 用户名未被注册
+       *
+       */
+      @Override
+      public  boolean checkUserExistByUserName(String userName) throws SQLException {
+          //获取数据库连接
+          String sql="select * from t_user where username=?";
+          this.pstmt=this.conn.prepareStatement(sql);
+          this.pstmt.setString(1, userName);
+          if (this.pstmt.executeUpdate() > 0) {
+              return true;
+          }
+          else {
+              return false;
+          }
+      }
+  
+      /** 查看 email 是否已经被使用
+       * @param email    邮箱
+       * @return true：  邮箱已被注册 或 查询过程出错
+       *         false： 邮箱未被注册
+       *
+       */
+      @Override
+      public  boolean checkUserExistByEmail(String email) throws SQLException {
+  
+          String sql="select * from t_user where email=?";
+          this.pstmt = this.conn.prepareStatement(sql);
+          this.pstmt.setString(1, email);
+  
+          if (this.pstmt.executeUpdate() > 0) {
+              return true;
+          }
+          else {
+              return false;
+          }
+      }
+  }
+  
+  ```
+
+- CheckUserExistController
+
+  ```java
+  package controller;
+  
+  import com.google.gson.Gson;
+  import dao.IUserDAO;
+  import dao.impl.UserDAOImpl;
+  import dbc.DatabaseConnection;
+  import factory.DAOFactory;
+  
+  import javax.servlet.ServletException;
+  import javax.servlet.annotation.WebServlet;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+  import java.io.IOException;
+  import java.sql.Connection;
+  import java.sql.SQLException;
+  import java.util.HashMap;
+  import java.util.Map;
+  
+  /**
+   * 检测用户名或邮箱是否已经被注册
+   */
+  @WebServlet("checkExist.do")
+  public class CheckUserExistController extends HttpServlet {
+      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+          //1. 字符编码
+          request.setCharacterEncoding("utf-8");
+          //2.接受请求数据
+          String userName = request.getParameter("userName");
+          String email = request.getParameter("email");
+          Map<String, Object> map = new HashMap<String, Object>();
+          // 数据库连接对象
+          Connection con = new DatabaseConnection().getConnection();
+          // 用户名参数存在 说明是想验证用户名是否存在
+          if ( !(userName == null) ){
+              IUserDAO iUserDAOInstance = DAOFactory.getIUserDAOInstance(con);
+              boolean isExist = false;
+              try {
+                  isExist = iUserDAOInstance.checkUserExistByUserName(userName);
+              } catch (SQLException throwables) {
+                  throwables.printStackTrace();
+              }
+              finally {
+                  try {
+                      con.close();
+                  } catch (SQLException throwables) {
+                      throwables.printStackTrace();
+                  }
+              }
+              // username 存在返回 1
+              if (isExist) {
+                  map.put("code", 1);
+              }
+              // username 不存在返回 0
+              else {
+                  map.put("code", 0);
+              }
+          }
+          // email 参数存在 说明是想验证 email 是否存在
+          if (!(email == null)){
+              IUserDAO iUserDAOInstance = DAOFactory.getIUserDAOInstance(con);
+              boolean isExist = false;
+              try {
+                  isExist = iUserDAOInstance.checkUserExistByEmail(userName);
+              } catch (SQLException throwables) {
+                  throwables.printStackTrace();
+              }
+              // email 存在返回 1
+              if (isExist) {
+                  map.put("code", 1);
+              }
+              // email 不存在返回 0
+              else {
+                  map.put("code", 0);
+              }
+          }
+          // 响应流
+          String jsonStr = new Gson().toJson(map);
+          response.setContentType("text/json;charset=uft-8");
+          response.getWriter().print(jsonStr);
+      }
+  
+      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  
+      }
+  }
+  
+  ```
+
+  
+
 #### Controller
+
+
 
 #### DAO
 

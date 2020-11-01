@@ -1281,7 +1281,13 @@ public class ProgressActivity extends AppCompatActivity {
 
 ## 3.4 自定义 Dialog
 
+```java
+IOnCancelListener
+```
 
+~~自定义类这部分没懂，这方面用的少，Java 语言的问题。~~，再看了一遍懂了
+
+这一集 23 分钟左右 讲到了链式编程的实现，自己写一个类，set 方法返回值为 this（此 class ）。然后就可以愉快的使用 点点点，继续设置其他选项。
 
 ## 3.5 PopupWindow
 
