@@ -4,6 +4,8 @@
 
 ## [P2 2、回顾 MVC 架构](https://www.bilibili.com/video/BV1aE41167Tu?p=2)
 
+MVC：model view control
+
 ## [P3 3、回顾 Servlet](https://www.bilibili.com/video/BV1aE41167Tu?p=3)
 
 ## [P4 4、初识 SpringMVC](https://www.bilibili.com/video/BV1aE41167Tu?p=4)

@@ -18,6 +18,10 @@
 
 - [菜鸟教程](https://www.runoob.com/)
 
+- [WindrunnerMax](https://blog.touchczy.top/)
+
+  某个油猴脚本作者的博客。前端、算法、后端、Linux 均有，笔记质量很高，排版也值得学习。
+
 - 计算机基础课程
 
   - 数据结构
