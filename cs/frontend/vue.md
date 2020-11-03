@@ -153,3 +153,7 @@ size color active 为类名
 ```
 <p :class="['size','color',flag? 'active':'']">我是段落</p>
 ```
+
+## [Class 与 Style 绑定 — Vue.js](https://cn.vuejs.org/v2/guide/class-and-style.html)
+
+这可用于动态改变元素 CSS 样式

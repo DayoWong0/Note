@@ -1447,3 +1447,164 @@ return 退出码
 
 子进程退出 但是它的 PCB 还会存在，直到父进程 wait 函数等待到了它的结束码，才销毁 子进程 PCB。若这个 PCB 一直存在于系统当中，仅有 PCB 没有代码，称为僵尸进程。
 
+# 第九周课
+
+### 线程
+
+#### 概念
+
+#### 线程函数
+
+- pthread_create
+
+  需要掌握
+
+  - 返回值
+    - 0：成功
+    - 非0：失败
+  - 参数(全为指针)
+    - thread：指向线程标识符的指针
+    - attr：线程属性，NULL设置为默认
+    - star_runtine：线程运行函数的起始地址，注意原型
+    - arg：待补充
+
+- pthread_join
+
+  等待。需要掌握
+
+- pthread_exit
+
+  理解
+
+- pthread_cancel
+
+  理解
+
+- pthread_self
+
+  获取线程 id，理解
+
+线程创建
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void *thread_fun();
+// gcc -o thread_create thread_create.c  -lpthread
+int main(int argc, char **argv){
+    int rtn;
+    pthread_t thread_id;
+    rtn = pthread_create(&thread_id, NULL, &thread_fun, NULL);
+    if (rtn != 0)
+    {
+        /* code */
+        perror("pthread_create error!");
+        exit(1);
+    }
+    sleep(1);
+    return 0;
+}
+
+void *thread_fun(){
+    pthread_t new_thid;
+    new_thid = pthread_self();
+    printf("this is a new thread, thread ID is %u\n", new_thid);
+    printf("---end---\n");
+}
+```
+
+编译
+
+```shell
+gcc -o thread_create thread_create.c  -lpthread //要加入 -lpthread线程函数库
+```
+
+---
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void *thread_fun();
+// gcc -o thread_create thread_create.c  -lpthread
+int main(int argc, char **argv){
+    int rtn;
+    pthread_t thread_id;
+    rtn = pthread_create(&thread_id, NULL, &thread_fun, NULL);
+    if (rtn != 0)
+    {
+        /* code */
+        perror("pthread_create error!");
+        exit(1);
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        printf("in main: print in main");
+        sleep(1);
+    }
+    return 0;
+}
+
+void *thread_fun(){
+    pthread_t new_thid;
+    new_thid = pthread_self();
+    for (int i = 0; i < 10; i++)
+    {     
+        printf("this is a new thread, thread ID is %u\n", new_thid);
+        printf("---end---\n");
+        sleep(1);
+    }
+
+}
+```
+
+thread_join.c
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void *thread_fun(void *ptr);
+
+int main(){
+    int rtn1, rtn2;
+    pthread_t thread_id1;
+    pthread_t thread_id2;
+    char *message1 = "new_thread1";
+    char *message2 = "new_thread2";
+
+    rtn1 = pthread_create(&thread_id1, NULL, &thread_fun, (void*)message1);
+    if (rtn1 != 0)
+    {
+        perror("pthread_create error!");
+        exit(1);
+    }
+    rtn2 = pthread_create(&thread_id2, NULL, &thread_fun, (void*)message2);
+    if (rtn2 != 0)
+    {
+        perror("pthread_create error!");
+        exit(1);
+    }
+    pthread_join(thread_id1, NULL);
+    pthread_join(thread_id2, NULL);
+    printf("thread1 return %d\n", rtn1);
+    printf("thread2 return %d\n", rtn2);
+    return 0;
+}
+
+void *thread_fun(void *ptr){
+    pthread_t new_thid;
+    char *message;
+    message = (char *)ptr;
+    new_thid = pthread_self();
+    printf("thi is a new thread,thread ID is %u, message:%s\n", new_thid, message);
+    sleep(2);
+    printf("---end--\n");
+}
+
+```
+
