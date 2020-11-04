@@ -157,3 +157,8 @@ size color active 为类名
 ## [Class 与 Style 绑定 — Vue.js](https://cn.vuejs.org/v2/guide/class-and-style.html)
 
 这可用于动态改变元素 CSS 样式
+
+## 经验
+
+- 文本输入标签 如 input， textarea 等 用 v-model，其他的用 v-bind 即可
+

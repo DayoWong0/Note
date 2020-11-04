@@ -2,6 +2,8 @@
 
 ## 参考
 
+- [web应用开发教案.docx](https://github.com/DayoWong0/javaweb/doc/web应用开发教案.docx)
+
 - [使用 List](https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552)
 - [JavaWeb 返回 json 数据的两种方式](https://my.oschina.net/u/4287266/blog/3891785)
 - [CSS居中完整指南](https://www.w3cplus.com/css/centering-css-complete-guide.html)
@@ -1911,6 +1913,36 @@ Saas
 1. 查看示例
 2. 快速入门
 3. 具体使用时查询文档 
+
+## 作业5：用 Vue 完成作业 4 中的前端页面
+
+### 参考
+
+[API — Vue.js](https://cn.vuejs.org/v2/api/)
+
+[介绍 — Vue.js](https://cn.vuejs.org/v2/guide/)
+
+[Vue.js Ajax(axios) | 菜鸟教程](https://www.runoob.com/vue2/vuejs-ajax-axios.html)
+
+[web应用开发教案.docx](https://github.com/DayoWong0/javaweb/doc/web应用开发教案.docx)
+
+### 实现
+
+Ajax 请求 使用 axios （Vue 官方推荐的 Ajax 请求库）
+
+css 先保持不变
+
+1. 将整个页面分为几个模块并给上 id，绑定 Vue 实例，写好 method（参考之前的 JS 文件），data，ajax 请求总体框架。
+
+   1. 整个页面就一个 Vue 实例还是需要多个？
+
+      多个
+
+2. 加上对应的 vue 指令
+
+3. 完成 1 中写好的框架
+
+4. 对照作业 4 看是否有功能遗漏
 
 ## 第十周课 SpringMVC
 

@@ -244,6 +244,7 @@ android:layout_weight="1"
                   android:background="#000000" />
           </RelativeLayout>
       </RelativeLayout>
+  ```
 
 
   </LinearLayout>
@@ -278,9 +279,9 @@ textColor
 
 ### 2.2.3 显示不下用 ... 省略
 
-```xml
+​```xml
 android:ellipsize="end"
-```
+  ```
 
 ### 2.2.4 字体最多显示行数
 
@@ -435,7 +436,7 @@ public class TextViewActivity extends AppCompatActivity {
         />
 ```
 
-​ 点击之后才能实现
+ 点击之后才能实现
 
 ## 2.3 Button
 
@@ -1311,7 +1312,76 @@ IOnCancelListener
 
 ## [P25 4-1-2 Activity 的生命周期](https://www.bilibili.com/video/BV1Rt411e76H?p=25)
 
+
+
 ## [P26 4-1-3 Activity 的跳转和数据传递](https://www.bilibili.com/video/BV1Rt411e76H?p=26)
+
+### 显示跳转和隐式跳转
+
+AActivity to BActivity
+
+```java
+//显式1
+Intent intent = new Intent(AActivity.this, BActivity.class);
+// 数据传递
+Bundle bundle = new Bundle();
+bundle.putString("name", "天哥");
+bundle.putInt("number", 88);
+intent.putExtras(bundle);
+// 数据传递结束
+startActivity(intent);
+//                startActivityForResult(intent, 0);
+
+//显式2
+//                Intent intent = new Intent();
+//                intent.setClass(AActivity.this,BActivity.class);
+//                startActivity(intent);
+
+//显式3
+//                Intent intent = new Intent();
+//                intent.setClassName(AActivity.this,"com.skypan.helloworld.jump.BActivity");
+//                startActivity(intent);
+
+//显式4
+//                Intent intent = new Intent();
+//                intent.setComponent(new ComponentName(AActivity.this,"com.skypan.helloworld.jump.BActivity"));
+//                startActivity(intent);
+
+//隐式
+//                Intent intent = new Intent();
+//                intent.setAction("com.skypan.test.BActivity");
+//                startActivity(intent);
+```
+
+常用 显式1 和 隐式
+
+### 数据传递
+
+代码中有1 Bundle
+
+### startActivityForResult
+
+从 BActivity 返回数据到 AActivity
+
+```java
+Intent intent = new Intent();
+Bundle bundle1 = new Bundle();
+bundle1.putString("title","我回来了");
+intent.putExtras(bundle1);
+setResult(Activity.RESULT_OK,intent);
+```
+
+---
+
+```java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    Toast.makeText(AActivity.this, data.getExtras().getString("title"), Toast.LENGTH_LONG).show();
+}
+```
+
+
 
 ## [P27 4-1-4 Activity 的 4 种启动模式](https://www.bilibili.com/video/BV1Rt411e76H?p=27)
 
