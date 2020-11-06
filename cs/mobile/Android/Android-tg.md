@@ -1385,34 +1385,131 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ## [P27 4-1-4 Activity 的 4 种启动模式](https://www.bilibili.com/video/BV1Rt411e76H?p=27)
 
+- 标准模式：每启动一个活动就新建一个实例
+
+- singleTop：栈顶复用模式
+
+  ![image-20201104205522578](img/Android-tg/image-20201104205522578.png)
+
+- singleTask：栈内复用模式
+
+  ![image-20201104210740806](img/Android-tg/image-20201104210740806.png)
+
+- singleInstance（少用）：全局单例模式。多个栈中选择相同的复用
+
+  ![image-20201104210924577](img/Android-tg/image-20201104210924577.png)
+
 ## [P28 4-2-1 Fragment 详解（一）](https://www.bilibili.com/video/BV1Rt411e76H?p=28)
+
+![image-20201104223339001](img/Android-tg/image-20201104223339001.png)
+
+
 
 ## [P29 4-2-2 Fragment 详解（二）](https://www.bilibili.com/video/BV1Rt411e76H?p=29)
 
+跳过了
+
 ## [P30 4-2-3 Fragment 详解（三）](https://www.bilibili.com/video/BV1Rt411e76H?p=30)
+
+跳过了
 
 ## [P31 4-2-4 Fragment 详解（四）](https://www.bilibili.com/video/BV1Rt411e76H?p=31)
 
+跳过了
+
 ## [P32 5-1 基于监听的事件处理机制](https://www.bilibili.com/video/BV1Rt411e76H?p=32)
+
+![image-20201105224216970](img/Android-tg/image-20201105224216970.png)
+
+外部类不常用
+
+- 给同一个 按钮/事件源 设置多个事件监听器，最后设置的一个生效
+
+  xml 布局文件中的 onclick 是最先注册的。
 
 ## [P33 5-2 基于回调的事件处理机制](https://www.bilibili.com/video/BV1Rt411e76H?p=33)
 
+监听事件优先级大于回调。
+
 ## [P34 5-3 源码剖析，了解 View 的事件分发](https://www.bilibili.com/video/BV1Rt411e76H?p=34)
+
+看源码看它怎么 判断是 点击、长按 、还是双击事件
+
+![image-20201106114730724](img/Android-tg/image-20201106114730724.png)
 
 ## [P35 5-5 Handler 消息处理](https://www.bilibili.com/video/BV1Rt411e76H?p=35)
 
+源码 Github 上没有，之后的应该也没有
+
+- 修改 UI 只能主线程操作
+
+- ![image-20201106114914618](img/Android-tg/image-20201106114914618.png)
+
+  - 未来做某事（类似定时器）
+
+    ![image-20201106115513096](img/Android-tg/image-20201106115513096.png)
+
+  - 线程通信
+
+    只是简单讲了一下，后期还得自己补充。
+
+    ![image-20201106120242666](img/Android-tg/image-20201106120242666.png)
+
 ## [P36 7-1 SharedPreferences 轻量数据存储](https://www.bilibili.com/video/BV1Rt411e76H?p=36)
+
+![image-20201106120837466](img/Android-tg/image-20201106120837466.png)
+
+
+
+![image-20201106122543404](img/Android-tg/image-20201106122543404.png)
+
+保存的文件存放于
+
+![image-20201106122938606](img/Android-tg/image-20201106122938606.png)
 
 ## [P37 7-2-1 Android 存储概念](https://www.bilibili.com/video/BV1Rt411e76H?p=37)
 
+![image-20201106123659684](img/Android-tg/image-20201106123659684.png)
+
+
+
+![image-20201106123923563](img/Android-tg/image-20201106123923563.png)
+
+外部存储的私有目录在应用被卸载时会被删除，需要持久化的数据可以放在公有目录下。
+
+
+
 ## [P38 7-2-2 File 内部存储](https://www.bilibili.com/video/BV1Rt411e76H?p=38)
+
+学一下 StringBuilder 的用法
+
+![](img/Android-tg/image-20201106125247740.png)
+
+---
+
+![image-20201106125807457](img/Android-tg/image-20201106125807457.png)
+
+
 
 ## [P39 7-2-3 File 外部存储](https://www.bilibili.com/video/BV1Rt411e76H?p=39)
 
+ API 25 以及以上 需要动态申请外部文件读取权限
+
 ## [P40 8-1 BroadcastReceiver](https://www.bilibili.com/video/BV1Rt411e76H?p=40)
+
+ 
 
 ## [P41 属性动画](https://www.bilibili.com/video/BV1Rt411e76H?p=41)
 
+![image-20201106183237794](img/Android-tg/image-20201106183237794.png)
+
+
+
+
+
 ## [P42 附 1 如何分析错误日志](https://www.bilibili.com/video/BV1Rt411e76H?p=42)
 
+
+
 ## [P43 附 2 按压水波纹效果](https://www.bilibili.com/video/BV1Rt411e76H?p=43)
+

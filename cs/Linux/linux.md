@@ -1608,3 +1608,7 @@ void *thread_fun(void *ptr){
 
 ```
 
+### 线程通信
+
+#### 互斥锁
+
