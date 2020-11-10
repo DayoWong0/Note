@@ -142,8 +142,8 @@ module.exports = {
                             ["/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md", "JavaWeb-KS"],
                         ]
                     },
-
-
+                    "/cs/backend/SpringBoot/SpringMVC-NG.md",
+                    "/cs/backend/SpringBoot/SpringMVC-KS.md",
                     "/cs/backend/SpringBoot/SpringBoot.md",
                 ]
             },

@@ -1612,3 +1612,103 @@ void *thread_fun(void *ptr){
 
 #### 互斥锁
 
+## 信号与管道
+
+### 信号
+
+某个异步事件发生（如 ctrl + c）操作系统传一个信号量给进程，进程暂停，保存当前运行状态，执行信号处理程序，执行完毕后，恢复之前的运行状态。可以是由软件发出中断信号，称为软中断。
+
+信号本质是中断。
+
+#### 命令
+
+查看支持的中断信号
+
+```shell
+kill -l
+```
+
+---
+
+```shell
+[root@144 ~]# kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+```
+
+- ctrl + c 是 sigint 信号，如果进程里没有提供对此信号的处理，系统默认处理是 `退出`。
+
+- 0 信号被认为是空信号，kill 向进程发送 0 信号，用于判断进程是否存在。
+
+#### 信号来源
+
+- 用户
+
+  例如 ctrl + c
+
+- 内核
+
+  内存泄露等错误
+
+- 进程
+
+#### 中断处理程序
+
+待补充
+
+### kill 和 raise
+
+- raise
+  - 给自己的进程发送信号
+
+查进程 id
+
+```shell
+ps -au
+```
+
+
+
+```shell
+kill 6884 // 终止 pid 为 6884 的进程
+```
+
+### alarm 定时器
+
+信号14
+
+14) SIGALRM
+
+```c
+unsigned int alarm(unsigned int seconds)
+```
+
+- 功能
+
+  设置定时器
+
+- 参数
+  - seconds：定时器时间
+- 返回值
+
+### pause
+
+```c
+int pause(void)
+```
+
+- 暂停进程直到信号到达，任何信号都可以唤醒。
+
+- 捕获到信号时返回 -1
+

@@ -1,0 +1,121 @@
+# SpringMVC-NG.md
+
+## 十一周课
+
+### 常见注解
+
+配置文件搭配注解
+
+- @Component
+
+- @Repository
+
+- @Service
+
+- @Controller
+
+- @RequestMapping
+
+  url 地址，可位于 class 也可以在 method 上，
+
+  xml 配置文件中对应 `<mvc:annotation-driven/>`
+
+  - value
+
+    url 地址
+
+  - method
+
+    GET POST
+
+  - consumes
+
+    定义请求提交内容的类型
+
+  AJAX 请求的 JSON
+
+  - RequestParagm
+
+  - ResponseBody
+
+    响应结果设置为 xml 或 JSON，可以将方法返回值（例如 list、map ）自动转为字符串
+
+  - ...
+
+    其他不常用
+
+### 编码转换
+
+web.xml 配置文件中的 filter 
+
+### 包装
+
+包装类型
+
+是对象，如果没有传入值，则为 NULL，不会报错（相比于 int float 等）
+
+### 开发环境配置
+
+- JDK 大于等于 1.8
+
+- Tomcat 大于等于 8.0
+
+- Maven 
+
+  - 配置阿里云镜像
+
+    一定记得配置镜像，否则等你头发白了 maven 大概跑好了
+
+    [maven替换中央仓库- 阿里云 - 简书](https://www.jianshu.com/p/80384612ee1d)
+
+    [Maven Repository: Search/Browse/Explore（ Maven 官方仓库）](https://mvnrepository.com/)
+
+- 配置文件
+
+  - pom.xml
+
+    主要是 dependencies
+
+  - web.xml 配置文件
+
+    - filter
+
+  - springMVC.xml 配置文件
+
+    - component scan
+
+    - bean 
+
+      id 可以不写
+
+- Java 代码
+  
+- 注解
+  
+- Docker（可选）
+  
+  - 使用 MySQL
+
+#### Maven
+
+[仓库服务（阿里云）](https://maven.aliyun.com/mvn/guide)
+
+[IntelliJ IDEA上创建maven Spring MVC项目 - Fururur - 博客园](https://www.cnblogs.com/sinte-beuve/p/5730553.html)
+
+~~Maven dependence 看老师的文档~~ 暂时没有相关内容
+
+- spring core
+- spring mvc
+- mysql
+- jackson
+  - [Jackson Core](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core) » [2.10.2](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core/2.10.2)
+
+```xml
+
+```
+
+
+
+[使用IntelliJ IDEA开发SpringMVC网站（一）开发环境 - 知乎](https://zhuanlan.zhihu.com/p/70888663)
+
+[idea搭建springmvc（maven版） - 北城墨白 - 博客园（同学推荐的）](https://www.cnblogs.com/bcmb/p/12252591.html)
