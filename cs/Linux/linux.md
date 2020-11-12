@@ -1667,7 +1667,7 @@ kill -l
 
 待补充
 
-### kill 和 raise
+#### kill 和 raise
 
 - raise
   - 给自己的进程发送信号
@@ -1684,7 +1684,7 @@ ps -au
 kill 6884 // 终止 pid 为 6884 的进程
 ```
 
-### alarm 定时器
+#### alarm 定时器
 
 信号14
 
@@ -1699,10 +1699,11 @@ unsigned int alarm(unsigned int seconds)
   设置定时器
 
 - 参数
+  
   - seconds：定时器时间
 - 返回值
 
-### pause
+#### pause
 
 ```c
 int pause(void)
@@ -1712,3 +1713,168 @@ int pause(void)
 
 - 捕获到信号时返回 -1
 
+#### sleep
+
+```c
+unsigned int sleep(unsigned int seconds);
+```
+
+- 参数为秒，Windows 下为 ms
+- 返回值：睡眠结束返回 0 ，否则返回睡眠剩余时间
+
+#### sigaction
+
+sigaction 改进了 singal，更可靠，用法和 singal 类似
+
+### 管道
+
+- 进程通信中，文件读写方式实现速度慢。管道是使用内存实现（内核提供的缓冲区），可以看成存在内存中的文件。
+
+- 单向传输，半双工
+- 用管道通信的两个进程需要有共同的祖先进程
+
+#### 无名管道 pipe
+
+进程本身或父子进程通信
+
+~~因为他们进程中的文件描述符相同？~~
+
+##### 函数原型
+
+```c
+int pipe(int pipedes[2])
+```
+
+- 参数
+
+  文件描述符，0 读 1 写。由内核提供
+
+  pipdes 大小为 4096 byte（与 OS 有关）
+
+- return
+
+  0：成功
+
+  -1：错误
+
+  管道创建后，分别调用 write 和 read 和读写文件一样操作。
+
+##### 父子进程管道通信实例
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <string.h>
+
+int main(){
+    pid_t pid;
+    char data[32] = "hello";
+    char buf[32] = {0};
+    int fds[2];
+    if (pipe(fds) == 0)
+    {
+        pid = fork();
+        // 父进程
+        if (pid == 0)
+        {
+            close(fds[0]);
+            write(fds[1], data, strlen(data));
+            exit(0);
+        }
+        // 子进程
+        else if (pid > 0)
+        {
+            wait(NULL);
+            close(fds[1]);
+            read(fds[0], buf, sizeof(buf));
+            printf("%s\n", buf);
+        }
+        return 0;
+    }
+}
+```
+
+
+
+- 先创建管道，再调用 fork。
+- 父子进程只保留写入端或者读取端，只选一个，所以子进程中开始的第一行代码写的是 close(fds[1])，同理 父进程是 close(fd[0])
+- 兄弟进程之间读写类似
+
+##### 兄弟进程管道通信实例
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+// 兄弟进程管道通信
+int main(){
+    int fds[2];
+    int pid1, pid2;
+    // sibling：兄弟
+    int sibling, self;
+    if (pipe(fds) == 0)
+    {
+        if ((pid1 = fork()) ==0 )
+        // 向管道中写入进程 id 
+        {
+            close(fds[0]);
+            self = getpid();
+            write(fds[1], &self, sizeof(int));
+            exit(1);
+        }
+        if ((pid2 = fork()) ==0 )
+        // 从管道中读取其兄弟进程 id 
+        {
+            close(fds[1]);
+            read(fds[0], &sibling, sizeof(int));
+            printf("sibling pid = %d\n", sibling);
+            exit(2);
+        }
+    }
+    return 0;
+}
+```
+
+#### 管道空间限制
+
+- 管道满时，会被阻塞
+- 管道读端关闭：管道无读取进程，系统发送 SIGPIPE 信号，默认为终止。系统提示异常。
+- 管道写端关闭：管道无写入进程，读管道返回 0 字节
+- 读空管道或管道已满，相应进程被阻塞
+
+#### 有名（命名）管道 fifo
+
+- 无亲缘关系进程间使用
+- 能获得管道名字的进程都可以使用
+- 除了是在内存中，其他特征和文件非常类似，也有名字。
+- 可以使用 ls 命令查看
+
+```shell
+man mkfifo
+```
+
+---
+
+```c
+int mkfifo(const char *path, mode_t perms)
+```
+
+- paragms
+
+  - path
+
+    管道路径名
+
+  - perms
+
+    管道的访问权限
+
+  - return
+
+- 注意
+
+  某进程以只读打开管道，会阻塞到另一个进程以只写方式打开为止。反之亦然。
