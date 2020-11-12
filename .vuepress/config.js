@@ -142,8 +142,8 @@ module.exports = {
                             ["/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md", "JavaWeb-KS"],
                         ]
                     },
-                    "/cs/backend/SpringBoot/SpringMVC-NG.md",
-                    "/cs/backend/SpringBoot/SpringMVC-KS.md",
+                    "/cs/backend/SpringMVC-NG.md",
+                    "/cs/backend/SpringMVC-KS.md",
                     "/cs/backend/SpringBoot/SpringBoot.md",
                 ]
             },
@@ -266,6 +266,7 @@ module.exports = {
                 children: [
                     // Android
                     ["/cs/mobile/Android/AndroidDocNote.md", "AndroidDocNote"],
+                    ["/cs/mobile/Android/第一行代码第2版笔记.md", "第一行代码第2版笔记.md"],
                     ["/cs/mobile/Android/第一行代码第三版笔记.md", "第一行代码第三版笔记"],
                     ["cs/mobile/Android/Android-tg.md", "Android-tg(天哥在奔跑的教程)"],
                 ]
