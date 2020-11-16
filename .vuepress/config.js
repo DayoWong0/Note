@@ -176,6 +176,7 @@ module.exports = {
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
                     "/cs/language/C/C.md",
+                    "/cs/language/C/cPrimerPlus.md",
                 ]
             },
 

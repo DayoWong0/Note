@@ -119,3 +119,43 @@ web.xml 配置文件中的 filter
 [使用IntelliJ IDEA开发SpringMVC网站（一）开发环境 - 知乎](https://zhuanlan.zhihu.com/p/70888663)
 
 [idea搭建springmvc（maven版） - 北城墨白 - 博客园（同学推荐的）](https://www.cnblogs.com/bcmb/p/12252591.html)
+
+## 十二周课 MyBatis
+
+写 MyBastis 配置文件即可
+
+作业
+
+- MyBatis Maven 依赖
+
+pom.xml
+
+- spring 建议定义变量`spring_version`，方便修改版本
+- junit：单元测试
+- log4j：现在用版本 2，spring5 不支持 1 版本
+
+### 开发环境配置
+
+- 创建 maven 项目
+
+- pom.xml 添加依赖包
+
+  - maven 设置阿里云镜像
+
+    [maven替换中央仓库- 阿里云 - 简书](https://www.jianshu.com/p/80384612ee1d)
+
+- 创建项目配置文件
+
+  - jdbc.properties
+  - log4j2.xml 或 log4j2.peoperties
+  - myBatis
+  - 与 Spring 集成
+    - Spring-mybatis.xml
+  - 与 SpringMVC 集成
+    - web.xml
+    - SpringMVC.xml
+
+除了 web.xml 名字不能变，其他配置文件都可以自己修改
+
+- tomcat 配置文件
+- 用次新版本，最新版本可能有 bug，仅当尝鲜
