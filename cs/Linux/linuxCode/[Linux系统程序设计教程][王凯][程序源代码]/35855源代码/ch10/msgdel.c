@@ -1,4 +1,4 @@
-//删除消息队列
+//鍒犻櫎娑堟伅闃熷垪
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>

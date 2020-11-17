@@ -1,4 +1,4 @@
-//·¢ËÍÏûÏ¢
+//å‘é€æ¶ˆæ¯
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>

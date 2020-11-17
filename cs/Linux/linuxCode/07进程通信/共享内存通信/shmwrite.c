@@ -15,15 +15,12 @@ int main(int argc,char * argv[])
 	key_t key;
 	void * shmptr;
 	key = ftok("/tmp",1);
-	if(argc != 2){
-		printf("shmsrv needs a string. $shmsrv \"123456\"\n");
-		exit(1);
-	}
+	// 用于进程通信测试的数组 data[10]
+	int data[10];
 	if(key == -1){
 		perror("ftok failed");
 		exit(1);
 	}
-
 	shmid = shmget(key,SHMSIZE,IPC_CREAT | IPC_EXCL | 0600);
 	if(shmid == -1){
 		perror("shmget failed");
@@ -35,7 +32,7 @@ int main(int argc,char * argv[])
 		perror("shmat error");
 		exit(1);
 	}
-	memcpy(shmptr,argv[1],strlen(argv[1]) + 1);
+	memcpy(shmptr,data,sizeof(data)*10);
 	if(shmdt(shmptr) == -1){
 		perror("shmdt failed");
 		exit(1);

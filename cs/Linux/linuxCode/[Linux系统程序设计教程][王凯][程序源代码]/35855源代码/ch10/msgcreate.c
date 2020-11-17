@@ -1,4 +1,4 @@
-//创建消息队列
+//鍒涘缓娑堟伅闃熷垪
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>

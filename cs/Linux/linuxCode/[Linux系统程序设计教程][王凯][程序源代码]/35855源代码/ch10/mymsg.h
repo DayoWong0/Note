@@ -1,5 +1,5 @@
 //mymsg.h
-//定义消息
+//瀹氫箟娑堟伅
 typedef struct MESSAGE 
 {
     int mtype;
