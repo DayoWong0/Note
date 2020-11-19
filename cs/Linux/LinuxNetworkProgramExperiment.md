@@ -817,4 +817,16 @@ int main(int argc, char *argv[])
 
 
 
+# 复习
 
+## 第02章 基本套接口编程
+
+SOCKET_STREAM：双向可靠数据流，对应TCP
+SOCKET_DGRAM：双向不可靠数据报，对应UDP
+SOCKET_RAW：是低于传输层的低级协议或物理网络提供的套接字类型，可以访问内部网络接口。例如接收和发送ICMP报
+
+
+
+调用套接字函数时，需将指向特定于协议的地址结构的指针类型转换成指向通用的地址结构的指针，
+     如：      struct sockaddr_in  serv
+          bind(sockfd, (struct sockaddr *)&serv,sizeof(serv));

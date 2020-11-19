@@ -5,10 +5,9 @@ int main(int argc, char **argv){
     in_addr_t t;
     char *str;
     struct in_addr numstr;
-
+    
     if (argc < 2 )
     {
-        /* code */
         printf("Please input IP Address");
         exit(1);
     }
