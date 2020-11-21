@@ -821,12 +821,215 @@ int main(int argc, char *argv[])
 
 ## 第02章 基本套接口编程
 
-SOCKET_STREAM：双向可靠数据流，对应TCP
-SOCKET_DGRAM：双向不可靠数据报，对应UDP
-SOCKET_RAW：是低于传输层的低级协议或物理网络提供的套接字类型，可以访问内部网络接口。例如接收和发送ICMP报
+这一章内容和下一章内容联系紧密
+
+### 套接字结构
+
+![image-20201121204800858](img/LinuxNetworkProgramExperiment/image-20201121204800858.png)
+
+![image-20201121204818664](img/LinuxNetworkProgramExperiment/image-20201121204818664.png)
+
+![image-20201121204847866](img/LinuxNetworkProgramExperiment/image-20201121204847866.png)
+
+![image-20201121204903163](img/LinuxNetworkProgramExperiment/image-20201121204903163.png)
+
+#### 总结
+
+- INET：IP版本4
+  INET6：IP版本6
+
+  SOCKET_STREAM：双向可靠数据流，对应TCP
+  SOCKET_DGRAM：双向不可靠数据报，对应UDP
+  SOCKET_RAW：原始套接字。使用时需要 root 权限。
+
+- 套接字有两种结构：IPv4 和 IPv6，在使用套接字函数时（下一章的内容），需要将 IPv4 或者 IPv6 结构指针 转为 通用套接字地址结构指针类型。
+
+  如
+
+  ```c
+  struct sockaddr_in  serv
+  bind(sockfd, (struct sockaddr *)&serv,sizeof(serv));
+  ```
+
+- 套接字结构中，IP 地址位于结构中的结构
+
+  ```c
+  struct sockaddr_in  serv
+  // IP 地址  
+  serv.sin_addr.s_addr
+  ```
+
+  
+
+### 字节排序函数
+
+![image-20201121205759023](img/LinuxNetworkProgramExperiment/image-20201121205759023.png)
+
+```c
+#include <netinet/in.h>
+uint16_t  htons(uint16_t hostshort)
+uint32_t  htonl(uint32_t hostlong)
+// 均返回：网络字节序值
+
+uint16_t  ntohs(uint16_t netshort)
+uint32_t  ntohl(uint32_t netlong)
+// 均返回：主机字节序值
+// h:主机 host  n:网络, network  s:短整数 short  l:长整数 long
+
+```
+
+计算机内存有大端和小端存储方式，为了屏蔽这种差异，需要用到 `字节排序函数`，将他们转换为统一的格式。
+
+- htons：host to network short，主机地址转为网络地址（short int 类型）
+
+  填充端口信息需要用此函数
+
+  ```c
+  // IPv4 地址结构体
+  struct sockaddr_in server;
+  server.sin_port = htons(1234);
+  ```
+
+- htonl
+
+  l 时 long int，其他同上。
+
+  填充服务器 IP 地址时用此函数。
+
+- ntohs、ntohl
+
+  htons 逆函数
+
+### 字节操纵函数
+
+```c
+#include <string.h>
+void bzero(void *dest, size_t nbytes);
+void bcopy(const void *src, void *dest, size_t nbytes);
+int   bcmp(const void *src, void *dest, size_t nbytes); /*返回0则相同，非0不相同*/
+                                             //上述三个函数源自BSD
+void *memset(void *dest, int c, size_t len);
+void *memcpy(void *dest, const void *src, size_t nbytes);
+int     memcmp(const void *ptr1, const void *ptr2, size_t nbytes)
+					//上述三个函数属于ANSI C
+
+```
+
+#### 作用
+
+都是对内存中字节的操作。
+
+- bzero()
+
+  将目标中的指定数目的字节重置为 0。进行套接字初始化。
+
+- bcopy
+
+  复制字节
+
+- bcmp
+
+  比较字节是否相同
+
+- 参考 P17
+
+- 上面三个函数和下面三个函数作用类似。
+  - 参数位置不一样
+  - 返回结果不一样
+  - 书上的例子用的 bzero，老师喜欢用 memset，不知道是不是因为用到了 Windows 下的网络编程），因为 memset 那三个函数是 C 语言提供，不是由 Linux 系统提供的，通用性更好。
+
+### IP 地址转换函数
+
+![image-20201121214221031](img/LinuxNetworkProgramExperiment/image-20201121214221031.png)
+
+函数中 a 是 ASCII。n 是 numeric（数值），是存放于套接字地址结构中的二进制值。
+
+这两个函数只能处理 IPv4 地址
+
+- inet_aton
+
+  将点分十进制 IP 地址转为 套接字结构中的二进制地址。
+
+- inet_ntoa
+
+  和上面的相反
+
+![image-20201121215123163](img/LinuxNetworkProgramExperiment/image-20201121215123163.png)
+
+p 代表什么书上没说，n 依然是二进制数值。
+
+这两个函数可以处理 IPv4 和 IPv6 函数
+
+![image-20201121215321967](img/LinuxNetworkProgramExperiment/image-20201121215321967.png)
+
+## 第03章 基本TCP套接口编程
+
+还是看 ppt 和书。写这笔记就相当于简单的复制粘贴截图，写了也不会怎么看的。
+
+![image-20201119230122888](img/LinuxNetworkProgramExperiment/image-20201119230122888.png)
 
 
 
-调用套接字函数时，需将指向特定于协议的地址结构的指针类型转换成指向通用的地址结构的指针，
-     如：      struct sockaddr_in  serv
-          bind(sockfd, (struct sockaddr *)&serv,sizeof(serv));
+![image-20201119231109090](img/LinuxNetworkProgramExperiment/image-20201119231109090.png)
+
+![image-20201119231117887](img/LinuxNetworkProgramExperiment/image-20201119231117887.png)
+
+## 第04章 基本UDP套接口编程
+
+![image-20201119231358132](img/LinuxNetworkProgramExperiment/image-20201119231358132.png)
+
+![image-20201119231426444](img/LinuxNetworkProgramExperiment/image-20201119231426444.png)
+
+![image-20201119231515284](img/LinuxNetworkProgramExperiment/image-20201119231515284.png)
+
+## 第05章 并发服务器
+
+```c
+#include <sys/types.h>
+#include <unistd.h>
+pid_t fork(void)
+```
+
+返回：父进程中返回子进程的进程ID, 子进程返回0，
+           -1－出错
+
+- <font color=red>fork后，子进程和父进程继续执行fork（）函数后的指令。</font>
+
+- 子进程是父进程的副本。子进程拥有父进程的数据空间、堆栈的副本。但父、子进程并不共享这些存储空间部分。如果代码段是只读的，则父子进程共享代码段。如果父子进程同时对同一文件描述字操作，而又没有任何形式的同步，则会出现混乱的状况；
+  父进程中调用fork之前打开的所有描述字在函数fork返回之后子进程会得到一个副本。fork后，父子进程均需要将自己不使用的描述字关闭。
+
+![image-20201119232840144](img/LinuxNetworkProgramExperiment/image-20201119232840144.png)
+
+## 第06章名字与地址转换编程
+
+### gethostbyname()函数
+
+- 找主机名最基本的函数gethostbyname()，该函数执行如果成功，它返回一个指向结构hostent的指针，该结构中包含了该主机的所有IPv4地址或IPv6地址；如果失败返回空指针。
+
+- ```c
+  include <netdb.h>
+  struct hostent * gethostbyname (const char  *  hostname);
+  ```
+
+  参数hostname是主机的域名地址，函数将查询的结果作为参数返回。
+
+  如果失败返回空指针；
+
+  如果成功此参数返回的非空指针指向如下的hostent结构：
+
+## 第07章IPv4和IPv6编程
+
+## 第08章 守护进程和inetd超级服务器
+
+后台程序拥有控制终端，和守护进程不同。
+
+## 第09章IO编程
+
+## 第10章 广播与多播编程
+
+## 第11章 路由套接字编程
+
+## 第12章信号量编程
+
+## 第13章 原始套接字与数据链路访问编程
+
