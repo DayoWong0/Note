@@ -191,6 +191,8 @@ module.exports = {
                         sidebarDepth: 1,
                         children: [
                             ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
+                            ["/cs/csBasic/DataStructure/数据结构与算法基础（青岛大学-王卓）.md", "数据结构与算法基础（青岛大学-王卓）"],
+
                         ],
                     },
 
@@ -199,7 +201,8 @@ module.exports = {
                         collapsable: true,
                         sidebarDepth: 1,
                         children: [
-                            ["/cs/csBasic/操作系统/操作系统王道考研.md", "操作系统王道考研"],
+                            ["/cs/csBasic/操作系统/操作系统王道考研.md", "操作系统（王道考研）"],
+                            ["/cs/csBasic/操作系统/操作系统（哈工大李治军老师）32讲.md", "操作系统（哈工大李治军老师）32讲"],
                         ]
                     },
                     // csBasic
