@@ -164,3 +164,40 @@ pom.xml
 
 - 监听器
 - 服务 service 类供 controller 类调用，代码分离。
+
+## 第十四周 MyBatis
+
+[mybatis – MyBatis 3 | 简介](https://mybatis.org/mybatis-3/zh/index.html)
+
+[mybatis – MyBatis 3 | XML 映射器](https://mybatis.org/mybatis-3/zh/sqlmap-xml.html)
+
+- Mybatis mapper.xml 中 ${变量名} 和 #{变量名} 区别
+
+  `$` 不会增加其他符号，直接替换变量值。
+
+  `#` 会加引号，用于参数值
+
+  ```sql
+  select * from t_user where userName = 'Wang';
+  select * from t_user where ${userName} = #{userName};
+  ```
+
+- MyBatis if 语句
+
+- 单条记录用 get 多条用 query
+
+  getByField
+
+### 代码编写顺序
+
+1.  vo 类
+2. 建立数据库
+3. service 接口
+4. DAO 类
+5. MyBatis mapper
+6. service impl
+7. Controller
+
+## 结课
+
+17 周答辩
