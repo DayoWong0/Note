@@ -21,7 +21,7 @@ int main(int argc,char* argv[])
             perror("open failed");
             exit(1);
         }
-        dup2(fd, 1);//ÖØ¶¨Ïò±ê×¼Êä³öµ½ÎÄ¼þrestdout
+        dup2(fd, 1);//ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½restdout
         execl("/bin/ls","ls","-l",NULL);
         perror("execl failed");
     }else{  

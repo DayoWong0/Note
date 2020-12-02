@@ -191,7 +191,7 @@ module.exports = {
                         sidebarDepth: 1,
                         children: [
                             ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
-                            ["/cs/csBasic/DataStructure/数据结构与算法基础（青岛大学-王卓）.md", "数据结构与算法基础（青岛大学-王卓）"],
+                            ["/cs/csBasic/DataStructure/DataStructure-WZ.md", "数据结构与算法基础（青岛大学-王卓）"],
 
                         ],
                     },
