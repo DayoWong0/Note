@@ -1,5 +1,13 @@
-# linux
+# Linux
 
+## 参考
+
+- [Note/cs/Linux/linuxCode at master · DayoWong0/Note](https://github.com/DayoWong0/Note/tree/master/cs/Linux/linuxCode)
+- shell
+    - [掌握Shell编程，一篇就够了 - 知乎](https://zhuanlan.zhihu.com/p/102176365)
+    - [Shell 教程 | 菜鸟教程](https://www.runoob.com/linux/linux-shell.html)
+- C 语言编程
+    - [Linux C编程一站式学习](https://akaedu.github.io/book/)
 ## 文件系统
 
 ### 目录

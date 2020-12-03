@@ -5,7 +5,7 @@ main()
  	int num;
  	char buf[20];
  	fd=open("f1",O_RDONLY);   // open f1 for read only
- 	if(fd= = -1)
+ 	if(fd == -1)
 	{
  		perror("open");
  		exit(1);

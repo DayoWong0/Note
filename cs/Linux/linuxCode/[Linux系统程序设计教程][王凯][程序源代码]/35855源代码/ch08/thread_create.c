@@ -1,5 +1,5 @@
 //thread_create.c
-//线程创建
+//??????
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
