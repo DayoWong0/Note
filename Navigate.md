@@ -10,17 +10,11 @@
 
   - [**遇见狂神说**](https://space.bilibili.com/95256449)
 
-  Java 后端开发系列，学完他的全部课程找工作基本没问题。
-
-  专注后端、前端也有讲解。
-
-  后面的许多笔记来自他的课程。
-
 - [菜鸟教程](https://www.runoob.com/)
 
 - [WindrunnerMax](https://blog.touchczy.top/)
 
-  某个油猴脚本作者的博客。前端、算法、后端、Linux 均有，笔记质量很高，排版也值得学习。
+  某个油猴脚本作者的博客。前端、算法、后端、Linux 均有，笔记质量很高，排版美观
 
 - 计算机基础课程
 
@@ -34,8 +28,6 @@
   - [【天哥】Android 开发视频教程最新版 Android Studio 开发](https://www.bilibili.com/video/BV1Rt411e76H)
 
     和其他安卓课程区别在：对布局的讲解比较简单明白
-
-    让我看了两三集就喜欢上他的课程。
 
 - Youtube 上搜一些快速入门的视频
 
@@ -167,7 +159,7 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
 ## 学习方法
 
-- [【程序员小白必看】好的学习方法会让你受益终身！_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili](https://www.bilibili.com/video/BV1jE411n7CG)
+- [【程序员小白必看】好的学习方法会让你受益终身！\_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili](https://www.bilibili.com/video/BV1jE411n7CG)
 
   这个视频和我的想法高度一致，看教学视频仅入门，深入学习得多看书，上手实战。
 
@@ -181,7 +173,7 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
    只听不做跟没学差不多，费时费力。
 
-5.  <font color=red>Youtube/Bilibili Github 搜项目开发实战课程，自己跟着做一次</font>
+5. <font color=red>Youtube/Bilibili Github 搜项目开发实战课程，自己跟着做一次</font>
 
 6. 自己独立开发项目
 
@@ -222,4 +214,4 @@ vuePress + GitPages + Travis Ci 做成网站供自己使用
 
 ## 更新频率
 
-一般一天一次，git commit 信息记录每天学的东西
+一天一次，git commit 信息记录每天学的东西

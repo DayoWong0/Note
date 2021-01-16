@@ -5,11 +5,11 @@
   "main": "",
   "author": {
     "name": "DayoWong0",
-    "url": "https://chengziqaq.github.io/"
+    "url": "https://DayoWong0.github.io/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chengziqaq/Note.git"
+    "url": "git+https://github.com/DayoWong0/Note.git"
   },
   "scripts": {
     "dev": "vuepress dev",

@@ -110,11 +110,11 @@ module.exports = {
                             ["/cs/frontend/JavaScript-KS.md", "JavaScript-KS"]
                         ]
                     },
-                    "/cs/frontend/jquery.md",
                     "/cs/frontend/vue.md",
                     "/cs/frontend/ElementUI.md",
                     "/cs/frontend/bootstrap.md",
                     "/cs/frontend/vuePress.md",
+                    "/cs/frontend/Learning-Vue-js2.md",
                 ]
             },
 
@@ -139,7 +139,6 @@ module.exports = {
                         sidebarDepth: 1,
                         children: [
                             ["/cs/backend/JavaWeb/JavaWebNg/JavaWeb_ng.md", "JavaWeb-NG"],
-                            ["/cs/backend/JavaWeb/KsJavaWeb/JavaWeb入门到实战.md", "JavaWeb-KS"],
                         ]
                     },
                     "/cs/backend/SpringMVC-NG.md",
@@ -176,7 +175,7 @@ module.exports = {
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
                     "/cs/language/C/C.md",
-                    "/cs/language/C/cPrimerPlus.md",
+                    "/cs/language/C/CPrimerPlus.md",
                 ]
             },
 
@@ -190,8 +189,7 @@ module.exports = {
                         collapsable: true,
                         sidebarDepth: 1,
                         children: [
-                            ["/cs/csBasic/DataStructure/DataStructure.md", "数据结构"],
-                            ["/cs/csBasic/DataStructure/DataStructure-WZ.md", "数据结构与算法基础（青岛大学-王卓）"],
+                            // ["/cs/csBasic/DataStructure/DataStructure-WZ.md", "数据结构与算法基础（青岛大学-王卓）"],
 
                         ],
                     },
@@ -231,8 +229,7 @@ module.exports = {
                         collapsable: true,
                         sidebarDepth: 1,
                         children: [
-                            ["/cs/Linux/Docker/DockerBasic.md", "Docker 基础"],
-                            ["/cs/Linux/Docker/Dockerfile.md", "Dockerfile"],
+                            ["/cs/Linux/the-docker-book.md", "the Docker book 笔记"],
                         ],
                     },
 
@@ -269,7 +266,6 @@ module.exports = {
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
                     // Android
-                    ["/cs/mobile/Android/AndroidDocNote.md", "AndroidDocNote"],
                     ["/cs/mobile/Android/第一行代码第2版笔记.md", "第一行代码第2版笔记.md"],
                     ["/cs/mobile/Android/第一行代码第三版笔记.md", "第一行代码第三版笔记"],
                     ["cs/mobile/Android/Android-tg.md", "Android-tg(天哥在奔跑的教程)"],
@@ -282,7 +278,7 @@ module.exports = {
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
                     // 数据库
-                    ["/cs/database/MySQL_ks.md", "MySQL"],
+                    // ["/cs/database/MySQL_ks.md", "MySQL"],
                 ]
             },
 
