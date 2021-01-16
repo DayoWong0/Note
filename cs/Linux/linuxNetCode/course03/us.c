@@ -21,11 +21,11 @@ void main(){
     server.sin_addr.s_addr = htonl(INADDR_ANY);
     bind(fd, (struct sockaddr*)&server, sizeof(server));
     
-    len = sizeof(client);
+    len = sizeof(clientaddr);
     
     while (1)
     {
-         num = recvfrom(fd, buf, 100, 0, (struct sockaddr*)&client, &len);
+         num = recvfrom(fd, buf, MAXLEN, 0, (struct sockaddr*)&clientaddr, &len);
          buf[num] = 0;
          printf("%s", buf);
     }

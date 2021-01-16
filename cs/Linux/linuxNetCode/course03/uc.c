@@ -11,14 +11,14 @@ void main(){
     int fd;
     char buf[100];
     int len, num;
-    struct sockaddr_in server, client;
+    struct sockaddr_in serveraddr;
 
     fd = socket(AF_INET, SOCK_DGRAM, 0);
 
-    memset(&server, 0, sizeof(server));
-    server.sin_family = AF_INET;
-    server.sin_port = htons(9999);
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    memset(&server, 0, sizeof(serveraddr));
+    serveraddr.sin_family = AF_INET;
+    serveraddr.sin_port = htons(9999);
+    serveraddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     
     if (fork() > 0 )
     {
